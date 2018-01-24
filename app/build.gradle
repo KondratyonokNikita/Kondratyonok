@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key_store'
             keyPassword 'ghbvth123'
-            storeFile file('/Users/nikitakondratyonok/Documents/Yandex.Disk.localized/SHAD/2sem/android/Kondratyonok/key_store.jks')
+            storeFile file('../key_store.jks')
             storePassword 'ghbvth123'
         }
     }
