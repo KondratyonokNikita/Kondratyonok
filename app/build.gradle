@@ -4,11 +4,38 @@ buildscript {
     }
 
     dependencies {
+        //noinspection GradleDynamicVersion
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'findbugs'
+
+android.applicationVariants.all { variant ->
+    task("findbugs${variant.name.capitalize()}", type: FindBugs) {
+        description "Analyze ${variant.name} code with the findbugs tool"
+        group "Verification"
+
+        effort = "max"
+        reportLevel = "low"
+
+        classes = files("$project.buildDir/intermediates/classes/${variant.dirName}/com/kondratyonok")
+        excludeFilter = file("$rootProject.rootDir/findbugs-filter.xml")
+        source = fileTree('src/main/java')
+        classpath = files(project.configurations.compile.asPath)
+
+        reports {
+            html.enabled = true
+            xml.enabled = false
+
+            html.destination = "$project.buildDir/reports/findbugs-${variant.name}-output.html"
+            xml.destination = "$project.buildDir/reports/findbugs-${variant.name}-output.xml"
+        }
+
+        dependsOn "compile${variant.name.capitalize()}JavaWithJavac"
+    }
+}
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -24,14 +51,17 @@ android {
             storePassword 'ghbvth123'
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.kondratyonok.kondratyonok"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: hockeyapp_app_id,
+                                HOCKEYAPP_APP_SECRET: hockeyapp_app_secret,
+                                HOCKEY_APP_TOKEN: hockeyapp_app_token]
     }
     buildTypes {
         release {
@@ -41,17 +71,22 @@ android {
             ext.betaDistributionGroupAliases = 'kondratyonok'
         }
     }
+    lintOptions {
+        checkAllWarnings true
+        warningsAsErrors true
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:design:27.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
         transitive = true;
     }
+    compile 'net.hockeyapp.android:HockeySDK:5.1.0'
 }
