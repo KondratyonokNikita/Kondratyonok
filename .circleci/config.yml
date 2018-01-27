@@ -87,7 +87,7 @@ workflows:
       - build_app:
           requires:
             - prepare_dependencies
-      -check_codestyle:
+      - check_codestyle:
           requires:
             - prepare_dependencies
       - deploy_release:
