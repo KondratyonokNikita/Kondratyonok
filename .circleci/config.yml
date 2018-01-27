@@ -61,6 +61,7 @@ jobs:
           name: Deploy APK.
           command: |
               bash ./scripts/deploy-fabric.sh
+              bash ./scripts/deploy-hockey.sh
 workflows:
   version: 2
   build:
