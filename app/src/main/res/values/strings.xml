@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Kondratyonok</string>
-    <string name="action_settings">Settings</string>
     <string name="my_name">Никита Кондратёнок</string>
     <string name="github">https://github.com/KondratyonokNikita</string>
 </resources>
