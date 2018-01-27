@@ -27,7 +27,7 @@ android.applicationVariants.all { variant ->
 
         reports {
             html.enabled = true
-            xml.enabled = true
+            xml.enabled = false
 
             html.destination = "$project.buildDir/reports/findbugs-${variant.name}-output.html"
             xml.destination = "$project.buildDir/reports/findbugs-${variant.name}-output.xml"
