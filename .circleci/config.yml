@@ -52,6 +52,17 @@ jobs:
           root: .
           paths:
             - ./*
+  check_codestyle:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Lint
+          command: ./gradlew lint
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
   deploy_release:
     <<: *defaults
     steps:
@@ -73,11 +84,15 @@ workflows:
       - build_app:
           requires:
             - prepare_dependencies
+      -check_codestyle:
+          requires:
+            - prepare_dependencies
       - deploy_release:
           requires:
             - prepare_dependencies
             - build_app
             - run_tests
+            - check_codestyle
           filters:
             branches:
               only: master
