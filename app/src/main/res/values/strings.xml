@@ -2,4 +2,10 @@
     <string name="app_name">Kondratyonok</string>
     <string name="my_name">Никита Кондратёнок</string>
     <string name="github">https://github.com/KondratyonokNikita</string>
+    <string name="greeting">Приветствие</string>
+    <string name="next">Далее</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="standard_layout">Стандартный макет</string>
+    <string name="dense_layout">Плотный макет</string>
 </resources>
