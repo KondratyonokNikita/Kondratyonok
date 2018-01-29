@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Kondratyonok</string>
-    <string name="my_name">Никита Кондратёнок</string>
-    <string name="github">https://github.com/KondratyonokNikita</string>
+    <string name="app_name" translatable="false">Kondratyonok</string>
+    <string name="github" translatable="false">https://github.com/KondratyonokNikita</string>
     <string name="greeting">Приветствие</string>
     <string name="next">Далее</string>
     <string name="light_theme">Светлая тема</string>
     <string name="dark_theme">Темная тема</string>
     <string name="standard_layout">Стандартный макет</string>
     <string name="dense_layout">Плотный макет</string>
+    <string name="my_name">Никита Кондратёнок</string>
+    <string name="standard_layout_description">Портретная: 4 иконки в ряд Ландшафтная: 6 иконок в ряд</string>
 </resources>

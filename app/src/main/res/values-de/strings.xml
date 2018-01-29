@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dense_layout">Dichte Layout</string>
+    <string name="my_name">Nikita Kondratyonok</string>
+    <string name="standard_layout">Standard-Layout</string>
+    <string name="dark_theme">Dunkle Thema</string>
+    <string name="light_theme">Helle Thema</string>
+    <string name="next">Weiterhin</string>
+    <string name="greeting">Gruß</string>
+    <string name="standard_layout_description">Portrait: 4 Icons in einer Reihe Landschaft: 6 Icons in einer Reihe</string>
+</resources>

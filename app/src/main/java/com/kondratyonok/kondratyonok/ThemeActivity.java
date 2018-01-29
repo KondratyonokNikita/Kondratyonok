@@ -18,5 +18,6 @@ public class ThemeActivity extends AppCompatActivity {
         final Intent intent = new Intent();
         intent.setClass(view.getContext(), LayoutActivity.class);
         startActivity(intent);
+        finish();
     }
 }

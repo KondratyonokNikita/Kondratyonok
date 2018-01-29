@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -14,7 +16,7 @@ public class GreetingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_greeting);
     }
 
@@ -22,5 +24,6 @@ public class GreetingActivity extends AppCompatActivity {
         final Intent intent = new Intent();
         intent.setClass(view.getContext(), DescriptionActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -38,7 +38,9 @@
             android:parentActivityName=".DescriptionActivity" />
         <activity
             android:name=".LayoutActivity"
-            android:parentActivityName=".ThemeActivity"/>
+            android:parentActivityName=".ThemeActivity" />
+        <activity
+            android:name=".LauncherActivity" />
     </application>
 
 </manifest>
