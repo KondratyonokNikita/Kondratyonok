@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,54 +7,84 @@
     android:orientation="vertical"
     tools:context="com.kondratyonok.kondratyonok.ThemeActivity">
 
-    <RadioGroup
-        android:id="@+id/theme"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        android:baselineAligned="false">
 
-        <RadioButton
+        <RelativeLayout
             android:id="@+id/light_theme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@drawable/border"
-            android:checked="true"
-            android:text="@string/light_theme"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="setLightTheme"
+            tools:ignore="NestedWeights">
 
-        <RadioButton
+            <RadioButton
+                android:id="@+id/light_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView"
+                android:layout_alignBottom="@+id/textView"
+                android:checked="true"
+                android:onClick="setLightTheme"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/light_radio_button"
+                android:text="@string/light_theme"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/dark_theme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:background="@drawable/border"
-            android:text="@string/dark_theme"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-    </RadioGroup>
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="setDarkTheme">
+
+            <RadioButton
+                android:id="@+id/dark_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setDarkTheme"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/dark_radio_button"
+                android:text="@string/dark_theme"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
-        android:onClick="next"
-        android:text="@string/next" />
+        style="@style/NextButton"
+        android:layout_marginTop="0dp" />
 
 </LinearLayout>

@@ -7,5 +7,6 @@
     <string name="light_theme">Helle Thema</string>
     <string name="next">Weiterhin</string>
     <string name="greeting">Gruß</string>
-    <string name="standard_layout_description">Portrait: 4 Icons in einer Reihe Landschaft: 6 Icons in einer Reihe</string>
+    <string name="standard_layout_description">Portrait: 4 Icons in einer\nReihe Landschaft: 6 Icons in einer Reihe</string>
+    <string name="dense_layout_description">Portrait: 5 Icons in einer\nReihe Landschaft: 7 Icons in einer Reihe</string>
 </resources>

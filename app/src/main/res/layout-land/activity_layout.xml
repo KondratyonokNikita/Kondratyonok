@@ -8,55 +8,101 @@
     android:orientation="vertical"
     tools:context="com.kondratyonok.kondratyonok.LayoutActivity">
 
-    <RadioGroup
-        android:id="@+id/layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:baselineAligned="false">
 
-        <RadioButton
+        <RelativeLayout
             android:id="@+id/standard_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@drawable/border"
-            android:checked="true"
-            android:text="@string/standard_layout"
-            android:textAlignment="center"
-            android:textSize="24dp" />
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:onClick="setStandardLayout"
+            tools:ignore="NestedWeights">
 
-        <RadioButton
-            android:id="@+id/dense_theme"
+            <RadioButton
+                android:id="@+id/standard_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_margin="16dp"
+                android:onClick="setStandardLayout"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/standard_radio_button"
+                android:layout_alignBaseline="@+id/standard_radio_button"
+                android:text="@string/standard_layout"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/standard_layout_description"
+                android:layout_below="@+id/standard_radio_button"
+                android:layout_margin="16dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dense_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@drawable/border"
-            android:text="@string/dense_layout"
-            android:textAlignment="center"
-            android:textSize="24dp" />
-    </RadioGroup>
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:onClick="setDenseLayout">
+
+            <RadioButton
+                android:id="@+id/dense_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setDenseLayout"
+                android:textSize="24sp"
+                android:layout_margin="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@+id/dense_radio_button"
+                android:layout_alignBaseline="@+id/dense_radio_button"
+                android:text="@string/dense_layout"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dense_layout_description"
+                android:layout_below="@+id/dense_radio_button"
+                android:layout_margin="16dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
-        android:onClick="next"
-        android:text="@string/next" />
+        style="@style/NextButton"
+        android:layout_marginTop="0dp" />
 
 </LinearLayout>

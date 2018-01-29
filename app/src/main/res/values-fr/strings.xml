@@ -8,4 +8,5 @@
     <string name="dense_layout">Dense mise en page</string>
     <string name="my_name">Nikita Kondratyonok</string>
     <string name="standard_layout_description">Portrait: 4 icônes dans une rangée\nPaysage: 6 icônes dans une rangée</string>
+    <string name="dense_layout_description">Portrait: 5 icônes dans une rangée\nPaysage: 7 icônes dans une rangée</string>
 </resources>
