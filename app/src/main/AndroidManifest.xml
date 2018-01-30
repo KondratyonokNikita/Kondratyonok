@@ -43,7 +43,8 @@
         <activity
             android:name=".LauncherActivity"
             android:parentActivityName=".GreetingActivity" />
-        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".ListActivity" />
+        <activity android:name=".settings.SettingsActivity"></activity>
     </application>
 
 </manifest>

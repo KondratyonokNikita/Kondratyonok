@@ -1,8 +1,10 @@
 package com.kondratyonok.kondratyonok;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,8 +23,7 @@ import com.kondratyonok.kondratyonok.data.Entry;
 import com.kondratyonok.kondratyonok.data.Storage;
 import com.kondratyonok.kondratyonok.launcher.LauncherAdapter;
 import com.kondratyonok.kondratyonok.launcher.OffsetItemDecoration;
-import com.kondratyonok.kondratyonok.settings.Layout;
-import com.kondratyonok.kondratyonok.settings.Settings;
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.Random;
 
@@ -36,7 +37,7 @@ public class LauncherActivity extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Settings.getTheme());
+        setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_launcher);
         createGridLayout();
 
@@ -64,15 +65,8 @@ public class LauncherActivity extends AppCompatActivity implements NavigationVie
         final int offset = getResources().getDimensionPixelSize(R.dimen.item_offset);
         recyclerView.addItemDecoration(new OffsetItemDecoration(offset));
 
-        final int spanCount;
-        switch (Settings.getLayout()) {
-            case Layout.DENSE:
-                spanCount = getResources().getInteger(R.integer.span_count_dense);
-                break;
-            default:
-                spanCount = getResources().getInteger(R.integer.span_count);
-                break;
-        }
+        final int columnCountId = SettingsActivity.getLayoutColumnsId(this);
+        final int spanCount = getResources().getInteger(columnCountId);
         final GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -83,18 +77,24 @@ public class LauncherActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        final Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_settings:
-                Toast.makeText(this, "No settings. Sorry", Toast.LENGTH_LONG).show();
+                intent = new Intent();
+                intent.setClass(this, SettingsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_list:
-                final Intent intent = new Intent();
+                intent = new Intent();
                 intent.setClass(this, ListActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.nav_launcher:
-                Toast.makeText(this, "You are here dude", Toast.LENGTH_LONG).show();
+                intent = new Intent();
+                intent.setClass(this, LauncherActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             default:
                 Toast.makeText(this, "What a fuck!!!", Toast.LENGTH_LONG).show();

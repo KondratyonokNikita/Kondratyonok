@@ -22,6 +22,7 @@ import com.kondratyonok.kondratyonok.data.Storage;
 import com.kondratyonok.kondratyonok.launcher.LauncherAdapter;
 import com.kondratyonok.kondratyonok.launcher.OffsetItemDecoration;
 import com.kondratyonok.kondratyonok.list.ListAdapter;
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class ListActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_list);
         createLinearLayout();
 
@@ -74,15 +76,21 @@ public class ListActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        final Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
+                intent = new Intent();
+                intent.setClass(this, SettingsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_list:
-                Toast.makeText(this, "You are here dude", Toast.LENGTH_LONG).show();
+                intent = new Intent();
+                intent.setClass(this, ListActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.nav_launcher:
-                final Intent intent = new Intent();
+                intent = new Intent();
                 intent.setClass(this, LauncherActivity.class);
                 startActivity(intent);
                 finish();
