@@ -30,7 +30,8 @@
 
             <TextView
                 style="@style/AppName"
-                android:id="@+id/app_name" />
+                android:id="@+id/app_name"
+                android:textIsSelectable="false" />
 
             <TextView
                 style="@style/AppDescription"

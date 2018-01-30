@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Kondratyonok</string>
-    <string name="github" translatable="false">https://github.com/KondratyonokNikita</string>
     <string name="greeting">Приветствие</string>
     <string name="next">Далее</string>
     <string name="light_theme">Светлая тема</string>

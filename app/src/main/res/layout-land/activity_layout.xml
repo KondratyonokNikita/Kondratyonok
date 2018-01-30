@@ -16,7 +16,6 @@
         android:baselineAligned="false">
 
         <RelativeLayout
-            android:id="@+id/standard_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
@@ -39,7 +38,6 @@
 
             <TextView
                 style="@style/LayoutName"
-                android:id="@+id/textView"
                 android:layout_toEndOf="@+id/standard_radio_button"
                 android:layout_alignBaseline="@+id/standard_radio_button"
                 android:text="@string/standard_layout" />
@@ -52,7 +50,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/dense_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="16dp"

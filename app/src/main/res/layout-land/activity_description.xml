@@ -24,12 +24,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/my_photo"
-            android:layout_toRightOf="@+id/my_photo">
+            android:layout_toEndOf="@+id/my_photo" >
 
             <TextView
                 style="@style/AppName"
-                android:id="@+id/textView5" />
+                android:id="@+id/textView5"
+                android:textIsSelectable="false" />
 
             <TextView
                 style="@style/AppDescription"

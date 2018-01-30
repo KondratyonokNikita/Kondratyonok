@@ -25,7 +25,8 @@
         <TextView
             style="@style/AppName"
             android:id="@+id/app_name"
-            android:layout_below="@+id/my_photo" />
+            android:layout_below="@+id/my_photo"
+            android:textIsSelectable="false" />
 
         <TextView
             style="@style/AppDescription"

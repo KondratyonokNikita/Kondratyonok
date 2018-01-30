@@ -16,7 +16,6 @@
 
         <RelativeLayout
             style="@style/FirstBigRadioButton"
-            android:id="@+id/light_theme"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
@@ -39,7 +38,6 @@
 
         <RelativeLayout
             style="@style/SecondBigRadioButton"
-            android:id="@+id/dark_theme"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
