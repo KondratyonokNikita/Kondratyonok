@@ -17,6 +17,5 @@ public class DescriptionActivity extends AppCompatActivity {
         final Intent intent = new Intent();
         intent.setClass(view.getContext(), ThemeActivity.class);
         startActivity(intent);
-        finish();
     }
 }

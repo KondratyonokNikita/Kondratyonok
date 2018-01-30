@@ -8,6 +8,6 @@
     <string name="standard_layout">Стандартный макет</string>
     <string name="dense_layout">Плотный макет</string>
     <string name="my_name">Никита Кондратёнок</string>
-    <string name="standard_layout_description">Портретная: 4 иконки в ряд\nЛандшафтная: 6 иконок в ряд</string>
-    <string name="dense_layout_description">Портретная: 5 иконок в ряд\nЛандшафтная: 7 иконок в ряд</string>
+    <string name="standard_layout_description">Портретная: 4 иконки в ряд Ландшафтная: 6 иконок в ряд</string>
+    <string name="dense_layout_description">Портретная: 5 иконок в ряд Ландшафтная: 7 иконок в ряд</string>
 </resources>

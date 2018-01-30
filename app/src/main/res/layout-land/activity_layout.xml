@@ -32,30 +32,22 @@
             tools:ignore="NestedWeights">
 
             <RadioButton
+                style="@style/RadioButton"
                 android:id="@+id/standard_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:checked="true"
-                android:layout_margin="16dp"
-                android:onClick="setStandardLayout"
-                android:textSize="24sp" />
+                android:onClick="setStandardLayout" />
 
             <TextView
+                style="@style/LayoutName"
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_toEndOf="@+id/standard_radio_button"
                 android:layout_alignBaseline="@+id/standard_radio_button"
-                android:text="@string/standard_layout"
-                android:textSize="24sp" />
+                android:text="@string/standard_layout" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/LayoutDescription"
                 android:text="@string/standard_layout_description"
-                android:layout_below="@+id/standard_radio_button"
-                android:layout_margin="16dp" />
+                android:layout_below="@+id/standard_radio_button" />
 
         </RelativeLayout>
 
@@ -75,28 +67,20 @@
             android:onClick="setDenseLayout">
 
             <RadioButton
+                style="@style/RadioButton"
                 android:id="@+id/dense_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="setDenseLayout"
-                android:textSize="24sp"
-                android:layout_margin="16dp"/>
+                android:onClick="setDenseLayout" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                style="@style/LayoutName"
                 android:layout_toEndOf="@+id/dense_radio_button"
                 android:layout_alignBaseline="@+id/dense_radio_button"
-                android:text="@string/dense_layout"
-                android:textSize="24sp" />
+                android:text="@string/dense_layout" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/LayoutDescription"
                 android:text="@string/dense_layout_description"
-                android:layout_below="@+id/dense_radio_button"
-                android:layout_margin="16dp" />
+                android:layout_below="@+id/dense_radio_button" />
 
         </RelativeLayout>
     </LinearLayout>

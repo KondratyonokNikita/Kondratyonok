@@ -15,71 +15,47 @@
         android:baselineAligned="false">
 
         <RelativeLayout
+            style="@style/FirstBigRadioButton"
             android:id="@+id/light_theme"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
             android:onClick="setLightTheme"
             tools:ignore="NestedWeights">
 
             <RadioButton
+                style="@style/RadioButton"
                 android:id="@+id/light_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView"
-                android:layout_alignBottom="@+id/textView"
                 android:checked="true"
-                android:onClick="setLightTheme"
-                android:textSize="24sp" />
+                android:onClick="setLightTheme" />
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                style="@style/ThemeName"
                 android:layout_toEndOf="@+id/light_radio_button"
-                android:text="@string/light_theme"
-                android:textSize="24sp" />
+                android:layout_alignBaseline="@+id/light_radio_button"
+                android:text="@string/light_theme" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            style="@style/SecondBigRadioButton"
             android:id="@+id/dark_theme"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
             android:onClick="setDarkTheme">
 
             <RadioButton
+                style="@style/RadioButton"
                 android:id="@+id/dark_radio_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="setDarkTheme"
-                android:textSize="24sp" />
+                android:onClick="setDarkTheme" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                style="@style/ThemeName"
                 android:layout_toEndOf="@+id/dark_radio_button"
-                android:text="@string/dark_theme"
-                android:textSize="24sp" />
+                android:layout_alignBaseline="@+id/dark_radio_button"
+                android:text="@string/dark_theme" />
+
         </RelativeLayout>
     </LinearLayout>
 
