@@ -8,11 +8,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kondratyonok.kondratyonok.BuildConfig;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.data.Storage;
 
@@ -23,6 +25,9 @@ import java.util.List;
  */
 
 public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private final static String TAG = "ListAdapter";
+
     @NonNull
     private final Storage mData;
 
@@ -62,15 +67,36 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                Snackbar.make(v, "color = " + colorRRGGBB + ", text = " + mData.get(position).text, Snackbar.LENGTH_SHORT)
+                Snackbar snackbar = Snackbar.make(v, "color = " + colorRRGGBB + ", text = " + mData.get(position).text, Snackbar.LENGTH_SHORT)
                         .setDuration(5000)
                         .setAction("DELETE", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mData.remove(position);
+                                if (Log.isLoggable(TAG, Log.INFO)) {
+                                    Log.i(TAG, "Deleted from position " + position + " with color " + colorRRGGBB);
+                                }
                                 adapter.notifyDataSetChanged();
                             }
-                        }).show();
+                        });
+                snackbar.addCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        final String description;
+                        switch (event) {
+                            case Snackbar.Callback.DISMISS_EVENT_ACTION: description = "via an action click."; break;
+                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: description = "from a new Snackbar being shown."; break;
+                            case Snackbar.Callback.DISMISS_EVENT_MANUAL: description = "via a call to dismiss()."; break;
+                            case Snackbar.Callback.DISMISS_EVENT_SWIPE: description = "via a swipe."; break;
+                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT: description = "via a timeout."; break;
+                            default: description = "by god.";
+                        }
+                        if (Log.isLoggable(TAG, Log.INFO)) {
+                            Log.i(TAG, "SnackBar dismissed " + description);
+                        }
+                    }
+                });
+                snackbar.show();
                 return true;
             }
         });

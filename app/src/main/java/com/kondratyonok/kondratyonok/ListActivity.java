@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class ListActivity extends AppCompatActivity implements NavigationView.On
     private ListAdapter launcherAdapter;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle aToggle;
+    private final String TAG = "ListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,9 @@ public class ListActivity extends AppCompatActivity implements NavigationView.On
                 int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
                 data.addFront(new Entry(color, String.valueOf(color)));
                 launcherAdapter.notifyDataSetChanged();
-                Snackbar.make(view, "Added color " + String.format("#%06X", 0xFFFFFF & color), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (Log.isLoggable(TAG, Log.INFO)) {
+                    Log.i(TAG, "Added color " + String.format("#%06X", 0xFFFFFF & color));
+                }
             }
         });
     }
