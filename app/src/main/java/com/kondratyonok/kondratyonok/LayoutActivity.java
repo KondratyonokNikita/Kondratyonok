@@ -25,6 +25,7 @@ public class LayoutActivity extends AppCompatActivity {
         final Intent intent = new Intent();
         intent.setClass(view.getContext(), LauncherActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void setStandardLayout(View view) {

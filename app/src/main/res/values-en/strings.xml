@@ -9,4 +9,8 @@
     <string name="my_name">Nikita Kondratyonok</string>
     <string name="standard_layout_description">Portrait: 4 icons in a row\nLandscape: 6 icons in a row</string>
     <string name="dense_layout_description">Portrait: 5 icons in a row\nLandscape: 7 icons in a row</string>
+    <string name="layout">Layout</string>
+    <string name="launcher_activity">Launcher Activity</string>
+    <string name="list_activity">List Activity</string>
+    <string name="settings">Settings</string>
 </resources>

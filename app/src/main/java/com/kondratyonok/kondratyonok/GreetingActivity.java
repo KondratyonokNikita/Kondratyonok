@@ -28,5 +28,6 @@ public class GreetingActivity extends AppCompatActivity {
         final Intent intent = new Intent();
         intent.setClass(view.getContext(), DescriptionActivity.class);
         startActivity(intent);
+        finish();
     }
 }

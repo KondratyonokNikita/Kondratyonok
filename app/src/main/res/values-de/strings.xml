@@ -9,4 +9,8 @@
     <string name="greeting">Gruß</string>
     <string name="standard_layout_description">Portrait: 4 Icons in einer\nReihe Landschaft: 6 Icons in einer Reihe</string>
     <string name="dense_layout_description">Portrait: 5 Icons in einer\nReihe Landschaft: 7 Icons in einer Reihe</string>
+    <string name="layout">Layout</string>
+    <string name="launcher_activity">Launcher Activity</string>
+    <string name="list_activity">List Activity</string>
+    <string name="settings">Settings</string>
 </resources>
