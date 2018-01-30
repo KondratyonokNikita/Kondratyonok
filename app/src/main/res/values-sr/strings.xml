@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dense_layout">Густи распоред</string>
+    <string name="my_name">Никита Кондратенок</string>
+    <string name="standard_layout">"Стандардни изглед "</string>
+    <string name="dark_theme">"Тамна тема "</string>
+    <string name="light_theme">"Светла тема "</string>
+    <string name="next">Даље</string>
+    <string name="greeting">Поздрав</string>
+    <string name="standard_layout_description">"Портрет: 4 иконе заредом\nПејзаж: 6 икона заредом "</string>
+    <string name="dense_layout_description">"Портрет: 5 икона заредом\nУређивање позадине: 7 икона у низу "</string>
+</resources>

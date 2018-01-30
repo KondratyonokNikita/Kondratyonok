@@ -54,14 +54,14 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.kondratyonok.kondratyonok"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [HOCKEYAPP_APP_ID: hockeyapp_app_id,
+        manifestPlaceholders = [HOCKEYAPP_APP_ID    : hockeyapp_app_id,
                                 HOCKEYAPP_APP_SECRET: hockeyapp_app_secret,
-                                HOCKEY_APP_TOKEN: hockeyapp_app_token]
+                                HOCKEY_APP_TOKEN    : hockeyapp_app_token]
     }
     buildTypes {
         release {
