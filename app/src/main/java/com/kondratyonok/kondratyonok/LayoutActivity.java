@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.RadioButton;
 
 import com.kondratyonok.kondratyonok.settings.Layout;
@@ -22,7 +23,7 @@ public class LayoutActivity extends AppCompatActivity {
     public void next(View view) {
         Settings.save(this);
         final Intent intent = new Intent();
-        intent.setClass(view.getContext(), LauncherActivity.class);
+        intent.setClass(view.getContext(), ListActivity.class);
         startActivity(intent);
     }
 

@@ -42,7 +42,8 @@
             android:parentActivityName=".ThemeActivity" />
         <activity
             android:name=".LauncherActivity"
-            android:parentActivityName=".GreetingActivity"/>
+            android:parentActivityName=".GreetingActivity" />
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>

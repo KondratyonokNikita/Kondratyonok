@@ -1,12 +1,12 @@
 package com.kondratyonok.kondratyonok;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -14,24 +14,22 @@ import com.kondratyonok.kondratyonok.data.Entry;
 import com.kondratyonok.kondratyonok.data.Storage;
 import com.kondratyonok.kondratyonok.launcher.LauncherAdapter;
 import com.kondratyonok.kondratyonok.launcher.OffsetItemDecoration;
-import com.kondratyonok.kondratyonok.settings.Layout;
-import com.kondratyonok.kondratyonok.settings.Settings;
+import com.kondratyonok.kondratyonok.list.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LauncherActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     private final Storage data = new Storage();
-    private LauncherAdapter launcherAdapter;
+    private ListAdapter launcherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Settings.getTheme());
-        setContentView(R.layout.activity_launcher);
-        createGridLayout();
+        setContentView(R.layout.activity_list);
+        createLinearLayout();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,26 +45,17 @@ public class LauncherActivity extends AppCompatActivity {
         });
     }
 
-    private void createGridLayout() {
+    private void createLinearLayout() {
         final RecyclerView recyclerView = findViewById(R.id.louncher_content);
-        recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(true);
         final int offset = getResources().getDimensionPixelSize(R.dimen.item_offset);
         recyclerView.addItemDecoration(new OffsetItemDecoration(offset));
 
-        final int spanCount;
-        switch (Settings.getLayout()) {
-            case Layout.DENSE:
-                spanCount = getResources().getInteger(R.integer.span_count_dense);
-                break;
-            default:
-                spanCount = getResources().getInteger(R.integer.span_count);
-                break;
-        }
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, spanCount);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         data.generateData();
-        launcherAdapter = new LauncherAdapter(data);
+        launcherAdapter = new ListAdapter(data);
         recyclerView.setAdapter(launcherAdapter);
     }
 }
