@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.data.Entry;
@@ -46,6 +47,16 @@ public class LauncherActivity extends AppCompatActivity implements NavigationVie
         mDrawerLayout = findViewById(R.id.menu);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        final LauncherActivity activity = this;
+        header.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent();
+                intent.setClass(activity, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
