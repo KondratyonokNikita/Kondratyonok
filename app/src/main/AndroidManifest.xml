@@ -4,6 +4,7 @@
     package="com.kondratyonok.kondratyonok">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -11,16 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeLight"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="36b9978b94509c9965c973e6b7fe57b57c537103" />
@@ -30,6 +23,26 @@
         <meta-data
             android:name="net.hockeyapp.android.appSecret"
             android:value="${HOCKEYAPP_APP_SECRET}" />
+
+        <activity android:name=".GreetingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DescriptionActivity"
+            android:parentActivityName=".GreetingActivity" />
+        <activity
+            android:name=".ThemeActivity"
+            android:parentActivityName=".DescriptionActivity" />
+        <activity
+            android:name=".LayoutActivity"
+            android:parentActivityName=".ThemeActivity" />
+        <activity
+            android:name=".LauncherActivity"
+            android:parentActivityName=".GreetingActivity"/>
     </application>
 
 </manifest>
