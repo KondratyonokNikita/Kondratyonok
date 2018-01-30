@@ -29,6 +29,10 @@ public class Storage {
         return storage.get(position);
     }
 
+    public void remove(int position) {
+        storage.remove(position);
+    }
+
     public int size() {
         return storage.size();
     }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kondratyonok.kondratyonok.LauncherActivity;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.data.Storage;
 
@@ -41,10 +42,19 @@ public class LauncherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final TextView color = gridHolder.getTextView();
         final String colorRRGGBB = String.format("#%06X", 0xFFFFFF & mData.get(position).color);
         color.setText(colorRRGGBB);
+        final LauncherAdapter adapter = this;
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                Snackbar.make(v, "color = " + colorRRGGBB + ", text = " + mData.get(position).text, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, "color = " + colorRRGGBB + ", text = " + mData.get(position).text, Snackbar.LENGTH_SHORT)
+                        .setDuration(5000)
+                        .setAction("DELETE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mData.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }).show();
                 return true;
             }
         });

@@ -23,7 +23,7 @@ public class LayoutActivity extends AppCompatActivity {
     public void next(View view) {
         Settings.save(this);
         final Intent intent = new Intent();
-        intent.setClass(view.getContext(), ListActivity.class);
+        intent.setClass(view.getContext(), LauncherActivity.class);
         startActivity(intent);
     }
 

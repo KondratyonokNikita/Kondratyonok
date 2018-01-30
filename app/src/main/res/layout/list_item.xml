@@ -20,7 +20,8 @@
         android:layout_marginStart="@dimen/item_offset"
         android:layout_marginBottom="@dimen/item_offset"
         android:textSize="20sp"
-        android:layout_toEndOf="@+id/launcher_image" />
+        android:layout_toEndOf="@+id/launcher_image"
+        android:textIsSelectable="false"/>
 
     <TextView
         android:id="@+id/qaz"

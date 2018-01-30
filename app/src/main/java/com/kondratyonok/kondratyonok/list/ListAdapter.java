@@ -58,10 +58,19 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final TextView text = gridHolder.getTextTextView();
         text.setText(mData.get(position).text);
 
+        final ListAdapter adapter = this;
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                Snackbar.make(v, "color = " + colorRRGGBB, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, "color = " + colorRRGGBB + ", text = " + mData.get(position).text, Snackbar.LENGTH_SHORT)
+                        .setDuration(5000)
+                        .setAction("DELETE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mData.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }).show();
                 return true;
             }
         });
@@ -71,6 +80,4 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return mData.size();
     }
-
-
 }
