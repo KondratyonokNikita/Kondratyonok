@@ -9,13 +9,29 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class Settings {
-    public static final String SETTINGS_FILE_NAME = "settings";
+    private static final String SETTINGS_FILE_NAME = "settings";
 
-    public static final String THEME = "THEME";
-    public static int theme = Theme.LIGHT;
+    private static final String THEME = "THEME";
+    private static int theme = Theme.LIGHT;
 
-    public static final String LAYOUT = "LAYOUT";
-    public static int layout = Layout.STANDARD;
+    private static final String LAYOUT = "LAYOUT";
+    private static int layout = Layout.STANDARD;
+
+    public static int getTheme() {
+        return theme;
+    }
+
+    public static void setTheme(int theme) {
+        Settings.theme = theme;
+    }
+
+    public static int getLayout() {
+        return layout;
+    }
+
+    public static void setLayout(int layout) {
+        Settings.layout = layout;
+    }
 
     public static boolean load(AppCompatActivity activity) {
         SharedPreferences settings;

@@ -26,7 +26,7 @@ public class ThemeActivity extends AppCompatActivity {
     public void setLightTheme(View view) {
         RadioButton lightRB = findViewById(R.id.light_radio_button);
         RadioButton darkRB = findViewById(R.id.dark_radio_button);
-        Settings.theme = Theme.LIGHT;
+        Settings.setTheme(Theme.LIGHT);
         lightRB.setChecked(true);
         darkRB.setChecked(false);
     }
@@ -34,7 +34,7 @@ public class ThemeActivity extends AppCompatActivity {
     public void setDarkTheme(View view) {
         RadioButton lightRB = findViewById(R.id.light_radio_button);
         RadioButton darkRB = findViewById(R.id.dark_radio_button);
-        Settings.theme = Theme.DARK;
+        Settings.setTheme(Theme.DARK);
         lightRB.setChecked(false);
         darkRB.setChecked(true);
     }

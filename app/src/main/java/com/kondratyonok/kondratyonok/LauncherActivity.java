@@ -22,7 +22,7 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Settings.theme);
+        setTheme(Settings.getTheme());
         setContentView(R.layout.activity_launcher);
         createGridLayout();
     }
@@ -34,10 +34,7 @@ public class LauncherActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new OffsetItemDecoration(offset));
 
         final int spanCount;
-        switch (Settings.layout) {
-            case Layout.STANDARD:
-                spanCount = getResources().getInteger(R.integer.span_count);
-                break;
+        switch (Settings.getLayout()) {
             case Layout.DENSE:
                 spanCount = getResources().getInteger(R.integer.span_count_dense);
                 break;
