@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.launcher;
+package com.kondratyonok.kondratyonok.list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,24 +6,33 @@ import android.widget.TextView;
 
 import com.kondratyonok.kondratyonok.R;
 
-class Holder {
+/**
+ * Created by NKondratyonok on 30.01.18.
+ */
+
+public class Holder {
 
     static class GridHolder extends RecyclerView.ViewHolder {
 
         private final View mImageView;
-        private final TextView mTextView;
+        private final TextView colorTextView;
+        private final TextView textTextView;
 
         GridHolder(final View view) {
             super(view);
 
             mImageView = view.findViewById(R.id.launcher_image);
-            mTextView = view.findViewById(R.id.color);
+            colorTextView = view.findViewById(R.id.color);
+            textTextView = view.findViewById(R.id.qaz);
         }
 
         View getImageView() {
             return mImageView;
         }
 
-        TextView getTextView() { return mTextView; }
+        TextView getColorTextView() { return colorTextView; }
+
+        TextView getTextTextView() { return textTextView; }
     }
+
 }

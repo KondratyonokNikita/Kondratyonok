@@ -4,7 +4,6 @@
     package="com.kondratyonok.kondratyonok">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -40,9 +39,10 @@
         <activity
             android:name=".LayoutActivity"
             android:parentActivityName=".ThemeActivity" />
-        <activity
-            android:name=".LauncherActivity"
-            android:parentActivityName=".GreetingActivity"/>
+        <activity android:name=".LauncherActivity" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

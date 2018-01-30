@@ -9,4 +9,11 @@
     <string name="greeting">Поздрав</string>
     <string name="standard_layout_description">"Портрет: 4 иконе заредом\nПејзаж: 6 икона заредом "</string>
     <string name="dense_layout_description">"Портрет: 5 икона заредом\nУређивање позадине: 7 икона у низу "</string>
+    <string name="layout">Layout</string>
+    <string name="launcher_activity">Launcher Activity</string>
+    <string name="list_activity">List Activity</string>
+    <string name="settings">Settings</string>
+    <string name="layout_description">Layout description</string>
+    <string name="theme">Theme</string>
+    <string name="github">https://github.com/KondratyonokNikita</string>
 </resources>
