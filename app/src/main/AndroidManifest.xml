@@ -44,6 +44,7 @@
         <activity android:name=".activity.ApplicationsActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".activity.ProfileActivity" />
+
     </application>
 
 </manifest>

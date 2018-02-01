@@ -1,10 +1,12 @@
 package com.kondratyonok.kondratyonok;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import com.kondratyonok.kondratyonok.R;
 
 /**
  * Created by NKondratyonok on 30.01.18.

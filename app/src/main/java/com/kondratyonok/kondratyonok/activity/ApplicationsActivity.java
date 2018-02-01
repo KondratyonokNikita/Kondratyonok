@@ -1,5 +1,6 @@
 package com.kondratyonok.kondratyonok.activity;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,10 +60,12 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         }
 
         private void added(Context context, Intent intent) {
-            String name = Utils.getPackageFromDataString(intent.getDataString());
+            String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
-                Drawable icon = getPackageManager().getApplicationIcon(name);
-                data.add(new Entry(icon, name));
+                PackageManager manager = getPackageManager();
+                Drawable icon = manager.getApplicationIcon(packageName);
+                String name = (String) manager.getApplicationLabel(manager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+                data.add(new Entry(icon, name, packageName));
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -146,7 +151,15 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
             try {
                 if (!applicationInfo.activityInfo.packageName.equals(getPackageName())) {
                     Drawable icon = getPackageManager().getApplicationIcon(applicationInfo.activityInfo.packageName);
-                    data.add(new Entry(icon, applicationInfo.activityInfo.packageName));
+                    String name;
+                    try {
+                        name = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(applicationInfo.activityInfo.packageName, PackageManager.GET_META_DATA));
+                    } catch (PackageManager.NameNotFoundException e) {
+                        name = "null";
+                        e.printStackTrace();
+                    }
+                    String packageName = applicationInfo.activityInfo.packageName;
+                    data.add(new Entry(icon, name, packageName));
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
@@ -192,10 +205,12 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
     public static class Entry {
         public Drawable icon;
         public String name;
+        public String packageName;
 
-        Entry(Drawable icon, String name) {
+        Entry(Drawable icon, String name, String packageName) {
             this.icon = icon;
             this.name = name;
+            this.packageName = packageName;
         }
     }
 }
@@ -229,7 +244,7 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         gridHolder.getWholeView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent launchIntent = view.getContext().getPackageManager().getLaunchIntentForPackage(mData.get(position).name);
+                Intent launchIntent = view.getContext().getPackageManager().getLaunchIntentForPackage(mData.get(position).packageName);
                 if (launchIntent != null) {
                     view.getContext().startActivity(launchIntent);
                 }
@@ -237,29 +252,25 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         });
         gridHolder.getWholeView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(final View v) {
-                Snackbar snackbar = Snackbar.make(v, "name = " + mData.get(position).name, Snackbar.LENGTH_SHORT)
-                        .setDuration(5000)
-                        .setAction("Action", null);
-                snackbar.addCallback(new Snackbar.Callback() {
+            public boolean onLongClick(final View view) {
+                PopupMenu popup = new PopupMenu(view.getContext(), view);
+                popup.inflate(R.menu.context_menu);
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onDismissed(Snackbar snackbar, int event) {
-                        final String description;
-                        switch (event) {
-                            case Snackbar.Callback.DISMISS_EVENT_ACTION: description = "via an action click."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: description = "from a new Snackbar being shown."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_MANUAL: description = "via a call to dismiss()."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_SWIPE: description = "via a swipe."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT: description = "via a timeout."; break;
-                            default: description = "by god.";
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.nav_delete: {
+                                Intent intent = new Intent(Intent.ACTION_DELETE);
+                                intent.setData(Uri.parse("package:" + mData.get(position).packageName));
+                                view.getContext().startActivity(intent);
+                                break;
+                            }
                         }
-                        if (Log.isLoggable(TAG, Log.INFO)) {
-                            Log.i(TAG, "SnackBar dismissed " + description);
-                        }
+                        return false;
                     }
                 });
-                snackbar.show();
-                return true;
+                popup.show();
+                return false;
             }
         });
     }
@@ -269,4 +280,3 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return mData.size();
     }
 }
-

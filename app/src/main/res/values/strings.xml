@@ -18,4 +18,5 @@
     <string name="theme_description" translatable="false">Theme description</string>
     <string name="github">https://github.com/KondratyonokNikita</string>
     <string name="applications_activity">Applications Activity</string>
+    <string name="delete">Delete</string>
 </resources>
