@@ -15,7 +15,7 @@ public class Layout {
         switch (code) {
             case STANDARD: return R.integer.span_count;
             case DENSE: return R.integer.span_count_dense;
-            default: return R.integer.span_count;
+            default: return getColumnsId(Layout.DEFAULT);
         }
     }
 }

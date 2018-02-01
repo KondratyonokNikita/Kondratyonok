@@ -1,6 +1,5 @@
 package com.kondratyonok.kondratyonok.activity;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,13 +12,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,12 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.Holder;
-import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ApplicationsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +40,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
     private final List<Entry> data = new ArrayList<>();
     private DrawerLayout mDrawerLayout;
     private ApplicationsAdapter applicationsAdapter;
+    private ApplicationsActivity activity = this;
     private final String TAG = "ApplicationsActivity";
 
     private BroadcastReceiver mMonitor = new BroadcastReceiver() {
@@ -56,16 +55,14 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
                 case Intent.ACTION_PACKAGE_ADDED: added(context, intent); break;
                 default: return;
             }
+            Collections.sort(data, SettingsActivity.getSortingMethod(activity));
             applicationsAdapter.notifyDataSetChanged();
         }
 
         private void added(Context context, Intent intent) {
             String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
-                PackageManager manager = getPackageManager();
-                Drawable icon = manager.getApplicationIcon(packageName);
-                String name = (String) manager.getApplicationLabel(manager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
-                data.add(new Entry(icon, name, packageName));
+                data.add(getEntryFromPackageName(packageName));
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -79,6 +76,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
                     return;
                 }
             }
+            applicationsAdapter.notifyDataSetChanged();
         }
     };
 
@@ -91,7 +89,11 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
 
         setNavigationView();
         setFloatingActionButton();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
         intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
@@ -142,6 +144,14 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         recyclerView.setAdapter(applicationsAdapter);
     }
 
+    private Entry getEntryFromPackageName(String packageName) throws PackageManager.NameNotFoundException {
+        PackageManager packageManager = getPackageManager();
+        Drawable icon = getPackageManager().getApplicationIcon(packageName);
+        String name = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+        long updateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime;
+        return new Entry(icon, name, packageName, updateTime);
+    }
+
     private void generateData() {
         PackageManager packageManager = getPackageManager();
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
@@ -150,21 +160,13 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         for (ResolveInfo applicationInfo : appInfo) {
             try {
                 if (!applicationInfo.activityInfo.packageName.equals(getPackageName())) {
-                    Drawable icon = getPackageManager().getApplicationIcon(applicationInfo.activityInfo.packageName);
-                    String name;
-                    try {
-                        name = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(applicationInfo.activityInfo.packageName, PackageManager.GET_META_DATA));
-                    } catch (PackageManager.NameNotFoundException e) {
-                        name = "null";
-                        e.printStackTrace();
-                    }
-                    String packageName = applicationInfo.activityInfo.packageName;
-                    data.add(new Entry(icon, name, packageName));
+                    data.add(getEntryFromPackageName(applicationInfo.activityInfo.packageName));
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         }
+        Collections.sort(data, SettingsActivity.getSortingMethod(this));
     }
 
     @Override
@@ -206,11 +208,13 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         public Drawable icon;
         public String name;
         public String packageName;
+        public Long updateTime;
 
-        Entry(Drawable icon, String name, String packageName) {
+        Entry(Drawable icon, String name, String packageName, long updateTime) {
             this.icon = icon;
             this.name = name;
             this.packageName = packageName;
+            this.updateTime = updateTime;
         }
     }
 }

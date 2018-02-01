@@ -20,6 +20,14 @@
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values" />
 
+        <ListPreference
+            android:key="sorting_method"
+            android:title="@string/sorting_method"
+            android:summary="@string/sorting_method_description"
+            android:defaultValue="0"
+            android:entries="@array/sorting_entries"
+            android:entryValues="@array/sorting_values" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
