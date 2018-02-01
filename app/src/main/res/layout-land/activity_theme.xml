@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="end"
     android:orientation="vertical"
-    tools:context="com.kondratyonok.kondratyonok.ThemeActivity">
+    tools:context="com.kondratyonok.kondratyonok.activity.ThemeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

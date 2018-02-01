@@ -16,4 +16,5 @@
     <string name="layout_description">Layout description</string>
     <string name="theme">Theme</string>
     <string name="github">https://github.com/KondratyonokNikita</string>
+    <string name="applications_activity">Applications Activity</string>
 </resources>

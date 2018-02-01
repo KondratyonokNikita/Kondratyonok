@@ -21,8 +21,8 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static boolean hasAllSettings(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        boolean good = true;
-        good &= preferences.contains(SettingsActivity.KEY_LAYOUT);
+        boolean good;
+        good = preferences.contains(SettingsActivity.KEY_LAYOUT);
         good &= preferences.contains(SettingsActivity.KEY_THEME);
         return good;
     }

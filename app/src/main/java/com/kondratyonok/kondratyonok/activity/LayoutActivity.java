@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok;
+package com.kondratyonok.kondratyonok.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 

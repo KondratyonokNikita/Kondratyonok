@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.launcher;
+package com.kondratyonok.kondratyonok;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

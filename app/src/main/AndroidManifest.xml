@@ -23,7 +23,7 @@
             android:name="net.hockeyapp.android.appSecret"
             android:value="${HOCKEYAPP_APP_SECRET}" />
 
-        <activity android:name=".GreetingActivity">
+        <activity android:name=".activity.GreetingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,18 +31,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DescriptionActivity"
-            android:parentActivityName=".GreetingActivity" />
+            android:name=".activity.DescriptionActivity"
+            android:parentActivityName=".activity.GreetingActivity" />
         <activity
-            android:name=".ThemeActivity"
-            android:parentActivityName=".DescriptionActivity" />
+            android:name=".activity.ThemeActivity"
+            android:parentActivityName=".activity.DescriptionActivity" />
         <activity
-            android:name=".LayoutActivity"
-            android:parentActivityName=".ThemeActivity" />
-        <activity android:name=".LauncherActivity" />
-        <activity android:name=".ListActivity" />
+            android:name=".activity.LayoutActivity"
+            android:parentActivityName=".activity.ThemeActivity" />
+        <activity android:name=".activity.LauncherActivity" />
+        <activity android:name=".activity.ListActivity" />
+        <activity android:name=".activity.ApplicationsActivity" />
         <activity android:name=".settings.SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".activity.ProfileActivity" />
     </application>
 
 </manifest>

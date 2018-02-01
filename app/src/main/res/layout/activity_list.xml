@@ -24,7 +24,7 @@
             android:clipToPadding="false"
             android:padding="@dimen/item_offset"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".LauncherActivity">
+            tools:context=".activity.LauncherActivity">
 
         </android.support.v7.widget.RecyclerView>
 

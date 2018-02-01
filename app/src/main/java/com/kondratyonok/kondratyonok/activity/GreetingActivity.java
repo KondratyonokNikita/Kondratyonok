@@ -1,13 +1,12 @@
-package com.kondratyonok.kondratyonok;
+package com.kondratyonok.kondratyonok.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import io.fabric.sdk.android.Fabric;
@@ -20,7 +19,7 @@ public class GreetingActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         if (SettingsActivity.hasAllSettings(this)) {
             final Intent intent = new Intent();
-            intent.setClass(this, LauncherActivity.class);
+            intent.setClass(this, ApplicationsActivity.class);
             startActivity(intent);
             finish();
         } else {
