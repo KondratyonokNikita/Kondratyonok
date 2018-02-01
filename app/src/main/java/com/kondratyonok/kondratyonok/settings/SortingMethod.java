@@ -11,8 +11,9 @@ import java.util.Comparator;
 public class SortingMethod {
     public static final String NO_SORT = "0";
     public static final String INSTALLATION_DATE = "1";
-    public static final String ALPHABETICALLYAZ = "2";
-    public static final String ALPHABETICALLYZA = "3";
+    public static final String ALPHABETICALLY_AZ = "2";
+    public static final String ALPHABETICALLY_ZA = "3";
+    public static final String MOST_FREQUENT = "4";
 
     public static final String DEFAULT = NO_SORT;
 
@@ -30,11 +31,11 @@ public class SortingMethod {
                 public int compare(Object o1, Object o2) {
                     ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
                     ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
-                    return first.updateTime.compareTo(second.updateTime);
+                    return second.updateTime.compareTo(first.updateTime);
                 }
             };
 
-            case SortingMethod.ALPHABETICALLYAZ: return new Comparator<Object>() {
+            case SortingMethod.ALPHABETICALLY_AZ: return new Comparator<Object>() {
                 @Override
                 public int compare(Object o1, Object o2) {
                     ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
@@ -43,12 +44,21 @@ public class SortingMethod {
                 }
             };
 
-            case SortingMethod.ALPHABETICALLYZA: return new Comparator<Object>() {
+            case SortingMethod.ALPHABETICALLY_ZA: return new Comparator<Object>() {
                 @Override
                 public int compare(Object o1, Object o2) {
                     ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
                     ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
                     return second.name.compareToIgnoreCase(first.name);
+                }
+            };
+
+            case SortingMethod.MOST_FREQUENT: return new Comparator<Object>() {
+                @Override
+                public int compare(Object o1, Object o2) {
+                    ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
+                    ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
+                    return second.launched.compareTo(first.launched);
                 }
             };
 

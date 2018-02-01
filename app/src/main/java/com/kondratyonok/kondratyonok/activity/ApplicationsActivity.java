@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kondratyonok.kondratyonok.Database;
 import com.kondratyonok.kondratyonok.Holder;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
 import com.kondratyonok.kondratyonok.R;
@@ -62,7 +64,9 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         private void added(Context context, Intent intent) {
             String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
-                data.add(getEntryFromPackageName(packageName));
+                Entry entry = getEntryFromPackageName(packageName);
+                data.add(entry);
+                Database.insertOrUpdate(entry);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -71,18 +75,19 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         private void removed(final Context context, final Intent intent) {
             for (Entry entry: data) {
                 String name = Utils.getPackageFromDataString(intent.getDataString());
-                if (name.equals(entry.name)) {
+                if (name.equals(entry.packageName)) {
+                    Database.remove(entry);
                     data.remove(entry);
                     return;
                 }
             }
-            applicationsAdapter.notifyDataSetChanged();
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Database.init(this);
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_applications);
         createGridLayout();
@@ -105,6 +110,9 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mMonitor);
+        for (Entry entry: data) {
+            Database.insertOrUpdate(entry);
+        }
     }
 
     private void setFloatingActionButton() {
@@ -209,12 +217,15 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         public String name;
         public String packageName;
         public Long updateTime;
+        public Integer launched;
 
         Entry(Drawable icon, String name, String packageName, long updateTime) {
             this.icon = icon;
             this.name = name;
             this.packageName = packageName;
             this.updateTime = updateTime;
+
+            this.launched = Database.get(packageName);
         }
     }
 }
@@ -244,21 +255,25 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         final View view = gridHolder.getImageView();
         view.setBackground(mData.get(position).icon);
         final TextView name = gridHolder.getTextView();
-        name.setText(mData.get(position).name);
+
         gridHolder.getWholeView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mData.get(position).launched++;
                 Intent launchIntent = view.getContext().getPackageManager().getLaunchIntentForPackage(mData.get(position).packageName);
                 if (launchIntent != null) {
                     view.getContext().startActivity(launchIntent);
                 }
+                Database.insertOrUpdate(mData.get(position));
             }
         });
+        name.setText(mData.get(position).name);
         gridHolder.getWholeView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View view) {
                 PopupMenu popup = new PopupMenu(view.getContext(), view);
                 popup.inflate(R.menu.context_menu);
+                popup.getMenu().findItem(R.id.nav_times).setTitle("Launched: " + mData.get(position).launched);
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {

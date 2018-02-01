@@ -24,4 +24,5 @@
     <string name="no_sort">Без сортировки</string>
     <string name="sorting_method">Способ сортировки</string>
     <string name="sorting_method_description">Способ сортировки</string>
+    <string name="most_frequent">По частоте</string>
 </resources>
