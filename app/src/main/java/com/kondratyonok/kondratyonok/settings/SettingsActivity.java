@@ -8,10 +8,13 @@ import android.preference.PreferenceManager;
 
 import com.kondratyonok.kondratyonok.R;
 
+import java.util.Comparator;
+
 public class SettingsActivity extends PreferenceActivity {
 
     public static final String KEY_THEME = "theme";
     public static final String KEY_LAYOUT = "layout";
+    public static final String KEY_SORTING_METHOD = "sorting_method";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +24,16 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static boolean hasAllSettings(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        boolean good = true;
-        good &= preferences.contains(SettingsActivity.KEY_LAYOUT);
+        boolean good;
+        good = preferences.contains(SettingsActivity.KEY_LAYOUT);
         good &= preferences.contains(SettingsActivity.KEY_THEME);
         return good;
+    }
+
+    public static Comparator<Object> getSortingMethod(Activity activity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        String code = preferences.getString(SettingsActivity.KEY_SORTING_METHOD, SortingMethod.DEFAULT);
+        return SortingMethod.getMethod(code);
     }
 
     public static int getApplicationTheme(Activity activity) {

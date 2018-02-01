@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.launcher;
+package com.kondratyonok.kondratyonok.custom;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;

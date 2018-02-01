@@ -17,4 +17,14 @@
     <string name="theme">Theme</string>
     <string name="theme_description" translatable="false">Theme description</string>
     <string name="github">https://github.com/KondratyonokNikita</string>
+    <string name="applications_activity">Applications Activity</string>
+    <string name="delete">Delete</string>
+    <string name="installation_date">По дате установки</string>
+    <string name="alphabeticallyAZ">По алфавиту А-Я</string>
+    <string name="alphabeticallyZA">По алфавиту Я-А</string>
+    <string name="no_sort">Без сортировки</string>
+    <string name="sorting_method">Способ сортировки</string>
+    <string name="sorting_method_description">Способ сортировки</string>
+    <string name="most_frequent">По частоте</string>
+    <string name="info">Информация</string>
 </resources>

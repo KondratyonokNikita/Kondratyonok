@@ -1,7 +1,9 @@
-package com.kondratyonok.kondratyonok;
+package com.kondratyonok.kondratyonok.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.kondratyonok.kondratyonok.R;
 
 public class ProfileActivity extends AppCompatActivity {
 

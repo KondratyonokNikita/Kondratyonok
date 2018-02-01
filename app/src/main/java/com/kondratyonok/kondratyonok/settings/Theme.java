@@ -15,7 +15,7 @@ public class Theme {
         switch (code) {
             case "0": return R.style.AppThemeLight;
             case "1": return R.style.AppThemeDark;
-            default: return R.style.AppThemeLight;
+            default: return getTheme(Theme.DEFAULT);
         }
     }
 
