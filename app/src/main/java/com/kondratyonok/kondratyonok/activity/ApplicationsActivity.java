@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -164,16 +166,34 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         PackageManager packageManager = getPackageManager();
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> appInfo = packageManager.queryIntentActivities(intent, PackageManager.GET_META_DATA);
-        for (ResolveInfo applicationInfo : appInfo) {
+//        List<ResolveInfo> appInfo = packageManager.queryIntentActivities(intent, PackageManager.GET_META_DATA);
+//        for (ResolveInfo applicationInfo : appInfo) {
+//            try {
+//                if (!applicationInfo.activityInfo.packageName.equals(getPackageName())) {
+//                    Entry entry = getEntryFromPackageName(applicationInfo.activityInfo.packageName);
+//                    if (!data.contains(entry)) {
+//                        data.add(entry);
+//                    }
+//                }
+//            } catch (PackageManager.NameNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+        List<ApplicationInfo> app = packageManager.getInstalledApplications(0);
+        for (ApplicationInfo applicationInfo : app) {
             try {
-                if (!applicationInfo.activityInfo.packageName.equals(getPackageName())) {
-                    data.add(getEntryFromPackageName(applicationInfo.activityInfo.packageName));
+                if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
+                    Entry entry = getEntryFromPackageName(applicationInfo.packageName);
+                    if (!data.contains(entry)) {
+                        data.add(entry);
+                    }
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
         }
+
         Collections.sort(data, SettingsActivity.getSortingMethod(this));
     }
 
@@ -284,6 +304,11 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 view.getContext().startActivity(intent);
                                 break;
                             }
+                            case R.id.nav_info: {
+                                Snackbar.make(view, mData.get(position).packageName, Snackbar.LENGTH_INDEFINITE).show();
+                                break;
+                            }
+                            default: break;
                         }
                         return false;
                     }
