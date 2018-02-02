@@ -27,4 +27,6 @@
     <string name="sorting_method_description">Способ сортировки</string>
     <string name="most_frequent">По частоте</string>
     <string name="info">Информация</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

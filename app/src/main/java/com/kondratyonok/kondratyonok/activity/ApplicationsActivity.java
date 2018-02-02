@@ -16,9 +16,11 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -92,10 +94,33 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         Database.init(this);
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_applications);
-        createGridLayout();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        setNavigationView();
-        setFloatingActionButton();
+        mDrawerLayout = findViewById(R.id.menu);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+        header.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent();
+                intent.setClass(v.getContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        ((ViewGroup) fab.getParent()).removeView(fab);
+
+        createGridLayout();
     }
 
     @Override
@@ -115,27 +140,6 @@ public class ApplicationsActivity extends AppCompatActivity implements Navigatio
         for (Entry entry: data) {
             Database.insertOrUpdate(entry);
         }
-    }
-
-    private void setFloatingActionButton() {
-        FloatingActionButton fab = findViewById(R.id.fab);
-        ((ViewGroup) fab.getParent()).removeView(fab);
-    }
-
-    private void setNavigationView() {
-        mDrawerLayout = findViewById(R.id.menu);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View header = navigationView.getHeaderView(0);
-        final ApplicationsActivity activity = this;
-        header.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent intent = new Intent();
-                intent.setClass(activity, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void createGridLayout() {
