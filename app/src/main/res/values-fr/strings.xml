@@ -8,7 +8,7 @@
         <string name = "dense_layout"> Disposition dense </string>
         <string name = "dense_layout_description"> Portrait: 5 icônes à la suite \n Paysage: 7 icônes à la suite </string>
         <string name = "greeting"> Message daccueil </string>
-        <string name = "info"> Ordre de lemplacement des applications </string>
+        <string name = "info">Information</string>
         <string name = "installation_date"> Par date dinstallation </string>
         <string name = "launcher_activity"> Grille </string>
         <string name = "layout"> Mise en page </string>

@@ -7,7 +7,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height"
+        android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -22,7 +22,7 @@
             <ImageView
                 android:contentDescription="@string/my_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/nav_header_height"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/launcher_collapsing_toolbar" />

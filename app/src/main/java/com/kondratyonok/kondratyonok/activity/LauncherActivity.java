@@ -165,7 +165,7 @@ class LauncherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid, parent, false);
         return new Holder.GridHolder(view);
     }
 

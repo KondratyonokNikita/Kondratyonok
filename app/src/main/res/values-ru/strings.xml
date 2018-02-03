@@ -8,7 +8,7 @@
     <string name = "dense_layout"> Плотная компоновка </string>
     <string name = "dense_layout_description"> Портретная: 5 значков в строке \n Ланшавтная: 7 значков в строке </string>
     <string name = "greeting"> Приветствие </string>
-    <string name = "info"> Порядок расположения приложений </string>
+    <string name = "info">Информация</string>
     <string name = "installation_date"> По дате установки </string>
     <string name = "launcher_activity"> Сетка </string>
     <string name = "layout"> Макет </string>

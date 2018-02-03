@@ -285,7 +285,7 @@ class ApplicationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.application_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_application, parent, false);
         return new Holder.ApplicationsHolder(view);
     }
 

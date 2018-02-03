@@ -12,7 +12,7 @@
     <string name="dense_layout">Dense layout</string>
     <string name="dense_layout_description">Portrait: 5 icons in a row\n Landscape: 7 icons in a row</string>
     <string name="greeting">Greeting</string>
-    <string name="info">Order of the location of applications</string>
+    <string name="info">Info</string>
     <string name="installation_date">By installation date</string>
     <string name="launcher_activity">Grid</string>
     <string name="layout">Layout</string>

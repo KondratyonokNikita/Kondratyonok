@@ -8,7 +8,7 @@
         <string name = "dense_layout"> Dichtes Layout </string>
         <string name = "dense_layout_description"> Porträt: 5 Symbole in einer Reihe \n Landschaft: 7 Symbole in einer Reihe </string>
         <string name = "greeting"> Gruß </string>
-        <string name = "info"> Reihenfolge des Speicherorts der Anwendungen </string>
+        <string name = "info">Information</string>
         <string name = "installation_date"> Nach Installationsdatum </string>
         <string name = "launcher_activity"> Gitter </string>
         <string name = "layout"> Layout </string>

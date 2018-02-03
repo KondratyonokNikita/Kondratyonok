@@ -8,7 +8,7 @@
         <string name = "dense_layout"> Diseño denso </string>
         <string name = "dense_layout_description"> Retrato: 5 íconos en una fila \ n Paisaje: 7 iconos en una fila </string>
         <string name = "greeting"> Saludo </string>
-        <string name = "info"> Orden de la ubicación de las aplicaciones </string>
+        <string name = "info">Información</string>
         <string name = "installation_date"> Por fecha de instalación </string>
         <string name = "launcher_activity"> Grid </string>
         <string name = "layout"> Diseño </string>
