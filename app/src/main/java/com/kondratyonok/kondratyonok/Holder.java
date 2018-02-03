@@ -1,11 +1,7 @@
 package com.kondratyonok.kondratyonok;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 /**
@@ -24,9 +20,9 @@ public class Holder {
         public ListHolder(final View view) {
             super(view);
 
-            mImageView = view.findViewById(R.id.launcher_image);
-            colorTextView = view.findViewById(R.id.color);
-            textTextView = view.findViewById(R.id.qaz);
+            mImageView = view.findViewById(R.id.image);
+            colorTextView = view.findViewById(R.id.title);
+            textTextView = view.findViewById(R.id.subtitle);
             mWholeView = view.findViewById(R.id.list_holder);
         }
 
@@ -34,11 +30,17 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getColorTextView() { return colorTextView; }
+        public TextView getColorTextView() {
+            return colorTextView;
+        }
 
-        public TextView getTextTextView() { return textTextView; }
+        public TextView getTextTextView() {
+            return textTextView;
+        }
 
-        public View getWholeView() { return mWholeView; }
+        public View getWholeView() {
+            return mWholeView;
+        }
     }
 
     public static class GridHolder extends RecyclerView.ViewHolder {
@@ -59,7 +61,9 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getTextView() { return mTextView; }
+        public TextView getTextView() {
+            return mTextView;
+        }
 
         public View getWholeView() {
             return mWholeView;
@@ -84,7 +88,9 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getTextView() { return mTextView; }
+        public TextView getTextView() {
+            return mTextView;
+        }
 
         public View getWholeView() {
             return mWholeView;

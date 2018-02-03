@@ -7,13 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
-
-import java.util.Random;
 
 /**
  * Created by NKondratyonok on 01.02.18.
@@ -155,7 +152,8 @@ public class Database {
         try {
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             db.delete(DatabaseData.TABLE_NAME, DatabaseData.Columns.FIELD_TITLE + " = ?", new String[]{entry.packageName});
-        } catch (SQLiteException e) {}
+        } catch (SQLiteException e) {
+        }
     }
 
     public static void clear() {
@@ -163,7 +161,8 @@ public class Database {
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             db.delete(DatabaseData.TABLE_NAME, null, null);
             db.close();
-        } catch (SQLiteException e) {}
+        } catch (SQLiteException e) {
+        }
     }
 
 

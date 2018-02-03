@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/standard_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/border"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        tools:ignore="NestedWeights">
+
+        <RadioButton
+            style="@style/RadioButton"
+            android:id="@+id/standard_radio_button"
+            android:checked="true" />
+
+        <TextView
+            style="@style/LayoutName"
+            android:layout_toEndOf="@+id/standard_radio_button"
+            android:layout_alignBaseline="@+id/standard_radio_button"
+            android:text="@string/standard_layout" />
+
+        <TextView
+            style="@style/LayoutDescription"
+            android:text="@string/standard_layout_description"
+            android:layout_below="@+id/standard_radio_button" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dense_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/border"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical">
+
+        <RadioButton
+            style="@style/RadioButton"
+            android:id="@+id/dense_radio_button" />
+
+        <TextView
+            style="@style/LayoutName"
+            android:layout_toEndOf="@+id/dense_radio_button"
+            android:layout_alignBaseline="@+id/dense_radio_button"
+            android:text="@string/dense_layout" />
+
+        <TextView
+            style="@style/LayoutDescription"
+            android:text="@string/dense_layout_description"
+            android:layout_below="@+id/dense_radio_button" />
+
+        </RelativeLayout>
+    </LinearLayout>

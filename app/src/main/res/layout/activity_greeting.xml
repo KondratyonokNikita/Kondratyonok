@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kondratyonok.kondratyonok.activity.GreetingActivity">
+    android:fitsSystemWindows="true">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <ImageView
-            style="@style/AppIcon"
-            android:id="@+id/my_photo"
-            app:srcCompat="@mipmap/photo"
-            android:contentDescription="@string/my_name" />
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMaxWidth="30dp"
+            android:layout_gravity="bottom|center"
+            app:tabGravity="center"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingStart="7dp"
+            app:tabPaddingEnd="7dp"
+            app:tabMode="fixed" />
 
-        <TextView
-            style="@style/AppName"
-            android:id="@+id/app_name"
-            android:layout_below="@+id/my_photo"
-            android:textIsSelectable="false" />
+    </android.support.v4.view.ViewPager>
 
-        <TextView
-            style="@style/AppDescription"
-            android:layout_below="@+id/app_name"
-            android:text="@string/greeting" />
-
-    </RelativeLayout>
-
-    <Button
-        style="@style/NextButton"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

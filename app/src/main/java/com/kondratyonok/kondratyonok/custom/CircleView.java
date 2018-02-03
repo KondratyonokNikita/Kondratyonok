@@ -75,7 +75,8 @@ public class CircleView extends android.support.v7.widget.AppCompatImageView {
         final Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
-        paint.setDither(true);;
+        paint.setDither(true);
+        ;
         paint.setColor(Color.WHITE);
 
         // Clear everything with transparent, draw white mask circle
