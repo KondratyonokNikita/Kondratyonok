@@ -70,8 +70,6 @@ public class ListActivity extends AppCompatActivity implements NavigationView.On
     private void createLinearLayout() {
         final RecyclerView recyclerView = findViewById(R.id.louncher_content);
         recyclerView.setHasFixedSize(true);
-        final int offset = getResources().getDimensionPixelSize(R.dimen.item_offset);
-        recyclerView.addItemDecoration(new OffsetItemDecoration(offset));
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -167,7 +165,7 @@ class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card, parent, false);
         return new Holder.ListHolder(view);
     }
 
