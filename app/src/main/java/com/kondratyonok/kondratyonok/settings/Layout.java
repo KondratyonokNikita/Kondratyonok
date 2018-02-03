@@ -13,9 +13,12 @@ public class Layout {
 
     static int getColumnsId(String code) {
         switch (code) {
-            case STANDARD: return R.integer.span_count;
-            case DENSE: return R.integer.span_count_dense;
-            default: return getColumnsId(Layout.DEFAULT);
+            case STANDARD:
+                return R.integer.span_count;
+            case DENSE:
+                return R.integer.span_count_dense;
+            default:
+                return getColumnsId(Layout.DEFAULT);
         }
     }
 }

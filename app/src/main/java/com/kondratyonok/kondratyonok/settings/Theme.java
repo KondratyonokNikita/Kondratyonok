@@ -13,9 +13,12 @@ public class Theme {
 
     static int getTheme(String code) {
         switch (code) {
-            case "0": return R.style.AppThemeLight;
-            case "1": return R.style.AppThemeDark;
-            default: return getTheme(Theme.DEFAULT);
+            case "0":
+                return R.style.AppThemeLight;
+            case "1":
+                return R.style.AppThemeDark;
+            default:
+                return getTheme(Theme.DEFAULT);
         }
     }
 

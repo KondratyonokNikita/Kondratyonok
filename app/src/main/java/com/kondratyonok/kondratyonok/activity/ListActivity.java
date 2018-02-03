@@ -25,8 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.Holder;
-import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -180,11 +180,11 @@ class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final View view = gridHolder.getImageView();
         Drawable background = view.getBackground();
         if (background instanceof ShapeDrawable) {
-            ((ShapeDrawable)background).getPaint().setColor(mData.get(position).color);
+            ((ShapeDrawable) background).getPaint().setColor(mData.get(position).color);
         } else if (background instanceof GradientDrawable) {
-            ((GradientDrawable)background).setColor(mData.get(position).color);
+            ((GradientDrawable) background).setColor(mData.get(position).color);
         } else if (background instanceof ColorDrawable) {
-            ((ColorDrawable)background).setColor(mData.get(position).color);
+            ((ColorDrawable) background).setColor(mData.get(position).color);
         }
         final TextView color = gridHolder.getColorTextView();
         final String colorRRGGBB = String.format("#%06X", 0xFFFFFF & mData.get(position).color);
@@ -214,12 +214,23 @@ class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     public void onDismissed(Snackbar snackbar, int event) {
                         final String description;
                         switch (event) {
-                            case Snackbar.Callback.DISMISS_EVENT_ACTION: description = "via an action click."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: description = "from a new Snackbar being shown."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_MANUAL: description = "via a call to dismiss()."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_SWIPE: description = "via a swipe."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT: description = "via a timeout."; break;
-                            default: description = "by god.";
+                            case Snackbar.Callback.DISMISS_EVENT_ACTION:
+                                description = "via an action click.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
+                                description = "from a new Snackbar being shown.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_MANUAL:
+                                description = "via a call to dismiss().";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                                description = "via a swipe.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
+                                description = "via a timeout.";
+                                break;
+                            default:
+                                description = "by god.";
                         }
                         if (Log.isLoggable(TAG, Log.INFO)) {
                             Log.i(TAG, "SnackBar dismissed " + description);

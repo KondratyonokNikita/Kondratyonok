@@ -19,30 +19,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="NextButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:onClick">next</item>
-        <item name="android:text">@string/next</item>
-    </style>
-
     <style name="AppName">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">@dimen/item_offset</item>
         <item name="android:text">@string/app_name</item>
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Button" parent="Widget.AppCompat.Button.Colored" />
+
     <style name="AppDescription">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">@dimen/item_offset</item>
         <item name="android:textSize">16sp</item>
     </style>
 

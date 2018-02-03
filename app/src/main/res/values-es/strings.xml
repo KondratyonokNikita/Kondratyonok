@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name = "alphabeticallyAZ"> Alfabéticamente AZ </string>
+        <string name = "alphabeticallyZA"> Alfabéticamente ZA </string>
+        <string name = "applications_activity"> Iniciador </string>
+        <string name = "dark_theme"> Tema oscuro </string>
+        <string name = "delete"> Eliminar </string>
+        <string name = "dense_layout"> Diseño denso </string>
+        <string name = "dense_layout_description"> Retrato: 5 íconos en una fila \ n Paisaje: 7 iconos en una fila </string>
+        <string name = "greeting"> Saludo </string>
+        <string name = "info"> Orden de la ubicación de las aplicaciones </string>
+        <string name = "installation_date"> Por fecha de instalación </string>
+        <string name = "launcher_activity"> Grid </string>
+        <string name = "layout"> Diseño </string>
+        <string name = "layout_description"> La densidad de iconos en la pantalla </string>
+        <string name = "light_theme"> Tema de luz </string>
+        <string name = "list_activity"> Lista </string>
+        <string name = "most_frequent"> Por frecuencia </string>
+        <string name = "my_name"> Nikita Kondratyonok </string>
+        <string name = "no_sort"> Sin clasificación </string>
+        <string name = "settings"> Configuración </string>
+        <string name = "sorting_method"> Método de clasificación </string>
+        <string name = "sorting_method_description"> Orden de la ubicación de las aplicaciones </string>
+        <string name = "standard_layout"> Diseño estándar </string>
+        <string name = "standard_layout_description"> Retrato: 4 íconos en una fila \ n Paisaje: 6 iconos en una fila </string>
+        <string name = "start"> Start </string>
+        <string name = "theme"> Tema </string>
+        <string name = "theme_description"> Tema utilizado en la aplicación </string>
+</resources>

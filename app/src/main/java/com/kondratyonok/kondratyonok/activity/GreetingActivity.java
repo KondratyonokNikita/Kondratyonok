@@ -1,13 +1,16 @@
 package com.kondratyonok.kondratyonok.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.kondratyonok.kondratyonok.ViewPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -17,20 +20,19 @@ public class GreetingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        if (SettingsActivity.hasAllSettings(this)) {
-            final Intent intent = new Intent();
-            intent.setClass(this, ApplicationsActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            setContentView(R.layout.activity_greeting);
-        }
-    }
+        setContentView(R.layout.activity_greeting);
 
-    public void next(View view) {
-        final Intent intent = new Intent();
-        intent.setClass(view.getContext(), DescriptionActivity.class);
-        startActivity(intent);
-        finish();
+        final List<Integer> data = new ArrayList<Integer>() {{
+            add(R.layout.fragment_greeting);
+            add(R.layout.fragment_description);
+            add(R.layout.fragment_theme);
+            add(R.layout.fragment_layout);
+            add(R.layout.fragment_agree);
+        }};
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        ViewPagerAdapter mSectionsPagerAdapter = new ViewPagerAdapter(fragmentManager, data);
+
+        ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 }

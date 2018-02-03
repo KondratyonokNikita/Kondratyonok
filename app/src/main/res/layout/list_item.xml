@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/list_holder"
     android:orientation="vertical">
 
-    <com.kondratyonok.kondratyonok.custom.SquareView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.kondratyonok.kondratyonok.custom.SquareView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/launcher_image"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -22,7 +20,7 @@
         android:layout_marginBottom="@dimen/item_offset"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/launcher_image"
-        android:textIsSelectable="false"/>
+        android:textIsSelectable="false" />
 
     <TextView
         android:id="@+id/qaz"
@@ -31,5 +29,5 @@
         android:layout_alignStart="@+id/color"
         android:layout_below="@+id/color"
         android:textSize="20sp"
-        android:text=""/>
+        android:text="" />
 </RelativeLayout>

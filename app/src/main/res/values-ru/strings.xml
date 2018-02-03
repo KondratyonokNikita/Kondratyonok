@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "alphabeticallyAZ"> По алфавиту АЯ </string>
+    <string name = "alphabeticallyZA"> По алфавиту ЯА </string>
+    <string name = "applications_activity"> Лаунчер </string>
+    <string name = "dark_theme"> Темная тема </string>
+    <string name = "delete"> Удалить </string>
+    <string name = "dense_layout"> Плотная компоновка </string>
+    <string name = "dense_layout_description"> Портретная: 5 значков в строке \n Ланшавтная: 7 значков в строке </string>
+    <string name = "greeting"> Приветствие </string>
+    <string name = "info"> Порядок расположения приложений </string>
+    <string name = "installation_date"> По дате установки </string>
+    <string name = "launcher_activity"> Сетка </string>
+    <string name = "layout"> Макет </string>
+    <string name = "layout_description"> Плотность значков на экране </string>
+    <string name = "light_theme"> Легкая тема </string>
+    <string name = "list_activity"> Список </string>
+    <string name = "most_frequent"> По частоте </string>
+    <string name = "my_name"> Никита Кондратьёнок </string>
+    <string name = "no_sort"> Нет сортировки </string>
+    <string name = "settings"> Настройки </string>
+    <string name = "sorting_method"> Метод сортировки </string>
+    <string name = "sorting_method_description"> Порядок расположения приложений </string>
+    <string name = "standard_layout"> Стандартный макет </string>
+    <string name = "standard_layout_description"> Портрет: 4 значка в строке \n Ланшавтная: 6 значков в строке </string>
+    <string name = "start"> Пуск </string>
+    <string name = "theme"> Тема </string>
+    <string name = "theme_description"> Тема, используемая в приложении </string>
+</resources>

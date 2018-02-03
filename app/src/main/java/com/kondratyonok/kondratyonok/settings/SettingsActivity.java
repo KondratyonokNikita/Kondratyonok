@@ -2,8 +2,8 @@ package com.kondratyonok.kondratyonok.settings;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.preference.PreferenceActivity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 import com.kondratyonok.kondratyonok.R;

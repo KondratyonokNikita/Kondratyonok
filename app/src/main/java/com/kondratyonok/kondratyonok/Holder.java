@@ -1,11 +1,7 @@
 package com.kondratyonok.kondratyonok;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 /**
@@ -34,11 +30,17 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getColorTextView() { return colorTextView; }
+        public TextView getColorTextView() {
+            return colorTextView;
+        }
 
-        public TextView getTextTextView() { return textTextView; }
+        public TextView getTextTextView() {
+            return textTextView;
+        }
 
-        public View getWholeView() { return mWholeView; }
+        public View getWholeView() {
+            return mWholeView;
+        }
     }
 
     public static class GridHolder extends RecyclerView.ViewHolder {
@@ -59,7 +61,9 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getTextView() { return mTextView; }
+        public TextView getTextView() {
+            return mTextView;
+        }
 
         public View getWholeView() {
             return mWholeView;
@@ -84,7 +88,9 @@ public class Holder {
             return mImageView;
         }
 
-        public TextView getTextView() { return mTextView; }
+        public TextView getTextView() {
+            return mTextView;
+        }
 
         public View getWholeView() {
             return mWholeView;

@@ -21,8 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.Holder;
-import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -201,12 +201,23 @@ class LauncherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     public void onDismissed(Snackbar snackbar, int event) {
                         final String description;
                         switch (event) {
-                            case Snackbar.Callback.DISMISS_EVENT_ACTION: description = "via an action click."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: description = "from a new Snackbar being shown."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_MANUAL: description = "via a call to dismiss()."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_SWIPE: description = "via a swipe."; break;
-                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT: description = "via a timeout."; break;
-                            default: description = "by god.";
+                            case Snackbar.Callback.DISMISS_EVENT_ACTION:
+                                description = "via an action click.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
+                                description = "from a new Snackbar being shown.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_MANUAL:
+                                description = "via a call to dismiss().";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                                description = "via a swipe.";
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
+                                description = "via a timeout.";
+                                break;
+                            default:
+                                description = "by god.";
                         }
                         if (Log.isLoggable(TAG, Log.INFO)) {
                             Log.i(TAG, "SnackBar dismissed " + description);
