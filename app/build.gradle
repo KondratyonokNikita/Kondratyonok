@@ -90,4 +90,5 @@ dependencies {
         transitive = true;
     }
     compile 'net.hockeyapp.android:HockeySDK:5.1.0'
+    implementation 'com.android.support:mediarouter-v7:27.0.2'
 }

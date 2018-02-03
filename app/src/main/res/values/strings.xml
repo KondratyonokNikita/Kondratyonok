@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Kondrat_N</string>
+    <string name="app_name" translatable="false">KondrN</string>
     <string name="github" translatable="false">https://github.com/KondratyonokNikita</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
