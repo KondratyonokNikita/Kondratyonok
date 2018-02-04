@@ -1,6 +1,6 @@
 package com.kondratyonok.kondratyonok.settings;
 
-import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
+import com.kondratyonok.kondratyonok.Entry;
 
 import java.util.Comparator;
 
@@ -31,8 +31,8 @@ public class SortingMethod {
                 return new Comparator<Object>() {
                     @Override
                     public int compare(Object o1, Object o2) {
-                        ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
-                        ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
+                        Entry first = (Entry) o1;
+                        Entry second = (Entry) o2;
                         return second.updateTime.compareTo(first.updateTime);
                     }
                 };
@@ -41,8 +41,8 @@ public class SortingMethod {
                 return new Comparator<Object>() {
                     @Override
                     public int compare(Object o1, Object o2) {
-                        ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
-                        ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
+                        Entry first = (Entry) o1;
+                        Entry second = (Entry) o2;
                         return first.name.compareToIgnoreCase(second.name);
                     }
                 };
@@ -51,8 +51,8 @@ public class SortingMethod {
                 return new Comparator<Object>() {
                     @Override
                     public int compare(Object o1, Object o2) {
-                        ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
-                        ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
+                        Entry first = (Entry) o1;
+                        Entry second = (Entry) o2;
                         return second.name.compareToIgnoreCase(first.name);
                     }
                 };
@@ -61,8 +61,8 @@ public class SortingMethod {
                 return new Comparator<Object>() {
                     @Override
                     public int compare(Object o1, Object o2) {
-                        ApplicationsActivity.Entry first = (ApplicationsActivity.Entry) o1;
-                        ApplicationsActivity.Entry second = (ApplicationsActivity.Entry) o2;
+                        Entry first = (Entry) o1;
+                        Entry second = (Entry) o2;
                         return second.launched.compareTo(first.launched);
                     }
                 };

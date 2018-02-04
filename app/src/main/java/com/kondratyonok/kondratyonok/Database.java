@@ -10,8 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
-
 /**
  * Created by NKondratyonok on 01.02.18.
  */
@@ -69,7 +67,7 @@ public class Database {
         mDbHelper = new MyDbHelper(activity);
     }
 
-    public static void insertOrUpdate(ApplicationsActivity.Entry entry) {
+    public static void insertOrUpdate(Entry entry) {
         try {
             Log.e("DATABASE", "insert or update");
             SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -93,7 +91,7 @@ public class Database {
         }
     }
 
-    public static void insert(ApplicationsActivity.Entry entry) {
+    public static void insert(Entry entry) {
         Log.e("DATABASE", "insert");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
@@ -106,7 +104,7 @@ public class Database {
         }
     }
 
-    public static void update(ApplicationsActivity.Entry entry) {
+    public static void update(Entry entry) {
         Log.e("DATABASE", "update");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
@@ -148,7 +146,7 @@ public class Database {
         }
     }
 
-    public static void remove(ApplicationsActivity.Entry entry) {
+    public static void remove(Entry entry) {
         try {
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             db.delete(DatabaseData.TABLE_NAME, DatabaseData.Columns.FIELD_TITLE + " = ?", new String[]{entry.packageName});

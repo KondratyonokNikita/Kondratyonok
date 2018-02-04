@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.fragment;
+package com.kondratyonok.kondratyonok.fragment.greeting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.kondratyonok.kondratyonok.settings.Theme;
 
 public class AgreeFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final int ID = R.layout.fragment_agree;
+    private static final int ID = R.layout.fr_agree;
 
     public AgreeFragment() {
     }

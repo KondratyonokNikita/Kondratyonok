@@ -4,21 +4,26 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:id="@+id/grid_holder"
+    android:id="@+id/holder"
     android:gravity="center">
 
     <com.kondratyonok.kondratyonok.custom.SquareView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/launcher_image"
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:background="@color/colorPrimaryLight" />
 
     <TextView
-        android:id="@+id/color"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textIsSelectable="false"
         android:singleLine="true"
         android:ellipsize="end"
         tools:text="Application name"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
 </LinearLayout>

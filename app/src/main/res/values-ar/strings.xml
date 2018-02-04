@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="alphabeticallyAZ">حسب الترتيب الأبجدي</string>
+    <string name="alphabeticallyZA">أبجديا عكس</string>
+    <string name="applications_activity">قاذفة</string>
+    <string name="dark_theme">موضوع الظلام</string>
+    <string name="delete">حذف</string>
+    <string name="dense_layout">تخطيط كثيفة</string>
+    <string name="dense_layout_description">صورة: 5 الرموز في صف واحد\n المشهد: 7 الرموز في صف واحد</string>
+    <string name="greeting">تحية</string>
+    <string name="info">معلومات عن الفندق</string>
+    <string name="installation_date">من تاريخ التركيب</string>
+    <string name="launcher_activity">الشبكة</string>
+    <string name="layout">تخطيط</string>
+    <string name="layout_description">كثافة الرموز على الشاشة</string>
+    <string name="light_theme">موضوع الضوء</string>
+    <string name="list_activity">قائمة</string>
+    <string name="most_frequent">حسب التردد</string>
+    <string name="my_name">نيكيتا Kondratyonok</string>
+    <string name="no_sort">ن الفرز</string>
+    <string name="settings">الإعدادات</string>
+    <string name="sorting_method">طريقة الفرز</string>
+    <string name="sorting_method_description">ترتيب الموقع من التطبيقات</string>
+    <string name="standard_layout">تخطيط القياسية</string>
+    <string name="standard_layout_description">صورة: 4 الرموز في صف واحد\nالمشهد: 6 الرموز في صف واحد</string>
+    <string name="start">تبدأ</string>
+    <string name="theme">موضوع</string>
+    <string name="theme_description">موضوع المستخدمة في التطبيق</string>
+    <string name="layout_manager_type">Layout manager type</string>
+    <string name="layout_manager_type_description">Layout manager type description</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
+</resources>

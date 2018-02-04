@@ -8,7 +8,7 @@
     <ImageView
         style="@style/AppIcon"
         android:id="@+id/my_photo"
-        app:srcCompat="@mipmap/photo"
+        app:srcCompat="@mipmap/ic_photo"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/my_name" />
 

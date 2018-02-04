@@ -5,16 +5,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.RecyclerView;
 
+import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class SettingsActivity extends PreferenceActivity {
 
     public static final String KEY_THEME = "theme";
     public static final String KEY_LAYOUT = "layout";
     public static final String KEY_SORTING_METHOD = "sorting_method";
+    public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,25 @@ public class SettingsActivity extends PreferenceActivity {
         good = preferences.contains(SettingsActivity.KEY_LAYOUT);
         good &= preferences.contains(SettingsActivity.KEY_THEME);
         return good;
+    }
+
+    public static RecyclerView.LayoutManager getLayoutManager(Activity activity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
+        return LayoutManagerType.getLayoutManager(code, activity);
+    }
+
+    public static RecyclerView.Adapter<RecyclerView.ViewHolder> getAdapter(Activity activity, List<Entry> data) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
+        return LayoutManagerType.getAdapter(code, data);
+    }
+
+    public static void setLayoutManagerType(String type, Activity activity) {
+        SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, type);
+        ed.commit();
     }
 
     public static Comparator<Object> getSortingMethod(Activity activity) {

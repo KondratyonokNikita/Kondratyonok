@@ -7,16 +7,16 @@
 
         <ImageView
             style="@style/AppIcon"
-            android:id="@+id/my_photo"
+            android:id="@+id/icon"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@mipmap/photo"
+            app:srcCompat="@mipmap/ic_launcher"
             android:contentDescription="@string/my_name" />
 
         <TextView
             style="@style/AppName"
             android:id="@+id/app_name"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/my_photo"
+            android:layout_below="@+id/icon"
             android:textIsSelectable="false" />
 
         <TextView

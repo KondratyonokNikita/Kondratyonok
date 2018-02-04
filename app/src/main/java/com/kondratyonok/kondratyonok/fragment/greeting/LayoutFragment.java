@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.fragment;
+package com.kondratyonok.kondratyonok.fragment.greeting;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,7 @@ import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 public class LayoutFragment extends Fragment {
 
-    private static final int ID = R.layout.fragment_layout;
+    private static final int ID = R.layout.fr_layout;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     @Override

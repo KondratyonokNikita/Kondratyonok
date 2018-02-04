@@ -28,6 +28,14 @@
             android:entries="@array/sorting_entries"
             android:entryValues="@array/sorting_values" />
 
+        <ListPreference
+            android:key="layout_manager_type"
+            android:title="@string/layout_manager_type"
+            android:summary="@string/layout_manager_type_description"
+            android:defaultValue="0"
+            android:entries="@array/layout_manager_type_entries"
+            android:entryValues="@array/layout_manager_type_values" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

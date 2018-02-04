@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.fragment;
+package com.kondratyonok.kondratyonok.fragment.greeting;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import com.kondratyonok.kondratyonok.settings.Theme;
 
 public class ThemeFragment extends Fragment {
 
-    private static final int ID = R.layout.fragment_theme;
+    private static final int ID = R.layout.fr_theme;
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     @Nullable
@@ -54,7 +54,7 @@ public class ThemeFragment extends Fragment {
         return mainView;
     }
 
-    public static ThemeFragment newInstance(int sectionNumber) {
+    public static Fragment newInstance(int sectionNumber) {
         ThemeFragment fragment = new ThemeFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);

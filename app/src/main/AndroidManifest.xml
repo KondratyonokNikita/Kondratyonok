@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/icon_photo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/icon_photo"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight"
         tools:ignore="GoogleAppIndexingWarning">
@@ -25,12 +25,15 @@
 
         <activity android:name=".activity.GreetingActivity" />
         <activity android:name=".activity.LauncherActivity" />
-        <activity android:name=".activity.ListActivity" />
-        <activity android:name=".activity.ApplicationsActivity">
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="fullUser"
+            android:name=".activity.ApplicationsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
         <activity android:name=".settings.SettingsActivity" />

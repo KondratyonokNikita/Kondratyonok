@@ -8,30 +8,18 @@
         <ImageView
             style="@style/AppIcon"
             android:id="@+id/my_photo"
-            app:srcCompat="@mipmap/photo"
-            android:contentDescription="@string/my_name" />
+            android:contentDescription="@string/my_name"
+            app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
             style="@style/AppName"
-            android:id="@+id/app_name"
+            android:id="@+id/textView5"
             android:layout_toEndOf="@+id/my_photo"
             android:textIsSelectable="false" />
 
         <TextView
             style="@style/AppDescription"
-            android:id="@+id/greeting"
-            android:layout_below="@+id/app_name"
+            android:layout_below="@+id/textView5"
             android:layout_toEndOf="@+id/my_photo"
             android:text="@string/greeting" />
-
-        <Button
-            style="@style/Button"
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/item_offset"
-            android:text="@string/start"
-            android:layout_below="@+id/greeting"
-            android:layout_toEndOf="@+id/my_photo"/>
-
-    </RelativeLayout>
+</RelativeLayout>

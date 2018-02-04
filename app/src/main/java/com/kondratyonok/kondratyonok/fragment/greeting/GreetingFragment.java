@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok.fragment;
+package com.kondratyonok.kondratyonok.fragment.greeting;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import com.kondratyonok.kondratyonok.R;
 
 public class GreetingFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final int ID = R.layout.fragment_greeting;
+    private static final int ID = R.layout.fr_greeting;
 
     public GreetingFragment() {
     }

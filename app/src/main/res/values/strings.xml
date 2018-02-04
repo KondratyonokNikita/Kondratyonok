@@ -30,4 +30,8 @@
     <string name="start">Start</string>
     <string name="theme">Theme</string>
     <string name="theme_description">Theme used in the application</string>
+    <string name="layout_manager_type">Layout manager type</string>
+    <string name="layout_manager_type_description">Layout manager type description</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
 </resources>

@@ -9,16 +9,13 @@
         android:title="@string/layout">
         <menu>
             <item
-                android:id="@+id/nav_launcher"
+                android:id="@+id/nav_grid"
                 android:icon="@drawable/ic_menu_grid"
                 android:title="@string/launcher_activity" />
             <item
                 android:id="@+id/nav_list"
                 android:icon="@drawable/ic_menu_list"
                 android:title="@string/list_activity" />
-            <item
-                android:id="@+id/nav_applications"
-                android:title="@string/applications_activity" />
         </menu>
     </item>
 
