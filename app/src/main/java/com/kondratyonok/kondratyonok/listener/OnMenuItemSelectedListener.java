@@ -1,13 +1,14 @@
 package com.kondratyonok.kondratyonok.listener;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.R;
+import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.settings.LayoutManagerType;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
@@ -16,9 +17,9 @@ import com.kondratyonok.kondratyonok.settings.SettingsActivity;
  */
 
 public class OnMenuItemSelectedListener implements NavigationView.OnNavigationItemSelectedListener {
-    private final Activity activity;
+    private final ApplicationsActivity activity;
 
-    public OnMenuItemSelectedListener(Activity activity) {
+    public OnMenuItemSelectedListener(ApplicationsActivity activity) {
         this.activity = activity;
     }
 
@@ -43,7 +44,7 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 Toast.makeText(activity, "Error!!!", Toast.LENGTH_LONG).show();
                 break;
         }
-//        activity.mDrawerLayout.closeDrawer(GravityCompat.START);
+        activity.mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }

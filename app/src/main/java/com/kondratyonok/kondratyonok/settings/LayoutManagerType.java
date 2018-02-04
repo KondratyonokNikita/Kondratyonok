@@ -1,11 +1,14 @@
 package com.kondratyonok.kondratyonok.settings;
 
 import android.app.Activity;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.kondratyonok.kondratyonok.Entry;
+import com.kondratyonok.kondratyonok.OffsetItemDecoration;
+import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.adapter.ListAdapter;
 
@@ -36,6 +39,15 @@ public class LayoutManagerType {
             case "0": return new GridAdapter(data);
             case "1": return new ListAdapter(data);
             default: return LayoutManagerType.getAdapter(LayoutManagerType.DEFAULT, data);
+        }
+    }
+
+    @Nullable
+    static RecyclerView.ItemDecoration getItemDecorator(String code, Activity activity) {
+        switch (code) {
+            case "0": return new OffsetItemDecoration(activity.getResources().getDimensionPixelSize(R.dimen.item_offset));
+            case "1": return null;
+            default: return LayoutManagerType.getItemDecorator(LayoutManagerType.DEFAULT, activity);
         }
     }
 }

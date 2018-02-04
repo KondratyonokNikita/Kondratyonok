@@ -46,6 +46,12 @@ public class SettingsActivity extends PreferenceActivity {
         return LayoutManagerType.getAdapter(code, data);
     }
 
+    public static RecyclerView.ItemDecoration getItemDecorator(Activity activity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
+        return LayoutManagerType.getItemDecorator(code, activity);
+    }
+
     public static void setLayoutManagerType(String type, Activity activity) {
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor ed = sPref.edit();

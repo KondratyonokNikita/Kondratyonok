@@ -130,8 +130,6 @@ public class ApplicationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        createGridLayout();
     }
 
     @Override
@@ -142,6 +140,12 @@ public class ApplicationsActivity extends AppCompatActivity {
         intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         intentFilter.addDataScheme("package");
         registerReceiver(mMonitor, intentFilter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        createGridLayout();
     }
 
     @Override
@@ -156,11 +160,13 @@ public class ApplicationsActivity extends AppCompatActivity {
     private void createGridLayout() {
         final RecyclerView recyclerView = findViewById(R.id.content);
         recyclerView.setHasFixedSize(false);
-        final int offset = getResources().getDimensionPixelSize(R.dimen.item_offset);
-        recyclerView.addItemDecoration(new OffsetItemDecoration(offset));
 
-        final RecyclerView.LayoutManager layoutManager = SettingsActivity.getLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.ItemDecoration itemDecoration = SettingsActivity.getItemDecorator(this);
+        if (itemDecoration != null) {
+            recyclerView.addItemDecoration(SettingsActivity.getItemDecorator(this));
+        }
+
+        recyclerView.setLayoutManager(SettingsActivity.getLayoutManager(this));
 
         generateData();
         applicationsAdapter = SettingsActivity.getAdapter(this, data);
