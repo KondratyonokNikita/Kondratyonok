@@ -20,15 +20,18 @@ import java.util.List;
  * Created by NKondratyonok on 04.02.18.
  */
 
-public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LinearAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final static String TAG = "ListAdapter";
+    private final static String TAG = "LinearAdapter";
 
     @NonNull
     private final List<Entry> data;
 
-    public ListAdapter(Activity activity) {
+    private final Activity activity;
+
+    public LinearAdapter(Activity activity) {
         this.data = Utils.getEntriesList(activity);
+        this.activity = activity;
     }
 
     @Override
@@ -47,7 +50,15 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         gridHolder.getTitleView().setText(data.get(position).name);
 
-        gridHolder.getSubtitleView().setText(data.get(position).packageName);
+        StringBuffer subtitle = new StringBuffer();
+        subtitle.append(data.get(position).packageName);
+        subtitle.append("\n");
+        subtitle.append(activity.getResources().getString(R.string.launched));
+        subtitle.append(" ");
+        subtitle.append(data.get(position).launched);
+        subtitle.append(" ");
+        subtitle.append(activity.getResources().getString(R.string.times));
+        gridHolder.getSubtitleView().setText(subtitle.toString());
 
         gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
         gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));

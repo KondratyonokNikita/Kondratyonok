@@ -69,7 +69,7 @@ public class Database {
 
     public static void insertOrUpdate(Entry entry) {
         try {
-            Log.e("DATABASE", "insert or update");
+            Log.i("DATABASE", "insert or update");
             SQLiteDatabase db = mDbHelper.getReadableDatabase();
             Cursor cursor = db.query(
                     DatabaseData.TABLE_NAME,
@@ -92,7 +92,7 @@ public class Database {
     }
 
     public static void insert(Entry entry) {
-        Log.e("DATABASE", "insert");
+        Log.i("DATABASE", "insert");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
         contentValues.put(DatabaseData.Columns.FIELD_TITLE, entry.packageName);
@@ -105,7 +105,7 @@ public class Database {
     }
 
     public static void update(Entry entry) {
-        Log.e("DATABASE", "update");
+        Log.i("DATABASE", "update");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
         contentValues.put(DatabaseData.Columns.FIELD_TITLE, entry.packageName);

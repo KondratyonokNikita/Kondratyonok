@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +53,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     private RecyclerView.Adapter<RecyclerView.ViewHolder> applicationsAdapter;
     private ApplicationsActivity activity = this;
     private final String TAG = "ApplicationsActivity";
+    private NavigationView navigationView;
 
     private BroadcastReceiver mMonitor = new BroadcastReceiver() {
         @Override
@@ -119,7 +121,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new OnMenuItemSelectedListener(this));
 
         View header = navigationView.getHeaderView(0);
@@ -155,5 +157,9 @@ public class ApplicationsActivity extends AppCompatActivity {
         for (Entry entry : data) {
             Database.insertOrUpdate(entry);
         }
+    }
+
+    public NavigationView getNavigationView() {
+        return navigationView;
     }
 }

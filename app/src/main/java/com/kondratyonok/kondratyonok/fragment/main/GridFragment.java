@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
 import com.kondratyonok.kondratyonok.R;
+import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.fragment.greeting.LayoutFragment;
 import com.kondratyonok.kondratyonok.settings.Layout;
@@ -44,6 +45,10 @@ public class GridFragment extends Fragment {
                 getActivity().getResources().getInteger(SettingsActivity.getLayoutColumnsId(getActivity()))));
 
         recyclerView.setAdapter(new GridAdapter(getActivity()));
+
+        ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_grid).setChecked(true);
+        ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_list).setChecked(false);
+
         return mainView;
     }
 

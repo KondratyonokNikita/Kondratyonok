@@ -3,7 +3,7 @@
     android:id="@+id/holder"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
     card_view:cardUseCompatPadding="true"
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textIsSelectable="false"
-                tools:text="plain_text_for_preview"
+                tools:text="Application name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
 
             <TextView
@@ -51,7 +51,7 @@
                 android:lines="2"
                 android:ellipsize="end"
                 android:textIsSelectable="false"
-                tools:text="plain_text_for_preview\nplain_text_for_previw"
+                tools:text="package name\nlaunched: N"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
 
         </LinearLayout>

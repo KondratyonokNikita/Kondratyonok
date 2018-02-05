@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.adapter.ListAdapter;
-import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
+import com.kondratyonok.kondratyonok.adapter.LinearAdapter;
 
 import java.util.List;
 
@@ -36,7 +36,10 @@ public class LinearFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(new ListAdapter(getActivity()));
+        recyclerView.setAdapter(new LinearAdapter(getActivity()));
+
+        ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_list).setChecked(true);
+        ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_grid).setChecked(false);
         return mainView;
     }
 
