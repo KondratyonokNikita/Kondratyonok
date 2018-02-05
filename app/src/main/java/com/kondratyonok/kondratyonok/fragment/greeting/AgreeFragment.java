@@ -47,6 +47,7 @@ public class AgreeFragment extends Fragment {
                 if (!SettingsActivity.hasLayout(getActivity())) {
                     SettingsActivity.setLayout(Layout.DEFAULT, getActivity());
                 }
+                SettingsActivity.setNeedWelcomePage(getActivity(), false);
                 startActivity(new Intent(getContext(), ApplicationsActivity.class));
                 getActivity().finish();
             }

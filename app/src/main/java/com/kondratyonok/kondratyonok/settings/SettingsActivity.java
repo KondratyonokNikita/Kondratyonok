@@ -24,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
 
-    private static boolean themeChanged = false;
+    public static boolean themeChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,16 +111,22 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         return preferences.contains(SettingsActivity.KEY_LAYOUT);
     }
 
-    public static boolean needWelcomePage(ApplicationsActivity activity) {
+
+
+    public static boolean isNeedWelcomePage(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false);
-        if (need) {
-            preferences.edit().putBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false).apply();
-            return true;
-        } else {
-            return !SettingsActivity.hasAllSettings(activity);
-        }
+        return need || !SettingsActivity.hasAllSettings(activity);
     }
+
+    public static void setNeedWelcomePage(Activity activity, boolean need) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences.Editor ed = preferences.edit();
+        ed.putBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, need);
+        ed.apply();
+    }
+
+
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

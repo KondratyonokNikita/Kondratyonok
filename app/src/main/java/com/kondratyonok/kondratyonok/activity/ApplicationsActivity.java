@@ -102,7 +102,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (SettingsActivity.needWelcomePage(this)) {
+        if (SettingsActivity.isNeedWelcomePage(this)) {
             final Intent intent = new Intent();
             intent.setClass(this, GreetingActivity.class);
             startActivity(intent);
