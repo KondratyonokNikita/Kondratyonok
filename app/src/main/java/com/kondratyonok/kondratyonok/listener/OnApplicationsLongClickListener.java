@@ -2,6 +2,7 @@ package com.kondratyonok.kondratyonok.listener;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,11 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
                         break;
                     }
                     case R.id.nav_info: {
-                        Snackbar.make(view, data.packageName, Snackbar.LENGTH_INDEFINITE).show();
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", data.packageName, null);
+                        intent.setData(uri);
+                        view.getContext().startActivity(intent);
                         break;
                     }
                     default:
