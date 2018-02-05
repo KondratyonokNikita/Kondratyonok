@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
+import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +21,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String KEY_LAYOUT = "layout";
     public static final String KEY_SORTING_METHOD = "sorting_method";
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
+    public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,5 +91,16 @@ public class SettingsActivity extends PreferenceActivity {
     public static boolean hasLayout(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         return preferences.contains(SettingsActivity.KEY_LAYOUT);
+    }
+
+    public static boolean needWelcomePage(ApplicationsActivity activity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false);
+        if (need) {
+            preferences.edit().putBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false).apply();
+            return true;
+        } else {
+            return !SettingsActivity.hasAllSettings(activity);
+        }
     }
 }

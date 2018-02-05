@@ -102,9 +102,9 @@ public class ApplicationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!SettingsActivity.hasAllSettings(this)) {
+        if (SettingsActivity.needWelcomePage(this)) {
             final Intent intent = new Intent();
-            intent.setClass(this, ApplicationsActivity.class);
+            intent.setClass(this, GreetingActivity.class);
             startActivity(intent);
             finish();
         }
@@ -136,8 +136,10 @@ public class ApplicationsActivity extends AppCompatActivity {
         data = Utils.getEntriesList(this);
 
         final Fragment fragment = SettingsActivity.getLayoutFragment(this);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_content, fragment).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_content, fragment)
+                .commit();
     }
 
     @Override
