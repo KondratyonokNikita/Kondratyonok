@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -46,7 +47,7 @@ import java.util.List;
 
 public class ApplicationsActivity extends AppCompatActivity {
 
-    private final List<Entry> data = new ArrayList<>();
+    private List<Entry> data = new ArrayList<>();
     public DrawerLayout mDrawerLayout;
     private RecyclerView.Adapter<RecyclerView.ViewHolder> applicationsAdapter;
     private ApplicationsActivity activity = this;
@@ -76,7 +77,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         private void added(Context context, Intent intent) {
             String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
-                Entry entry = getEntryFromPackageName(packageName);
+                Entry entry = Utils.getEntryFromPackageName(packageName, activity);
                 data.add(entry);
                 Database.insertOrUpdate(entry);
             } catch (PackageManager.NameNotFoundException e) {
@@ -130,6 +131,11 @@ public class ApplicationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        data = Utils.getEntriesList(this);
+
+        final Fragment fragment = SettingsActivity.getLayoutFragment(this);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_content, fragment).commit();
     }
 
     @Override
@@ -143,65 +149,11 @@ public class ApplicationsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        createGridLayout();
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mMonitor);
         for (Entry entry : data) {
             Database.insertOrUpdate(entry);
         }
-    }
-
-    private void createGridLayout() {
-        final RecyclerView recyclerView = findViewById(R.id.content);
-        recyclerView.setHasFixedSize(false);
-
-        RecyclerView.ItemDecoration itemDecoration = SettingsActivity.getItemDecorator(this);
-        if (itemDecoration != null) {
-            recyclerView.addItemDecoration(SettingsActivity.getItemDecorator(this));
-        }
-
-        recyclerView.setLayoutManager(SettingsActivity.getLayoutManager(this));
-
-        generateData();
-        applicationsAdapter = SettingsActivity.getAdapter(this, data);
-        recyclerView.setAdapter(applicationsAdapter);
-    }
-
-    private Entry getEntryFromPackageName(String packageName) throws PackageManager.NameNotFoundException {
-        PackageManager packageManager = getPackageManager();
-        Drawable icon = getPackageManager().getApplicationIcon(packageName);
-        String name = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
-        long updateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime;
-        return new Entry(icon, name, packageName, updateTime);
-    }
-
-    private void generateData() {
-        PackageManager packageManager = getPackageManager();
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ApplicationInfo> app = packageManager.getInstalledApplications(0);
-        for (ApplicationInfo applicationInfo : app) {
-            try {
-                if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
-                    if (!applicationInfo.packageName.equals(getPackageName())) {
-                        Entry entry = getEntryFromPackageName(applicationInfo.packageName);
-                        if (!data.contains(entry)) {
-                            data.add(entry);
-                        }
-                    }
-                }
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Collections.sort(data, SettingsActivity.getSortingMethod(this));
     }
 }

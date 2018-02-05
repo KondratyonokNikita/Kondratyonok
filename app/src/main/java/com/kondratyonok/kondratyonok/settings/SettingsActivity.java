@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.kondratyonok.kondratyonok.Entry;
@@ -34,36 +35,23 @@ public class SettingsActivity extends PreferenceActivity {
         return good;
     }
 
-    public static RecyclerView.LayoutManager getLayoutManager(Activity activity) {
+
+
+    public static Fragment getLayoutFragment(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
-        return LayoutManagerType.getLayoutManager(code, activity);
+        return LayoutManagerType.getLayoutFragment(code);
     }
 
-    public static RecyclerView.Adapter<RecyclerView.ViewHolder> getAdapter(Activity activity, List<Entry> data) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
-        return LayoutManagerType.getAdapter(code, data);
-    }
 
-    public static RecyclerView.ItemDecoration getItemDecorator(Activity activity) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
-        return LayoutManagerType.getItemDecorator(code, activity);
-    }
-
-    public static void setLayoutManagerType(String type, Activity activity) {
-        SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(activity);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, type);
-        ed.commit();
-    }
 
     public static Comparator<Object> getSortingMethod(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_SORTING_METHOD, SortingMethod.DEFAULT);
         return SortingMethod.getMethod(code);
     }
+
+
 
     public static int getApplicationTheme(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -82,6 +70,8 @@ public class SettingsActivity extends PreferenceActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         return preferences.contains(SettingsActivity.KEY_THEME);
     }
+
+
 
     public static int getLayoutColumnsId(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);

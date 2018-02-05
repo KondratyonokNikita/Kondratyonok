@@ -1,5 +1,6 @@
 package com.kondratyonok.kondratyonok.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.kondratyonok.kondratyonok.Database;
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.Holder;
 import com.kondratyonok.kondratyonok.R;
+import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
 import com.kondratyonok.kondratyonok.listener.OnApplicationsLongClickListener;
@@ -29,10 +31,10 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final static String TAG = "ApplicationsAdapter";
 
     @NonNull
-    private final List<Entry> mData;
+    private final List<Entry> data;
 
-    public GridAdapter(@NonNull final List<Entry> data) {
-        mData = data;
+    public GridAdapter(Activity activity) {
+        this.data = Utils.getEntriesList(activity);
     }
 
     @Override
@@ -47,17 +49,17 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void bindGridView(@NonNull final Holder.ApplicationsHolder gridHolder, final int position) {
-        gridHolder.getIconView().setBackground(mData.get(position).icon);
+        gridHolder.getIconView().setBackground(data.get(position).icon);
 
-        gridHolder.getTitleView().setText(mData.get(position).name);
+        gridHolder.getTitleView().setText(data.get(position).name);
 
-        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(mData.get(position)));
-        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(mData.get(position)));
+        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
+        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return data.size();
     }
 }
 
