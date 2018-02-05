@@ -49,6 +49,16 @@ public class LayoutFragment extends Fragment {
         mainView.findViewById(R.id.dense_layout).setOnClickListener(dense_listener);
         mainView.findViewById(R.id.dense_radio_button).setOnClickListener(dense_listener);
 
+        switch (SettingsActivity.getLayoutColumnsId(getActivity())) {
+            case R.integer.span_count:
+                ((RadioButton)mainView.findViewById(R.id.standard_radio_button)).setChecked(true);
+                ((RadioButton)mainView.findViewById(R.id.dense_radio_button)).setChecked(false);
+                break;
+            case R.integer.span_count_dense:
+                ((RadioButton)mainView.findViewById(R.id.standard_radio_button)).setChecked(false);
+                ((RadioButton)mainView.findViewById(R.id.dense_radio_button)).setChecked(true);
+            default: break;
+        }
         return mainView;
     }
 

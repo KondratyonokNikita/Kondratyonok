@@ -20,7 +20,9 @@ import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
 import com.kondratyonok.kondratyonok.listener.OnApplicationsLongClickListener;
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +37,7 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public GridAdapter(Activity activity) {
         this.data = Utils.getEntriesList(activity);
+        Collections.sort(this.data, SettingsActivity.getSortingMethod(activity));
     }
 
     @Override

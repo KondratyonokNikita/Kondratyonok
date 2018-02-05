@@ -32,6 +32,7 @@ public class ThemeFragment extends Fragment {
                 SettingsActivity.setApplicationTheme(Theme.LIGHT, getActivity());
                 lightRB.setChecked(true);
                 darkRB.setChecked(false);
+                getActivity().recreate();
             }
         };
 
@@ -43,6 +44,7 @@ public class ThemeFragment extends Fragment {
                 SettingsActivity.setApplicationTheme(Theme.DARK, getActivity());
                 lightRB.setChecked(false);
                 darkRB.setChecked(true);
+                getActivity().recreate();
             }
         };
 
@@ -50,6 +52,17 @@ public class ThemeFragment extends Fragment {
         mainView.findViewById(R.id.light_radio_button).setOnClickListener(light_listener);
         mainView.findViewById(R.id.dark_theme).setOnClickListener(dark_listener);
         mainView.findViewById(R.id.dark_radio_button).setOnClickListener(dark_listener);
+
+        switch (SettingsActivity.getApplicationTheme(getActivity())) {
+            case R.style.AppThemeLight:
+                ((RadioButton)mainView.findViewById(R.id.light_radio_button)).setChecked(true);
+                ((RadioButton)mainView.findViewById(R.id.dark_radio_button)).setChecked(false);
+                break;
+            case R.style.AppThemeDark:
+                ((RadioButton)mainView.findViewById(R.id.light_radio_button)).setChecked(false);
+                ((RadioButton)mainView.findViewById(R.id.dark_radio_button)).setChecked(true);
+            default: break;
+        }
 
         return mainView;
     }

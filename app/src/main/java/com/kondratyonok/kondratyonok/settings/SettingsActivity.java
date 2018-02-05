@@ -7,6 +7,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
@@ -15,7 +16,7 @@ import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import java.util.Comparator;
 import java.util.List;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String KEY_THEME = "theme";
     public static final String KEY_LAYOUT = "layout";
@@ -23,10 +24,19 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
 
+    private static boolean themeChanged = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("SETTINGS", "onDestroy");
     }
 
     public static boolean hasAllSettings(Activity activity) {
@@ -73,6 +83,14 @@ public class SettingsActivity extends PreferenceActivity {
         return preferences.contains(SettingsActivity.KEY_THEME);
     }
 
+    public static boolean isApplicationThemeChanged() {
+        if (SettingsActivity.themeChanged) {
+            SettingsActivity.themeChanged = false;
+            return true;
+        }
+        return false;
+    }
+
 
 
     public static int getLayoutColumnsId(Activity activity) {
@@ -101,6 +119,14 @@ public class SettingsActivity extends PreferenceActivity {
             return true;
         } else {
             return !SettingsActivity.hasAllSettings(activity);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Log.i("CHANGED", key);
+        if (key.equals(SettingsActivity.KEY_THEME)) {
+            SettingsActivity.themeChanged = true;
         }
     }
 }

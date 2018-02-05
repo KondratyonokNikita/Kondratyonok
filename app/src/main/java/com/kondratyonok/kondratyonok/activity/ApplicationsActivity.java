@@ -117,7 +117,21 @@ public class ApplicationsActivity extends AppCompatActivity {
 
         mDrawerLayout = findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                Log.i("MENU", "closed");
+                // Do whatever you want here
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                Log.i("MENU", "opened");
+                // Do whatever you want here
+            }
+        };
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -134,22 +148,27 @@ public class ApplicationsActivity extends AppCompatActivity {
             }
         });
         data = Utils.getEntriesList(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (SettingsActivity.isApplicationThemeChanged()) {
+            recreate();
+        }
+        Log.i("APPLICATIONS", "onStart");
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        intentFilter.addDataScheme("package");
+        registerReceiver(mMonitor, intentFilter);
 
         final Fragment fragment = SettingsActivity.getLayoutFragment(this);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_content, fragment)
                 .commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
-        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        intentFilter.addDataScheme("package");
-        registerReceiver(mMonitor, intentFilter);
     }
 
     @Override

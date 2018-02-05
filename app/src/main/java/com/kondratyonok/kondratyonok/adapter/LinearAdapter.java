@@ -13,7 +13,9 @@ import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
 import com.kondratyonok.kondratyonok.listener.OnApplicationsLongClickListener;
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class LinearAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public LinearAdapter(Activity activity) {
         this.data = Utils.getEntriesList(activity);
+        Collections.sort(this.data, SettingsActivity.getSortingMethod(activity));
         this.activity = activity;
     }
 

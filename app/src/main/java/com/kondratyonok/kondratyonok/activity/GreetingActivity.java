@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.ViewPagerAdapter;
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class GreetingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Fabric.with(this, new Crashlytics());
+        setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_greeting);
 
         final List<Integer> data = new ArrayList<Integer>() {{
