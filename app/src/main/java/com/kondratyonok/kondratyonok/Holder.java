@@ -10,90 +10,34 @@ import android.widget.TextView;
 
 public class Holder {
 
-    public static class ListHolder extends RecyclerView.ViewHolder {
-
-        private final View mImageView;
-        private final TextView colorTextView;
-        private final TextView textTextView;
-        private final View mWholeView;
-
-        public ListHolder(final View view) {
-            super(view);
-
-            mImageView = view.findViewById(R.id.image);
-            colorTextView = view.findViewById(R.id.title);
-            textTextView = view.findViewById(R.id.subtitle);
-            mWholeView = view.findViewById(R.id.list_holder);
-        }
-
-        public View getImageView() {
-            return mImageView;
-        }
-
-        public TextView getColorTextView() {
-            return colorTextView;
-        }
-
-        public TextView getTextTextView() {
-            return textTextView;
-        }
-
-        public View getWholeView() {
-            return mWholeView;
-        }
-    }
-
-    public static class GridHolder extends RecyclerView.ViewHolder {
-
-        private final View mImageView;
-        private final TextView mTextView;
-        private final View mWholeView;
-
-        public GridHolder(final View view) {
-            super(view);
-
-            mImageView = view.findViewById(R.id.launcher_image);
-            mTextView = view.findViewById(R.id.color);
-            mWholeView = view.findViewById(R.id.grid_holder);
-        }
-
-        public View getImageView() {
-            return mImageView;
-        }
-
-        public TextView getTextView() {
-            return mTextView;
-        }
-
-        public View getWholeView() {
-            return mWholeView;
-        }
-    }
-
     public static class ApplicationsHolder extends RecyclerView.ViewHolder {
 
-        private final View mImageView;
-        private final TextView mTextView;
-        private final View mWholeView;
+        private final View iconView;
+        private final TextView title;
+        private final TextView subtitle;
+        private final View holder;
 
         public ApplicationsHolder(final View view) {
             super(view);
 
-            mImageView = view.findViewById(R.id.launcher_image);
-            mTextView = view.findViewById(R.id.color);
-            mWholeView = view.findViewById(R.id.application_holder);
+            iconView = view.findViewById(R.id.image);
+            title = view.findViewById(R.id.title);
+            subtitle = view.findViewById(R.id.subtitle);
+            holder = view.findViewById(R.id.holder);
         }
 
-        public View getImageView() {
-            return mImageView;
+        public View getIconView() {
+            return iconView;
         }
 
-        public TextView getTextView() {
-            return mTextView;
+        public TextView getTitleView() {
+            return title;
         }
 
-        public View getWholeView() {
-            return mWholeView;
+        public TextView getSubtitleView() { return subtitle; }
+
+        public View getHolder() {
+            return holder;
         }
     }
 }

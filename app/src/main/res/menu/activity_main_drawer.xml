@@ -8,25 +8,22 @@
         android:layout_height="wrap_content"
         android:title="@string/layout">
         <menu>
-            <item
-                android:id="@+id/nav_launcher"
-                android:icon="@drawable/ic_menu_grid"
-                android:title="@string/launcher_activity" />
-            <item
-                android:id="@+id/nav_list"
-                android:icon="@drawable/ic_menu_list"
-                android:title="@string/list_activity" />
-            <item
-                android:id="@+id/nav_applications"
-                android:title="@string/applications_activity" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_grid"
+                    android:icon="@drawable/ic_menu_grid"
+                    android:title="@string/launcher_activity" />
+                <item
+                    android:id="@+id/nav_list"
+                    android:icon="@drawable/ic_menu_list"
+                    android:title="@string/list_activity" />
+            </group>
         </menu>
     </item>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
-            android:title="@string/settings" />
-    </group>
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_menu_settings"
+        android:title="@string/settings" />
 
 </menu>

@@ -5,11 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.kondratyonok.kondratyonok.fragment.AgreeFragment;
-import com.kondratyonok.kondratyonok.fragment.DescriptionFragment;
-import com.kondratyonok.kondratyonok.fragment.GreetingFragment;
-import com.kondratyonok.kondratyonok.fragment.LayoutFragment;
-import com.kondratyonok.kondratyonok.fragment.ThemeFragment;
+import com.kondratyonok.kondratyonok.fragment.greeting.AgreeFragment;
+import com.kondratyonok.kondratyonok.fragment.greeting.DescriptionFragment;
+import com.kondratyonok.kondratyonok.fragment.greeting.GreetingFragment;
+import com.kondratyonok.kondratyonok.fragment.greeting.LayoutFragment;
+import com.kondratyonok.kondratyonok.fragment.greeting.ThemeFragment;
 
 import java.util.List;
 

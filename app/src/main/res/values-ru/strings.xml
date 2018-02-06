@@ -2,7 +2,6 @@
 <resources>
     <string name = "alphabeticallyAZ"> По алфавиту АЯ </string>
     <string name = "alphabeticallyZA"> По алфавиту ЯА </string>
-    <string name = "applications_activity"> Лаунчер </string>
     <string name = "dark_theme"> Темная тема </string>
     <string name = "delete"> Удалить </string>
     <string name = "dense_layout"> Плотная компоновка </string>
@@ -26,4 +25,16 @@
     <string name = "start"> Пуск </string>
     <string name = "theme"> Тема </string>
     <string name = "theme_description"> Тема, используемая в приложении </string>
+    <string name="layout_manager_type">Тип списка</string>
+    <string name="layout_manager_type_description">Список или сетка</string>
+    <string name="grid">Сетка</string>
+    <string name="linear">Список</string>
+    <string name="need_welcome_page">Нужна страница приветсвия</string>
+    <string name="need_welcome_page_description">Запустить страницу приветствия</string>
+    <string name="mobile">Мобильный</string>
+    <string name="home">Домашний</string>
+    <string name="email">email</string>
+    <string name="address">Адресс</string>
+    <string name="launched">Launched</string>
+    <string name="times">раз</string>
 </resources>

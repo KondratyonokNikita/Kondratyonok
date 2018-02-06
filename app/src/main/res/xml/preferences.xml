@@ -28,6 +28,20 @@
             android:entries="@array/sorting_entries"
             android:entryValues="@array/sorting_values" />
 
+        <ListPreference
+            android:key="layout_manager_type"
+            android:title="@string/layout_manager_type"
+            android:summary="@string/layout_manager_type_description"
+            android:defaultValue="0"
+            android:entries="@array/layout_manager_type_entries"
+            android:entryValues="@array/layout_manager_type_values" />
+
+        <SwitchPreference
+            android:key="need_welcome_page"
+            android:title="@string/need_welcome_page"
+            android:summary="@string/need_welcome_page_description"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

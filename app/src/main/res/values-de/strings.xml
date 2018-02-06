@@ -2,8 +2,7 @@
 <resources>
         <string name = "alphabeticallyAZ"> Alphabetisch AZ </string>
         <string name = "alphabeticallyZA"> alphabetisch ZA </string>
-        <string name = "applications_activity"> Startprogramm </string>
-        <string name = "dark_theme"> Dunkles Thema </string>
+    <string name = "dark_theme"> Dunkles Thema </string>
         <string name = "delete"> Löschen </string>
         <string name = "dense_layout"> Dichtes Layout </string>
         <string name = "dense_layout_description"> Porträt: 5 Symbole in einer Reihe \n Landschaft: 7 Symbole in einer Reihe </string>
@@ -26,4 +25,16 @@
         <string name = "start"> Start </string>
         <string name = "theme"> Thema </string>
         <string name = "theme_description"> In der Anwendung verwendetes Thema </string>
+    <string name="layout_manager_type">Layout manager type</string>
+    <string name="layout_manager_type_description">Layout manager type description</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
+    <string name="need_welcome_page">Need welcome page</string>
+    <string name="need_welcome_page_description">Need welcome page description</string>
+    <string name="mobile">Mobile</string>
+    <string name="home">Home</string>
+    <string name="email">email</string>
+    <string name="address">Address</string>
+    <string name="launched">Launched</string>
+    <string name="times">mal</string>
 </resources>
