@@ -63,7 +63,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return data.size();
     }
 
-    class InfoEntry {
+    private static class InfoEntry {
         Integer title;
         Integer subtitle;
         Integer icon;

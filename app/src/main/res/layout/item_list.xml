@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/holder"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
     card_view:cardUseCompatPadding="true"
@@ -26,7 +26,6 @@
             android:contentDescription="@string/my_name" />
 
         <LinearLayout
-            android:id="@+id/textview_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="true"
@@ -41,6 +40,7 @@
 
             <TextView
                 android:id="@+id/title"
+                android:textIsSelectable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="plain_text_for_preview"
@@ -48,6 +48,7 @@
 
             <TextView
                 android:id="@+id/subtitle"
+                android:textIsSelectable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="plain_text_for_preview"

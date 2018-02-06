@@ -61,6 +61,7 @@ public class ThemeFragment extends Fragment {
             case R.style.AppThemeDark:
                 ((RadioButton)mainView.findViewById(R.id.light_radio_button)).setChecked(false);
                 ((RadioButton)mainView.findViewById(R.id.dark_radio_button)).setChecked(true);
+                break;
             default: break;
         }
 

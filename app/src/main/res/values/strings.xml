@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name" translatable="false">KondrN</string>
-    <string name="github" translatable="false">https://github.com/KondratyonokNikita</string>
+    <string name="home_phone" translatable="false">+375&#8211;17&#8211;266&#8211;74&#8211;98</string>
+    <string name="github" translatable="false">github</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="mobile_phone" translatable="false">+375&#8211;33&#8211;635&#8211;29&#8211;77</string>
+    <string name="my_vk" translatable="false">vk.com/id0</string>
+    <string name="vk" translatable="false">VK</string>
+    <string name="my_instagram" translatable="false">instagram.com/</string>
+    <string name="instagram" translatable="false">Instagram</string>
+    <string name="my_github" translatable="false">https://github.com/KondratyonokNikita</string>
+
 
     <string name="alphabeticallyAZ">Alphabetically AZ</string>
     <string name="alphabeticallyZA">Alphabetically ZA</string>
-    <string name="applications_activity">Launcher</string>
     <string name="dark_theme">Dark theme</string>
     <string name="delete">Delete</string>
     <string name="dense_layout">Dense layout</string>
@@ -14,6 +21,7 @@
     <string name="greeting">Greeting</string>
     <string name="info">Information</string>
     <string name="installation_date">By installation date</string>
+    <string name="launched">Launched</string>
     <string name="launcher_activity">Grid</string>
     <string name="layout">Layout</string>
     <string name="layout_description">The density of icons on the screen</string>
@@ -30,25 +38,17 @@
     <string name="start">Start</string>
     <string name="theme">Theme</string>
     <string name="theme_description">Theme used in the application</string>
+    <string name="times">time(s)</string>
     <string name="layout_manager_type">Layout manager type</string>
-    <string name="layout_manager_type_description">Layout manager type description</string>
+    <string name="layout_manager_type_description">Grid or linear</string>
     <string name="grid">Grid</string>
     <string name="linear">Linear</string>
-    <string name="launched" translatable="false">Launched</string>
-    <string name="times" translatable="false">time(s)</string>
     <string name="need_welcome_page">Need welcome page</string>
     <string name="need_welcome_page_description">Need welcome page description</string>
-    <string name="mobile_phone">+375-33-635-29-77</string>
     <string name="mobile">Mobile</string>
-    <string name="home_phone">+375-17-266-74-98</string>
     <string name="home">Home</string>
-    <string name="yandex_email">nikita.kondratenok@yandex.ru</string>
+    <string name="yandex_email" translatable="false">nikita.kondratenok@yandex.ru</string>
     <string name="email">email</string>
-    <string name="my_address">Rogachevskaya 7A</string>
+    <string name="my_address" translatable="false">Rogachevskaya 7A</string>
     <string name="address">Address</string>
-    <string name="my_vk">vk.com/id0</string>
-    <string name="vk">VK</string>
-    <string name="my_instagram">instagram.com/</string>
-    <string name="instagram">Instagram</string>
-    <string name="my_github">My github</string>
 </resources>

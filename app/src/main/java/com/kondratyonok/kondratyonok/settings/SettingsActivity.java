@@ -24,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
 
-    public static boolean themeChanged = false;
+    static boolean themeChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,13 +126,16 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         ed.apply();
     }
 
+    public static void setThemeChanged() {
+        SettingsActivity.themeChanged = true;
+    }
 
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Log.i("CHANGED", key);
         if (key.equals(SettingsActivity.KEY_THEME)) {
-            SettingsActivity.themeChanged = true;
+            SettingsActivity.setThemeChanged();
         }
     }
 }

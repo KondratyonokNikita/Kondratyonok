@@ -2,7 +2,6 @@
 <resources>
     <string name="alphabeticallyAZ">حسب الترتيب الأبجدي</string>
     <string name="alphabeticallyZA">أبجديا عكس</string>
-    <string name="applications_activity">قاذفة</string>
     <string name="dark_theme">موضوع الظلام</string>
     <string name="delete">حذف</string>
     <string name="dense_layout">تخطيط كثيفة</string>
@@ -27,22 +26,15 @@
     <string name="theme">موضوع</string>
     <string name="theme_description">موضوع المستخدمة في التطبيق</string>
     <string name="layout_manager_type">Layout manager type</string>
-    <string name="layout_manager_type_description">Layout manager type description</string>
-    <string name="grid">Grid</string>
-    <string name="linear">Linear</string>
-    <string name="need_welcome_page">Need welcome page</string>
-    <string name="need_welcome_page_description">Need welcome page description</string>
-    <string name="mobile_phone">+375-33-635-29-77</string>
-    <string name="mobile">Mobile</string>
-    <string name="home_phone">+375-17-266-74-98</string>
-    <string name="home">Home</string>
-    <string name="yandex_email">nikita.kondratenok@yandex.ru</string>
-    <string name="email">email</string>
-    <string name="my_address">Rogachevskaya 7A</string>
-    <string name="address">Address</string>
-    <string name="my_vk">vk.com/id0</string>
-    <string name="vk">VK</string>
-    <string name="my_instagram">instagram.com/</string>
-    <string name="instagram">Instagram</string>
-    <string name="my_github">My github</string>
+    <string name="layout_manager_type_description">وصف نوع مدير التخطيط</string>
+    <string name="grid">شبكة</string>
+    <string name="linear">خطي</string>
+    <string name="need_welcome_page">تحتاج إلى صفحة الترحيب</string>
+    <string name="need_welcome_page_description">تحتاج إلى وصف صفحة الترحيب</string>
+    <string name="mobile">التليفون المحمول</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="address">عنوان</string>
+    <string name="launched">Launched</string>
+    <string name="times">مرات</string>
 </resources>

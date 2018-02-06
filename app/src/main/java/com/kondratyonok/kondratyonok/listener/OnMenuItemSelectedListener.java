@@ -42,7 +42,7 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 break;
             }
             case R.id.nav_list: {
-                LayoutManagerType.TEMP = LayoutManagerType.LINEAR;
+                LayoutManagerType.setTemp(LayoutManagerType.LINEAR);
                 activity.fragment = new LinearFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
@@ -51,7 +51,7 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 break;
             }
             case R.id.nav_grid: {
-                LayoutManagerType.TEMP = LayoutManagerType.GRID;
+                LayoutManagerType.setTemp(LayoutManagerType.GRID);
                 activity.fragment = new GridFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()

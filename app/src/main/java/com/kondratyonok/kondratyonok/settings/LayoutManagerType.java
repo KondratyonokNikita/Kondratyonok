@@ -16,12 +16,12 @@ public class LayoutManagerType {
 
     static final String DEFAULT = GRID;
 
-    public static String TEMP = null;
+    private static String temp = null;
 
     private static final String TAG = "Settings";
 
     static Fragment getLayoutFragment(String code) {
-        if (TEMP == null) {
+        if (temp == null) {
             switch (code) {
                 case LayoutManagerType.GRID:
                     Log.i(TAG, "grid type");
@@ -34,7 +34,7 @@ public class LayoutManagerType {
                     return LayoutManagerType.getLayoutFragment(LayoutManagerType.DEFAULT);
             }
         } else {
-            switch (TEMP) {
+            switch (temp) {
                 case LayoutManagerType.GRID:
                     Log.i(TAG, "grid type");
                     return GridFragment.newInstance();
@@ -46,5 +46,9 @@ public class LayoutManagerType {
                     return LayoutManagerType.getLayoutFragment(LayoutManagerType.DEFAULT);
             }
         }
+    }
+
+    public static void setTemp(String code) {
+        temp = code;
     }
 }

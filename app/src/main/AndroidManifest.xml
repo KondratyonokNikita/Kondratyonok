@@ -24,7 +24,6 @@
             android:value="${HOCKEYAPP_APP_SECRET}" />
 
         <activity android:name=".activity.GreetingActivity" />
-        <activity android:name=".activity.LauncherActivity" />
         <activity
             android:launchMode="singleTask"
             android:screenOrientation="fullUser"

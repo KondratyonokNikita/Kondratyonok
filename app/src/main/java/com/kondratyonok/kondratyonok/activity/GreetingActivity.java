@@ -17,7 +17,6 @@ public class GreetingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Fabric.with(this, new Crashlytics());
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_greeting);
 

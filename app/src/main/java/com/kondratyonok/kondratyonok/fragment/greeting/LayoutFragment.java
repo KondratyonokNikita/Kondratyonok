@@ -57,6 +57,7 @@ public class LayoutFragment extends Fragment {
             case R.integer.span_count_dense:
                 ((RadioButton)mainView.findViewById(R.id.standard_radio_button)).setChecked(false);
                 ((RadioButton)mainView.findViewById(R.id.dense_radio_button)).setChecked(true);
+                break;
             default: break;
         }
         return mainView;

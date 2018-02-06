@@ -36,7 +36,7 @@ public class Utils {
 
     public static List<Entry> getEntriesList(Activity activity) {
         if (data == null) {
-            data = new ArrayList<>();
+            List<Entry> new_data = new ArrayList<>();
             PackageManager packageManager = activity.getPackageManager();
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -47,8 +47,8 @@ public class Utils {
                     if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
                         if (!applicationInfo.packageName.equals(activity.getPackageName())) {
                             Entry entry = Utils.getEntryFromPackageName(applicationInfo.packageName, activity);
-                            if (!data.contains(entry)) {
-                                data.add(entry);
+                            if (!new_data.contains(entry)) {
+                                new_data.add(entry);
                             }
                         }
                     }
@@ -56,7 +56,8 @@ public class Utils {
                     e.printStackTrace();
                 }
             }
-            Collections.sort(data, SettingsActivity.getSortingMethod(activity));
+            Collections.sort(new_data, SettingsActivity.getSortingMethod(activity));
+            data = new_data;
         }
         return data;
     }

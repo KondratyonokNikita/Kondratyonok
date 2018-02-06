@@ -56,8 +56,8 @@ android {
         applicationId "com.kondratyonok.kondratyonok"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 13
-        versionName "1.3.1"
+        versionCode 20
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [HOCKEYAPP_APP_ID    : hockeyapp_app_id,
                                 HOCKEYAPP_APP_SECRET: hockeyapp_app_secret,
@@ -86,9 +86,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-//    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
-//        transitive = true;
-//    }
-//    compile 'net.hockeyapp.android:HockeySDK:5.1.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true;
+    }
+    compile 'net.hockeyapp.android:HockeySDK:5.1.0'
     implementation 'com.android.support:cardview-v7:27.0.2'
 }

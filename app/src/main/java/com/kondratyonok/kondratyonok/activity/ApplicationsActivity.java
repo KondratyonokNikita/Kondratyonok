@@ -32,6 +32,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.kondratyonok.kondratyonok.Database;
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.Holder;
@@ -45,6 +46,8 @@ import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ApplicationsActivity extends AppCompatActivity {
 
@@ -102,6 +105,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         if (SettingsActivity.isNeedWelcomePage(this)) {
             final Intent intent = new Intent();
             intent.setClass(this, GreetingActivity.class);
