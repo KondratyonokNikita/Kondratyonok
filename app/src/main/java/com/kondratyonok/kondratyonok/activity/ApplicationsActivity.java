@@ -50,7 +50,7 @@ public class ApplicationsActivity extends AppCompatActivity {
 
     private List<Entry> data = new ArrayList<>();
     public DrawerLayout mDrawerLayout;
-    private RecyclerView.Adapter<RecyclerView.ViewHolder> applicationsAdapter;
+    public Fragment fragment;
     private ApplicationsActivity activity = this;
     private final String TAG = "ApplicationsActivity";
     private NavigationView navigationView;
@@ -73,7 +73,7 @@ public class ApplicationsActivity extends AppCompatActivity {
                     return;
             }
             Collections.sort(data, SettingsActivity.getSortingMethod(activity));
-            applicationsAdapter.notifyDataSetChanged();
+            fragment.onConfigurationChanged(null);
         }
 
         private void added(Context context, Intent intent) {
@@ -117,21 +117,7 @@ public class ApplicationsActivity extends AppCompatActivity {
 
         mDrawerLayout = findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                Log.i("MENU", "closed");
-                // Do whatever you want here
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                Log.i("MENU", "opened");
-                // Do whatever you want here
-            }
-        };
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -164,7 +150,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         intentFilter.addDataScheme("package");
         registerReceiver(mMonitor, intentFilter);
 
-        final Fragment fragment = SettingsActivity.getLayoutFragment(this);
+        fragment = SettingsActivity.getLayoutFragment(this);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_content, fragment)

@@ -14,6 +14,7 @@ import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.fragment.main.GridFragment;
 import com.kondratyonok.kondratyonok.fragment.main.LinearFragment;
+import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.LayoutManagerType;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
@@ -41,15 +42,21 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 break;
             }
             case R.id.nav_list: {
-                final Fragment fragment = new LinearFragment();
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_content, fragment).commit();
+                LayoutManagerType.TEMP = LayoutManagerType.LINEAR;
+                activity.fragment = new LinearFragment();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_content, activity.fragment)
+                        .commit();
                 break;
             }
             case R.id.nav_grid: {
-                final Fragment fragment = new GridFragment();
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_content, fragment).commit();
+                LayoutManagerType.TEMP = LayoutManagerType.GRID;
+                activity.fragment = new GridFragment();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_content, activity.fragment)
+                        .commit();
                 break;
             }
             default:

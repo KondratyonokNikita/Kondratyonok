@@ -32,4 +32,17 @@
     <string name="linear">Linear</string>
     <string name="need_welcome_page">Need welcome page</string>
     <string name="need_welcome_page_description">Need welcome page description</string>
+    <string name="mobile_phone">+375-33-635-29-77</string>
+    <string name="mobile">Mobile</string>
+    <string name="home_phone">+375-17-266-74-98</string>
+    <string name="home">Home</string>
+    <string name="yandex_email">nikita.kondratenok@yandex.ru</string>
+    <string name="email">email</string>
+    <string name="my_address">Rogachevskaya 7A</string>
+    <string name="address">Address</string>
+    <string name="my_vk">vk.com/id0</string>
+    <string name="vk">VK</string>
+    <string name="my_instagram">instagram.com/</string>
+    <string name="instagram">Instagram</string>
+    <string name="my_github">My github</string>
 </resources>

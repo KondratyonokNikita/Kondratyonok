@@ -59,7 +59,7 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
         gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
     }
-
+    
     @Override
     public int getItemCount() {
         return data.size();

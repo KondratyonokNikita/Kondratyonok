@@ -1,5 +1,6 @@
 package com.kondratyonok.kondratyonok.fragment.main;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,13 +31,16 @@ import java.util.List;
 public class GridFragment extends Fragment {
     private static final int ID = R.layout.fr_recycler_view;
 
+    private RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    private RecyclerView recyclerView;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i("ON_CREATE_VIEW_GRID", "CREATE");
         final View mainView = inflater.inflate(ID, container, false);
 
-        RecyclerView recyclerView = mainView.findViewById(R.id.content);
+        recyclerView = mainView.findViewById(R.id.content);
         recyclerView.setHasFixedSize(false);
 
         recyclerView.addItemDecoration(new OffsetItemDecoration(getActivity().getResources().getDimensionPixelSize(R.dimen.item_offset)));
@@ -44,12 +48,20 @@ public class GridFragment extends Fragment {
                 getActivity(),
                 getActivity().getResources().getInteger(SettingsActivity.getLayoutColumnsId(getActivity()))));
 
-        recyclerView.setAdapter(new GridAdapter(getActivity()));
+        adapter = new GridAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
 
         ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_grid).setChecked(true);
         ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_list).setChecked(false);
 
         return mainView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        adapter = new GridAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
     }
 
     public static GridFragment newInstance() {

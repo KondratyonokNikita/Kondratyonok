@@ -53,15 +53,14 @@ public class LinearAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         gridHolder.getTitleView().setText(data.get(position).name);
 
-        StringBuffer subtitle = new StringBuffer();
-        subtitle.append(data.get(position).packageName);
-        subtitle.append("\n");
-        subtitle.append(activity.getResources().getString(R.string.launched));
-        subtitle.append(" ");
-        subtitle.append(data.get(position).launched);
-        subtitle.append(" ");
-        subtitle.append(activity.getResources().getString(R.string.times));
-        gridHolder.getSubtitleView().setText(subtitle.toString());
+        String subtitle = data.get(position).packageName +
+                "\n" +
+                activity.getResources().getString(R.string.launched) +
+                " " +
+                data.get(position).launched +
+                " " +
+                activity.getResources().getString(R.string.times);
+        gridHolder.getSubtitleView().setText(subtitle);
 
         gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
         gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));

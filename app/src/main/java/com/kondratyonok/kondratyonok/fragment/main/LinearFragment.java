@@ -1,5 +1,6 @@
 package com.kondratyonok.kondratyonok.fragment.main;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
+import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.adapter.LinearAdapter;
 
 import java.util.List;
@@ -23,7 +25,9 @@ import java.util.List;
 
 public class LinearFragment extends Fragment {
     private static final int ID = R.layout.fr_recycler_view;
-    private List<Entry> data;
+
+    private RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -31,16 +35,24 @@ public class LinearFragment extends Fragment {
         Log.i("ON_CREATE_VIEW_LINEAR", "CREATE");
         final View mainView = inflater.inflate(ID, container, false);
 
-        RecyclerView recyclerView = mainView.findViewById(R.id.content);
+        recyclerView = mainView.findViewById(R.id.content);
         recyclerView.setHasFixedSize(false);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(new LinearAdapter(getActivity()));
+        adapter = new LinearAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
 
         ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_list).setChecked(true);
         ((ApplicationsActivity)getActivity()).getNavigationView().getMenu().findItem(R.id.nav_grid).setChecked(false);
         return mainView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        adapter = new LinearAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
     }
 
     public static LinearFragment newInstance() {
