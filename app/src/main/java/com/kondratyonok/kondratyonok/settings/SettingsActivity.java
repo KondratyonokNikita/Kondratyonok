@@ -115,7 +115,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     public static boolean isNeedWelcomePage(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false);
+        boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, true);
         return need || !SettingsActivity.hasAllSettings(activity);
     }
 
