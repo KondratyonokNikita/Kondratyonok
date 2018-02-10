@@ -10,7 +10,7 @@
     <string name="my_instagram" translatable="false">instagram.com/</string>
     <string name="instagram" translatable="false">Instagram</string>
     <string name="my_github" translatable="false">https://github.com/KondratyonokNikita</string>
-
+    <string name="app_matrica_api" translatable="false">334a9fb9-a817-444c-9fa9-476d7c5c7b18</string>
 
     <string name="alphabeticallyAZ">Alphabetically AZ</string>
     <string name="alphabeticallyZA">Alphabetically ZA</string>

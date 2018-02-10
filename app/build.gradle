@@ -23,7 +23,7 @@ android.applicationVariants.all { variant ->
         classes = files("$project.buildDir/intermediates/classes/${variant.dirName}/com/kondratyonok")
         excludeFilter = file("$rootProject.rootDir/findbugs-filter.xml")
         source = fileTree('src/main/java')
-        classpath = files(project.configurations.compile.asPath)
+        classpath = files()
 
         reports {
             html.enabled = true
@@ -86,9 +86,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true;
     }
     compile 'net.hockeyapp.android:HockeySDK:5.1.0'
     implementation 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.yandex.android:mobmetricalib:2.80'
 }

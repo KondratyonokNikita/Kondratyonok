@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 public class LayoutFragment extends Fragment {
 
@@ -20,6 +21,8 @@ public class LayoutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"greeting\":\"layout\"}");
+
         final View mainView = inflater.inflate(ID, container, false);
 
         View.OnClickListener standard_listener = new View.OnClickListener() {

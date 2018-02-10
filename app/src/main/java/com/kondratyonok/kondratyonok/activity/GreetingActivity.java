@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.ViewPagerAdapter;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class GreetingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        YandexMetrica.reportEvent("Activity", "{\"activity\":\"greeting\"}");
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_greeting);
 

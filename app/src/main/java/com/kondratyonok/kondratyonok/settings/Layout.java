@@ -21,4 +21,15 @@ public class Layout {
                 return getColumnsId(Layout.DEFAULT);
         }
     }
+
+    static String getName(String code) {
+        switch (code) {
+            case STANDARD:
+                return "standard";
+            case DENSE:
+                return "dense";
+            default:
+                return getName(Layout.DEFAULT);
+        }
+    }
 }

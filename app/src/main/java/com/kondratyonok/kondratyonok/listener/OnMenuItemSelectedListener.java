@@ -17,6 +17,7 @@ import com.kondratyonok.kondratyonok.fragment.main.LinearFragment;
 import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.LayoutManagerType;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.List;
 
@@ -36,12 +37,14 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
         final Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_settings: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"settings\"}");
                 intent = new Intent();
                 intent.setClass(activity, SettingsActivity.class);
                 activity.startActivity(intent);
                 break;
             }
             case R.id.nav_list: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"list\"}");
                 LayoutManagerType.setTemp(LayoutManagerType.LINEAR);
                 activity.fragment = new LinearFragment();
                 activity.getSupportFragmentManager()
@@ -51,6 +54,7 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 break;
             }
             case R.id.nav_grid: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"grid\"}");
                 LayoutManagerType.setTemp(LayoutManagerType.GRID);
                 activity.fragment = new GridFragment();
                 activity.getSupportFragmentManager()

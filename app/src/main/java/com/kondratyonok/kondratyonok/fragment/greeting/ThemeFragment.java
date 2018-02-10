@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.kondratyonok.kondratyonok.settings.Theme;
+import com.yandex.metrica.YandexMetrica;
 
 public class ThemeFragment extends Fragment {
 
@@ -22,6 +23,8 @@ public class ThemeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"greeting\":\"theme\"}");
+
         final View mainView = inflater.inflate(ID, container, false);
 
         View.OnClickListener light_listener = new View.OnClickListener() {

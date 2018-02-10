@@ -71,4 +71,26 @@ public class SortingMethod {
                 return getMethod(SortingMethod.DEFAULT);
         }
     }
+
+    public static String getName(String code) {
+        switch (code) {
+            case SortingMethod.NO_SORT:
+                return "no sort";
+
+            case SortingMethod.INSTALLATION_DATE:
+                return "installation date";
+
+            case SortingMethod.ALPHABETICALLY_AZ:
+                return "alphabetically az";
+
+            case SortingMethod.ALPHABETICALLY_ZA:
+                return "alphabetically za";
+
+            case SortingMethod.MOST_FREQUENT:
+                return "most frequent";
+
+            default:
+                return getName(SortingMethod.DEFAULT);
+        }
+    }
 }

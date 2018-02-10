@@ -11,13 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
-import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.adapter.LinearAdapter;
-
-import java.util.List;
+import com.yandex.metrica.YandexMetrica;
 
 /**
  * Created by NKondratyonok on 05.02.18.
@@ -33,6 +30,8 @@ public class LinearFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i("ON_CREATE_VIEW_LINEAR", "CREATE");
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"main\":\"linear\"}");
+        YandexMetrica.reportEvent("ViewEvent","{\"Layout\":\"linear\"}");
         final View mainView = inflater.inflate(ID, container, false);
 
         recyclerView = mainView.findViewById(R.id.content);

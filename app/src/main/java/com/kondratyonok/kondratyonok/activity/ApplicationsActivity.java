@@ -42,6 +42,7 @@ import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.listener.OnMenuItemSelectedListener;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,6 +81,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         }
 
         private void added(Context context, Intent intent) {
+            YandexMetrica.reportEvent("Applications", "{\"action\":\"add\"}");
             String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
                 Entry entry = Utils.getEntryFromPackageName(packageName, activity);
@@ -91,6 +93,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         }
 
         private void removed(final Context context, final Intent intent) {
+            YandexMetrica.reportEvent("Applications", "{\"action\":\"removed\"}");
             for (Entry entry : data) {
                 String name = Utils.getPackageFromDataString(intent.getDataString());
                 if (name.equals(entry.packageName)) {
@@ -105,6 +108,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        YandexMetrica.reportEvent("Activity", "{\"activity\":\"applications\"}");
         Fabric.with(this, new Crashlytics());
         if (SettingsActivity.isNeedWelcomePage(this)) {
             final Intent intent = new Intent();
