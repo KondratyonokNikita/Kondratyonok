@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package co.paulburke.android.itemtouchhelperdemo.helper;
+package com.kondratyonok.kondratyonok.helper;
 
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 /**
  * Interface to notify an item ViewHolder of relevant callbacks from {@link
- * android.support.v7.widget.helper.ItemTouchHelper.Callback}.
+ * ItemTouchHelper.Callback}.
  *
  * @author Paul Burke (ipaulpro)
  */

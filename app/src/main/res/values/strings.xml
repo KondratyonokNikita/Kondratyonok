@@ -2,8 +2,6 @@
     <string name="app_name" translatable="false">KondrN</string>
     <string name="home_phone" translatable="false">+375&#8211;17&#8211;266&#8211;74&#8211;98</string>
     <string name="github" translatable="false">github</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="mobile_phone" translatable="false">+375&#8211;33&#8211;635&#8211;29&#8211;77</string>
     <string name="my_vk" translatable="false">vk.com/id0</string>
     <string name="vk" translatable="false">VK</string>

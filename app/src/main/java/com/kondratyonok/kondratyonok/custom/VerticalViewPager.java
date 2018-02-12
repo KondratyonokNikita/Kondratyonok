@@ -36,7 +36,7 @@ public class VerticalViewPager extends ViewPager {
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
-    private class VerticalPageTransformer implements ViewPager.PageTransformer {
+    private static class VerticalPageTransformer implements ViewPager.PageTransformer {
 
         @Override
         public void transformPage(View view, float position) {
@@ -86,7 +86,12 @@ public class VerticalViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        performClick();
         return super.onTouchEvent(swapXY(ev));
     }
 
+    @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
 }

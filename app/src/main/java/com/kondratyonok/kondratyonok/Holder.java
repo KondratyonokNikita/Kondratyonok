@@ -1,8 +1,12 @@
 package com.kondratyonok.kondratyonok;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.kondratyonok.kondratyonok.helper.ItemTouchHelperViewHolder;
 
 /**
  * Created by NKondratyonok on 30.01.18.
@@ -10,7 +14,7 @@ import android.widget.TextView;
 
 public class Holder {
 
-    public static class ApplicationsHolder extends RecyclerView.ViewHolder {
+    public static class ApplicationsHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
 
         private final View iconView;
         private final TextView title;
@@ -38,6 +42,16 @@ public class Holder {
 
         public View getHolder() {
             return holder;
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(0);
         }
     }
 }
