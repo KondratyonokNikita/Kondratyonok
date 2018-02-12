@@ -43,13 +43,23 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 activity.startActivity(intent);
                 break;
             }
+            case R.id.nav_desktop: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"desktop\"}");
+                activity.mViewPager.setCurrentItem(0, true);
+                break;
+            }
+            case R.id.nav_applications: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"desktop\"}");
+                activity.mViewPager.setCurrentItem(1, true);
+                break;
+            }
             case R.id.nav_list: {
                 YandexMetrica.reportEvent("Drawer", "{\"action\":\"list\"}");
                 LayoutManagerType.setTemp(LayoutManagerType.LINEAR);
                 activity.fragment = new LinearFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frame_content, activity.fragment)
+                        .replace(R.id.applications, activity.fragment)
                         .commit();
                 break;
             }
@@ -59,12 +69,12 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
                 activity.fragment = new GridFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frame_content, activity.fragment)
+                        .replace(R.id.applications, activity.fragment)
                         .commit();
                 break;
             }
             default:
-                Toast.makeText(activity, "Error!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "This feature is coming", Toast.LENGTH_LONG).show();
                 break;
         }
         activity.mDrawerLayout.closeDrawer(GravityCompat.START);

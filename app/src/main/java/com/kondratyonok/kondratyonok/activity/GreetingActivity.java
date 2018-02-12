@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.ViewPagerAdapter;
+import com.kondratyonok.kondratyonok.adapter.GreetingPagerAdapter;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.yandex.metrica.YandexMetrica;
 
@@ -30,7 +30,7 @@ public class GreetingActivity extends AppCompatActivity {
             add(R.layout.fr_agree);
         }};
         final FragmentManager fragmentManager = getSupportFragmentManager();
-        ViewPagerAdapter mSectionsPagerAdapter = new ViewPagerAdapter(fragmentManager, data);
+        GreetingPagerAdapter mSectionsPagerAdapter = new GreetingPagerAdapter(fragmentManager, data);
 
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);

@@ -51,4 +51,7 @@
     <string name="email">email</string>
     <string name="my_address" translatable="false">Rogachevskaya 7A</string>
     <string name="address">Address</string>
+    <string name="desktop">Desctop</string>
+    <string name="applications">Applications</string>
+    <string name="screen">Screen</string>
 </resources>

@@ -37,4 +37,7 @@
     <string name="launched">Launched</string>
     <string name="times">time(s)</string>
     <string name="address">Address</string>
+    <string name="desktop">Desctop</string>
+    <string name="applications">Applications</string>
+    <string name="screen">Screen</string>
 </resources>
