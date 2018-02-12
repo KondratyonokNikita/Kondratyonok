@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.kondratyonok.kondratyonok.Database;
 import com.kondratyonok.kondratyonok.Entry;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class OnApplicationClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        YandexMetrica.reportEvent("Application launched");
         data.launched++;
         Intent launchIntent = v.getContext().getPackageManager().getLaunchIntentForPackage(data.packageName);
         if (launchIntent != null) {

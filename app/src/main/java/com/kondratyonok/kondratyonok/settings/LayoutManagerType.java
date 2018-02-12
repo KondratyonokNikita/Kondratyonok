@@ -48,6 +48,14 @@ public class LayoutManagerType {
         }
     }
 
+    public static String getName(String code) {
+        switch (code) {
+            case GRID: return "grid";
+            case LINEAR: return "linear";
+            default: return getName(DEFAULT);
+        }
+    }
+
     public static void setTemp(String code) {
         temp = code;
     }

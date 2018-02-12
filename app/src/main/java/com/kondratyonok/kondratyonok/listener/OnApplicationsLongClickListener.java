@@ -10,6 +10,7 @@ import android.widget.PopupMenu;
 
 import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
+import com.yandex.metrica.YandexMetrica;
 
 /**
  * Created by NKondratyonok on 04.02.18.
@@ -25,6 +26,7 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
 
     @Override
     public boolean onLongClick(final View view) {
+        YandexMetrica.reportEvent("Popup", "{\"action\":\"opened\"}");
         PopupMenu popup = new PopupMenu(view.getContext(), view);
         popup.inflate(R.menu.context_menu);
         popup.getMenu().findItem(R.id.nav_times).setTitle("Launched: " + data.launched);
@@ -33,12 +35,14 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_delete: {
+                        YandexMetrica.reportEvent("Popup", "{\"action\":\"delete\"}");
                         Intent intent = new Intent(Intent.ACTION_DELETE);
                         intent.setData(Uri.parse("package:" + data.packageName));
                         view.getContext().startActivity(intent);
                         break;
                     }
                     case R.id.nav_info: {
+                        YandexMetrica.reportEvent("Popup", "{\"action\":\"info\"}");
                         Intent intent = new Intent();
                         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts("package", data.packageName, null);

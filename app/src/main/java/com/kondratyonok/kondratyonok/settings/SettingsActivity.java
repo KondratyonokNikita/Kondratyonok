@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.kondratyonok.kondratyonok.Entry;
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.Comparator;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -23,6 +22,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public static final String KEY_SORTING_METHOD = "sorting_method";
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
+    public static final String KEY_NEED_FAVORITES = "need_favorites";
 
     static boolean themeChanged = false;
 
@@ -115,7 +115,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     public static boolean isNeedWelcomePage(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, false);
+        boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, true);
         return need || !SettingsActivity.hasAllSettings(activity);
     }
 
@@ -131,9 +131,36 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
 
+    public static boolean isNeedFavorites(Activity activity) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        return preferences.getBoolean(SettingsActivity.KEY_NEED_FAVORITES, true);
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Log.i("CHANGED", key);
+        Map<String, Object> all = new HashMap<>();
+        all.put(KEY_LAYOUT_MANAGER_TYPE,
+                LayoutManagerType.getName(
+                        sharedPreferences.getString(
+                                KEY_LAYOUT_MANAGER_TYPE,
+                                LayoutManagerType.DEFAULT)));
+        all.put(KEY_THEME,
+                Theme.getName(
+                        sharedPreferences.getString(
+                                KEY_THEME,
+                                Theme.DEFAULT)));
+        all.put(KEY_LAYOUT,
+                Layout.getName(
+                        sharedPreferences.getString(
+                                KEY_LAYOUT,
+                                Layout.DEFAULT)));
+        all.put(KEY_SORTING_METHOD,
+                SortingMethod.getName(
+                        sharedPreferences.getString(
+                                KEY_SORTING_METHOD,
+                                SortingMethod.DEFAULT)));
+        YandexMetrica.reportEvent("Settings changed", all);
         if (key.equals(SettingsActivity.KEY_THEME)) {
             SettingsActivity.setThemeChanged();
         }

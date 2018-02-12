@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kondratyonok.kondratyonok.R;
+import com.yandex.metrica.YandexMetrica;
 
 public class DescriptionFragment extends Fragment {
 
@@ -17,6 +18,8 @@ public class DescriptionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"greeting\":\"description\"}");
+
         return inflater.inflate(ID, container, false);
     }
 

@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.yandex.metrica.YandexMetrica;
+
 /**
  * Created by NKondratyonok on 01.02.18.
  */
@@ -70,6 +72,7 @@ public class Database {
     public static void insertOrUpdate(Entry entry) {
         try {
             Log.i("DATABASE", "insert or update");
+            YandexMetrica.reportEvent("Database", "{\"action\":\"insert or update\"}");
             SQLiteDatabase db = mDbHelper.getReadableDatabase();
             Cursor cursor = db.query(
                     DatabaseData.TABLE_NAME,
@@ -92,6 +95,7 @@ public class Database {
     }
 
     public static void insert(Entry entry) {
+        YandexMetrica.reportEvent("Database", "{\"action\":\"insert\"}");
         Log.i("DATABASE", "insert");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
@@ -105,6 +109,7 @@ public class Database {
     }
 
     public static void update(Entry entry) {
+        YandexMetrica.reportEvent("Database", "{\"action\":\"update\"}");
         Log.i("DATABASE", "update");
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseData.Columns.FIELD_NUMBER, entry.launched);
@@ -123,6 +128,7 @@ public class Database {
 
     public static int get(String title) {
         try {
+            YandexMetrica.reportEvent("Database", "{\"action\":\"get\"}");
             SQLiteDatabase db = mDbHelper.getReadableDatabase();
             Cursor cursor = db.query(
                     DatabaseData.TABLE_NAME,
@@ -148,6 +154,7 @@ public class Database {
 
     public static void remove(Entry entry) {
         try {
+            YandexMetrica.reportEvent("Database", "{\"action\":\"remove\"}");
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             db.delete(DatabaseData.TABLE_NAME, DatabaseData.Columns.FIELD_TITLE + " = ?", new String[]{entry.packageName});
         } catch (SQLiteException e) {
@@ -156,6 +163,8 @@ public class Database {
 
     public static void clear() {
         try {
+            YandexMetrica.reportEvent("Database", "{\"action\":\"clear\"}");
+
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             db.delete(DatabaseData.TABLE_NAME, null, null);
             db.close();

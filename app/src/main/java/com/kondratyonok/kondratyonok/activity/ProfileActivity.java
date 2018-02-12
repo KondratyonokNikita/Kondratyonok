@@ -16,12 +16,15 @@ import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.adapter.GridAdapter;
 import com.kondratyonok.kondratyonok.adapter.ProfileAdapter;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        YandexMetrica.reportEvent("Activity", "{\"activity\":\"profile\"}");
+
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_profile);
 

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".KondrApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,11 +26,12 @@
 
         <activity android:name=".activity.GreetingActivity" />
         <activity
+            android:name=".activity.ApplicationsActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="fullUser"
-            android:name=".activity.ApplicationsActivity">
+            android:screenOrientation="fullUser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.HOME" />
@@ -39,6 +41,7 @@
         <activity
             android:name=".activity.ProfileActivity"
             android:parentActivityName=".activity.ApplicationsActivity" />
+
     </application>
 
 </manifest>

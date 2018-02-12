@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kondratyonok.kondratyonok.R;
+import com.yandex.metrica.YandexMetrica;
 
 /**
  * Created by NKondratyonok on 03.02.18.
@@ -31,6 +32,7 @@ public class GreetingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"greeting\":\"greeting\"}");
 
         return inflater.inflate(ID, container, false);
     }

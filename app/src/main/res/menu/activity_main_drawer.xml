@@ -6,18 +6,31 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:title="@string/screen">
+        <menu>
+            <item
+                android:id="@+id/nav_desktop"
+                android:checked="true"
+                android:title="@string/desktop" />
+            <item
+                android:id="@+id/nav_applications"
+                android:title="@string/applications"/>
+        </menu>
+    </item>
+
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:title="@string/layout">
         <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_grid"
-                    android:icon="@drawable/ic_menu_grid"
-                    android:title="@string/launcher_activity" />
-                <item
-                    android:id="@+id/nav_list"
-                    android:icon="@drawable/ic_menu_list"
-                    android:title="@string/list_activity" />
-            </group>
+            <item
+                android:id="@+id/nav_grid"
+                android:icon="@drawable/ic_menu_grid"
+                android:title="@string/launcher_activity" />
+            <item
+                android:id="@+id/nav_list"
+                android:icon="@drawable/ic_menu_list"
+                android:title="@string/list_activity" />
         </menu>
     </item>
 

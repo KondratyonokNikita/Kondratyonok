@@ -17,6 +17,7 @@ import com.kondratyonok.kondratyonok.fragment.main.LinearFragment;
 import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.LayoutManagerType;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.yandex.metrica.YandexMetrica;
 
 import java.util.List;
 
@@ -36,31 +37,44 @@ public class OnMenuItemSelectedListener implements NavigationView.OnNavigationIt
         final Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_settings: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"settings\"}");
                 intent = new Intent();
                 intent.setClass(activity, SettingsActivity.class);
                 activity.startActivity(intent);
                 break;
             }
+            case R.id.nav_desktop: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"desktop\"}");
+                activity.mViewPager.setCurrentItem(0, true);
+                break;
+            }
+            case R.id.nav_applications: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"desktop\"}");
+                activity.mViewPager.setCurrentItem(1, true);
+                break;
+            }
             case R.id.nav_list: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"list\"}");
                 LayoutManagerType.setTemp(LayoutManagerType.LINEAR);
                 activity.fragment = new LinearFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frame_content, activity.fragment)
+                        .replace(R.id.applications, activity.fragment)
                         .commit();
                 break;
             }
             case R.id.nav_grid: {
+                YandexMetrica.reportEvent("Drawer", "{\"action\":\"grid\"}");
                 LayoutManagerType.setTemp(LayoutManagerType.GRID);
                 activity.fragment = new GridFragment();
                 activity.getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frame_content, activity.fragment)
+                        .replace(R.id.applications, activity.fragment)
                         .commit();
                 break;
             }
             default:
-                Toast.makeText(activity, "Error!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "This feature is coming", Toast.LENGTH_LONG).show();
                 break;
         }
         activity.mDrawerLayout.closeDrawer(GravityCompat.START);

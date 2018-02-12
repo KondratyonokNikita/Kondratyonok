@@ -2,7 +2,7 @@
 <resources>
         <string name = "alphabeticallyAZ"> Alphabétiquement AZ </string>
         <string name = "alphabeticallyZA"> Alphabétique ZA </string>
-        <string name = "dark_theme"> Thème sombre </string>
+        <string name = "dark_theme"> Thème sombre </string>
         <string name = "delete"> Supprimer </string>
         <string name = "dense_layout"> Disposition dense </string>
         <string name = "dense_layout_description"> Portrait: 5 icônes à la suite \n Paysage: 7 icônes à la suite </string>
@@ -25,7 +25,7 @@
         <string name = "start"> Démarrer </string>
         <string name = "theme"> Thème </string>
         <string name = "theme_description"> Thème utilisé dans lapplication </string>
-    <string name="layout_manager_type">Type de gestionnaire de disposition</string>
+    <string name="layout_manager_type">Layout manager type</string>
     <string name="layout_manager_type_description">Layout manager type description</string>
     <string name="grid">Grid</string>
     <string name="linear">Linear</string>
@@ -34,7 +34,10 @@
     <string name="mobile">Mobile</string>
     <string name="home">Home</string>
     <string name="email">email</string>
-    <string name="address">Address</string>
     <string name="launched">Launched</string>
-    <string name="times">fois</string>
+    <string name="address">Address</string>
+    <string name="times">time(s)</string>
+    <string name="desktop">Desctop</string>
+    <string name="applications">Applications</string>
+    <string name="screen">Screen</string>
 </resources>

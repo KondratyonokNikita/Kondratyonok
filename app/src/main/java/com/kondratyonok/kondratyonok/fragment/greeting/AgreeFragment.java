@@ -13,6 +13,7 @@ import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
 import com.kondratyonok.kondratyonok.settings.Layout;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.kondratyonok.kondratyonok.settings.Theme;
+import com.yandex.metrica.YandexMetrica;
 
 /**
  * Created by NKondratyonok on 03.02.18.
@@ -36,6 +37,7 @@ public class AgreeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"greeting\":\"agree\"}");
         View mainView = inflater.inflate(ID, container, false);
 
         mainView.findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {

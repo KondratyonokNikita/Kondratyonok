@@ -1,4 +1,4 @@
-package com.kondratyonok.kondratyonok;
+package com.kondratyonok.kondratyonok.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,13 +17,13 @@ import java.util.List;
  * Created by NKondratyonok on 03.02.18.
  */
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class GreetingPagerAdapter extends FragmentStatePagerAdapter {
 
     @NonNull
     private final List<Integer> mData;
 
-    public ViewPagerAdapter(@NonNull final FragmentManager fm,
-                            @NonNull final List<Integer> data) {
+    public GreetingPagerAdapter(@NonNull final FragmentManager fm,
+                                @NonNull final List<Integer> data) {
         super(fm);
         mData = data;
     }

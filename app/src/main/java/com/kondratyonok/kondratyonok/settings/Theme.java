@@ -22,4 +22,15 @@ public class Theme {
         }
     }
 
+    static String getName(String code) {
+        switch (code) {
+            case LIGHT:
+                return "light";
+            case DARK:
+                return "dark";
+            default:
+                return getName(Theme.DEFAULT);
+        }
+    }
+
 }

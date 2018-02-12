@@ -2,15 +2,13 @@
     <string name="app_name" translatable="false">KondrN</string>
     <string name="home_phone" translatable="false">+375&#8211;17&#8211;266&#8211;74&#8211;98</string>
     <string name="github" translatable="false">github</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="mobile_phone" translatable="false">+375&#8211;33&#8211;635&#8211;29&#8211;77</string>
     <string name="my_vk" translatable="false">vk.com/id0</string>
     <string name="vk" translatable="false">VK</string>
     <string name="my_instagram" translatable="false">instagram.com/</string>
     <string name="instagram" translatable="false">Instagram</string>
     <string name="my_github" translatable="false">https://github.com/KondratyonokNikita</string>
-
+    <string name="app_matrica_api" translatable="false">334a9fb9-a817-444c-9fa9-476d7c5c7b18</string>
 
     <string name="alphabeticallyAZ">Alphabetically AZ</string>
     <string name="alphabeticallyZA">Alphabetically ZA</string>
@@ -51,4 +49,7 @@
     <string name="email">email</string>
     <string name="my_address" translatable="false">Rogachevskaya 7A</string>
     <string name="address">Address</string>
+    <string name="desktop">Desctop</string>
+    <string name="applications">Applications</string>
+    <string name="screen">Screen</string>
 </resources>
