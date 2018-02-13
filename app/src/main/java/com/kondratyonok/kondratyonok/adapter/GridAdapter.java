@@ -58,7 +58,7 @@ public class GridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         gridHolder.getTitleView().setText(data.get(position).name);
 
         gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
-        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
+        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position), activity));
     }
     
     @Override

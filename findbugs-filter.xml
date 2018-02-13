@@ -4,6 +4,6 @@
     </Match>
 
     <Match>
-        <Bug name="FI_MISSING_SUPER_CALL"/>
+        <Bug pattern="FI_MISSING_SUPER_CALL"/>
     </Match>
 </FindBugsFilter>

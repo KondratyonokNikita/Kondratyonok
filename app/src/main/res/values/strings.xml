@@ -52,4 +52,5 @@
     <string name="desktop">Desctop</string>
     <string name="applications">Applications</string>
     <string name="screen">Screen</string>
+    <string name="to_desktop">To desktop</string>
 </resources>

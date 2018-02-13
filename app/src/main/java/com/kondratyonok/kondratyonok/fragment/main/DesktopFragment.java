@@ -1,5 +1,7 @@
 package com.kondratyonok.kondratyonok.fragment.main;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,10 +16,15 @@ import android.view.ViewGroup;
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.adapter.DesktopGridAdapter;
+import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.database.EntryViewModel;
 import com.kondratyonok.kondratyonok.helper.OnStartDragListener;
 import com.kondratyonok.kondratyonok.helper.SimpleItemTouchHelperCallback;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.yandex.metrica.YandexMetrica;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by NKondratyonok on 11.02.18.
@@ -46,6 +53,27 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
 
         final DesktopGridAdapter adapter = new DesktopGridAdapter(getActivity(), this);
 
+        EntryViewModel calculationViewModel = ViewModelProviders.of(this).get(EntryViewModel.class);
+        calculationViewModel.getCalculatingLiveData().observe(this, new Observer<List<Entry>>() {
+            @Override
+            public void onChanged(@Nullable final List<Entry> calculationResults) {
+                List<Entry> desktopEntries = new ArrayList<>();
+                for (int i = 0; i < 20; ++i) {
+                    Entry entry = new Entry();
+                    entry.desktopPosition = -1;
+                    desktopEntries.add(entry);
+                }
+                for (Entry entry: calculationResults) {
+                    if (entry.desktopPosition != -1) {
+                        desktopEntries.remove(entry.desktopPosition.intValue());
+                        desktopEntries.add(entry.desktopPosition, entry);
+                    }
+                }
+                adapter.setData(desktopEntries);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -55,7 +83,7 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), spanCount);
         recyclerView.setLayoutManager(layoutManager);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter, getActivity());
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(recyclerView);
     }

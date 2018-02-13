@@ -67,7 +67,7 @@ public class LinearAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         gridHolder.getSubtitleView().setText(subtitle);
 
         gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
-        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
+        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position), activity));
     }
 
     @Override

@@ -55,25 +55,34 @@ public class ApplicationsActivity extends AppCompatActivity {
                 default:
                     return;
             }
-            fragment.onConfigurationChanged(null);
         }
 
-        private void added(Context context, Intent intent) {
-            try {
-                YandexMetrica.reportEvent("Applications", "{\"action\":\"add\"}");
-                String packageName = Utils.getPackageFromDataString(intent.getDataString());
-                Entry entry = Utils.getEntryFromPackageName(packageName, getApplication());
-                EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().insert(entry);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
+        private void added(Context context, final Intent intent) {
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        YandexMetrica.reportEvent("Applications", "{\"action\":\"add\"}");
+                        String packageName = Utils.getPackageFromDataString(intent.getDataString());
+                        Entry entry = Utils.getEntryFromPackageName(packageName, getApplication());
+                        EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().insert(entry);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            })).start();
         }
 
         private void removed(final Context context, final Intent intent) {
-            YandexMetrica.reportEvent("Applications", "{\"action\":\"removed\"}");
-            Entry entry = new Entry();
-            entry.packageName = Utils.getPackageFromDataString(intent.getDataString());
-            EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().delete(entry);
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    YandexMetrica.reportEvent("Applications", "{\"action\":\"removed\"}");
+                    Entry entry = new Entry();
+                    entry.packageName = Utils.getPackageFromDataString(intent.getDataString());
+                    EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().delete(entry);
+                }
+            })).start();
         }
     };
 

@@ -25,14 +25,12 @@ public class Utils {
 
     public static Entry getEntryFromPackageName(String packageName, Application application) throws PackageManager.NameNotFoundException {
         PackageManager packageManager = application.getPackageManager();
-        Drawable icon = application.getPackageManager().getApplicationIcon(packageName);
         String name = (String) packageManager.getApplicationLabel(
                 packageManager.getApplicationInfo(
                         packageName,
                         PackageManager.GET_META_DATA));
         long updateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime;
         Entry entry = new Entry();
-        entry.icon = icon;
         entry.name = name;
         entry.packageName = packageName;
         entry.updateTime = updateTime;

@@ -18,9 +18,6 @@ public class Entry {
     @NonNull
     public String packageName;
 
-    @Ignore
-    public Drawable icon;
-
     @ColumnInfo(name = "name")
     public String name;
 
