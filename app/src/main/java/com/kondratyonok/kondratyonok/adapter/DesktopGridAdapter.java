@@ -1,32 +1,24 @@
 package com.kondratyonok.kondratyonok.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.kondratyonok.kondratyonok.Entry;
+import com.kondratyonok.kondratyonok.database.Entry;
 import com.kondratyonok.kondratyonok.Holder;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
+import com.kondratyonok.kondratyonok.database.EntryDbHolder;
 import com.kondratyonok.kondratyonok.helper.ItemTouchHelperAdapter;
-import com.kondratyonok.kondratyonok.helper.ItemTouchHelperViewHolder;
 import com.kondratyonok.kondratyonok.helper.OnStartDragListener;
 import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
-import com.kondratyonok.kondratyonok.listener.OnApplicationsLongClickListener;
-import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,11 +32,11 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     private List<Entry> data = new ArrayList<>();
 
     private final OnStartDragListener mDragStartListener;
+    private Activity activity;
 
     public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener) {
         mDragStartListener = dragStartListener;
-        this.data.addAll(Utils.getEntriesList(activity).subList(0, 10));
-        Collections.sort(this.data, SettingsActivity.getSortingMethod(activity));
+        this.activity = activity;
     }
 
     @Override
@@ -55,24 +47,22 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
 
     @Override
     public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, int position) {
-        gridHolder.getIconView().setBackground(data.get(position).icon);
+        try {
+            gridHolder.getIconView().setBackground(activity.getPackageManager().getApplicationIcon(data.get(position).packageName));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         gridHolder.getTitleView().setText(data.get(position).name);
-
-        // Start a drag whenever the handle view it touched
-        gridHolder.getHolder().setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
+        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
+        gridHolder.getHolder().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                    mDragStartListener.onStartDrag(gridHolder);
-                }
+            public boolean onLongClick(View v) {
+                mDragStartListener.onStartDrag(gridHolder);
+                Log.e("DRAAAAAAAG", "12");
                 return false;
             }
         });
-
-        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
-        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
     }
 
     @Override
@@ -82,7 +72,26 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     }
 
     @Override
-    public boolean onItemMove(int fromPosition, int toPosition) {
+    public void onItemMoveEnd() {
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (data.get(data.size() - 1).desktopPosition != -1) {
+                    data.get(data.size() - 1).desktopPosition = -1;
+                    EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(data.get(data.size() - 1));
+                }
+                for (int i = 0; i < data.size() - 1; ++i) {
+                    if (data.get(i).desktopPosition != i) {
+                        data.get(i).desktopPosition = i;
+                        EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(data.get(i));
+                    }
+                }
+            }
+        })).start();
+    }
+
+    @Override
+    public boolean onItemMove(final int fromPosition, final int toPosition) {
         Collections.swap(data, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return true;
@@ -91,5 +100,9 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void setData(List<Entry> data) {
+        this.data = data.subList(0, 20);
     }
 }

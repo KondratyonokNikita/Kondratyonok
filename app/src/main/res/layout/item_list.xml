@@ -51,6 +51,8 @@
                 android:textIsSelectable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lines="2"
+                android:ellipsize="end"
                 tools:text="plain_text_for_preview"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 

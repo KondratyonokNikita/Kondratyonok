@@ -16,10 +16,17 @@
 
 package com.kondratyonok.kondratyonok.helper;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+
+import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.database.EntryDbHolder;
+
+import java.util.List;
 
 /**
  * An implementation of {@link ItemTouchHelper.Callback} that enables basic drag & drop and
@@ -36,9 +43,11 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public static final float ALPHA_FULL = 1.0f;
 
     private final ItemTouchHelperAdapter mAdapter;
+    private final Activity activity;
 
-    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
+    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter, Activity activity) {
         mAdapter = adapter;
+        this.activity = activity;
     }
 
     @Override
@@ -113,6 +122,8 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         super.clearView(recyclerView, viewHolder);
 
         viewHolder.itemView.setAlpha(ALPHA_FULL);
+        mAdapter.onItemMoveEnd();
+        Log.e("DRAAAAAAAG", "1234");
 
         if (viewHolder instanceof ItemTouchHelperViewHolder) {
             // Tell the view holder it's time to restore the idle state

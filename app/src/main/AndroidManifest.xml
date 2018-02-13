@@ -42,6 +42,7 @@
             android:name=".activity.ProfileActivity"
             android:parentActivityName=".activity.ApplicationsActivity" />
 
+        <service android:name=".service.ApplicationsLoaderService" />
     </application>
 
 </manifest>

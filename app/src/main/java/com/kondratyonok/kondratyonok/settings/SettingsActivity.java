@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -24,7 +25,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
     public static final String KEY_NEED_FAVORITES = "need_favorites";
 
-    static boolean themeChanged = false;
+    static boolean settingsChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +48,11 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         return good;
     }
 
-
-
-    public static Fragment getLayoutFragment(Activity activity) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        String code = preferences.getString(SettingsActivity.KEY_LAYOUT_MANAGER_TYPE, LayoutManagerType.DEFAULT);
-        return LayoutManagerType.getLayoutFragment(code);
-    }
-
-
-
     public static Comparator<Object> getSortingMethod(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_SORTING_METHOD, SortingMethod.DEFAULT);
         return SortingMethod.getMethod(code);
     }
-
-
 
     public static int getApplicationTheme(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -83,15 +72,13 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         return preferences.contains(SettingsActivity.KEY_THEME);
     }
 
-    public static boolean isApplicationThemeChanged() {
-        if (SettingsActivity.themeChanged) {
-            SettingsActivity.themeChanged = false;
+    public static boolean isApplicationSettingsChanged() {
+        if (SettingsActivity.settingsChanged) {
+            SettingsActivity.settingsChanged = false;
             return true;
         }
         return false;
     }
-
-
 
     public static int getLayoutColumnsId(Activity activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -126,8 +113,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         ed.apply();
     }
 
-    public static void setThemeChanged() {
-        SettingsActivity.themeChanged = true;
+    public static void setSettingsChanged() {
+        SettingsActivity.settingsChanged = true;
     }
 
 
@@ -161,8 +148,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                                 KEY_SORTING_METHOD,
                                 SortingMethod.DEFAULT)));
         YandexMetrica.reportEvent("Settings changed", all);
-        if (key.equals(SettingsActivity.KEY_THEME)) {
-            SettingsActivity.setThemeChanged();
-        }
+        SettingsActivity.setSettingsChanged();
     }
 }
