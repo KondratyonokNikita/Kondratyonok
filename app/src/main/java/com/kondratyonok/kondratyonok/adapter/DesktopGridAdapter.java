@@ -1,32 +1,21 @@
 package com.kondratyonok.kondratyonok.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.kondratyonok.kondratyonok.Entry;
+import com.kondratyonok.kondratyonok.database.Entry;
 import com.kondratyonok.kondratyonok.Holder;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.helper.ItemTouchHelperAdapter;
-import com.kondratyonok.kondratyonok.helper.ItemTouchHelperViewHolder;
 import com.kondratyonok.kondratyonok.helper.OnStartDragListener;
 import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
-import com.kondratyonok.kondratyonok.listener.OnApplicationsLongClickListener;
-import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,11 +29,11 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     private List<Entry> data = new ArrayList<>();
 
     private final OnStartDragListener mDragStartListener;
+    private Activity activity;
 
     public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener) {
         mDragStartListener = dragStartListener;
-        this.data.addAll(Utils.getEntriesList(activity).subList(0, 10));
-        Collections.sort(this.data, SettingsActivity.getSortingMethod(activity));
+        this.activity = activity;
     }
 
     @Override
@@ -55,24 +44,18 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
 
     @Override
     public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, int position) {
-        gridHolder.getIconView().setBackground(data.get(position).icon);
-
-        gridHolder.getTitleView().setText(data.get(position).name);
-
-        // Start a drag whenever the handle view it touched
-        gridHolder.getHolder().setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+        if (data.get(position).icon != null) {
+            gridHolder.getIconView().setBackground(data.get(position).icon);
+            gridHolder.getTitleView().setText(data.get(position).name);
+            gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
+            gridHolder.getHolder().setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
                     mDragStartListener.onStartDrag(gridHolder);
+                    return false;
                 }
-                return false;
-            }
-        });
-
-        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position)));
-        gridHolder.getHolder().setOnLongClickListener(new OnApplicationsLongClickListener(data.get(position)));
+            });
+        }
     }
 
     @Override

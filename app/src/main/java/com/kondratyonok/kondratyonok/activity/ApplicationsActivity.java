@@ -16,25 +16,21 @@ import android.util.Log;
 import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
-import com.kondratyonok.kondratyonok.Database;
-import com.kondratyonok.kondratyonok.Entry;
+import com.kondratyonok.kondratyonok.database.Entry;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.adapter.MainPagerAdapter;
+import com.kondratyonok.kondratyonok.database.EntryDbHolder;
 import com.kondratyonok.kondratyonok.listener.OnMenuItemSelectedListener;
 import com.kondratyonok.kondratyonok.listener.OnPageChangeListener;
+import com.kondratyonok.kondratyonok.service.ApplicationsLoaderService;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.yandex.metrica.YandexMetrica;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 
 public class ApplicationsActivity extends AppCompatActivity {
 
-    private List<Entry> data = new ArrayList<>();
     public DrawerLayout mDrawerLayout;
     public Fragment fragment;
     public ViewPager mViewPager;
@@ -59,17 +55,15 @@ public class ApplicationsActivity extends AppCompatActivity {
                 default:
                     return;
             }
-            Collections.sort(data, SettingsActivity.getSortingMethod(activity));
             fragment.onConfigurationChanged(null);
         }
 
         private void added(Context context, Intent intent) {
-            YandexMetrica.reportEvent("Applications", "{\"action\":\"add\"}");
-            String packageName = Utils.getPackageFromDataString(intent.getDataString());
             try {
-                Entry entry = Utils.getEntryFromPackageName(packageName, activity);
-                data.add(entry);
-                Database.insertOrUpdate(entry);
+                YandexMetrica.reportEvent("Applications", "{\"action\":\"add\"}");
+                String packageName = Utils.getPackageFromDataString(intent.getDataString());
+                Entry entry = Utils.getEntryFromPackageName(packageName, getApplication());
+                EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().insert(entry);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
@@ -77,14 +71,9 @@ public class ApplicationsActivity extends AppCompatActivity {
 
         private void removed(final Context context, final Intent intent) {
             YandexMetrica.reportEvent("Applications", "{\"action\":\"removed\"}");
-            for (Entry entry : data) {
-                String name = Utils.getPackageFromDataString(intent.getDataString());
-                if (name.equals(entry.packageName)) {
-                    Database.remove(entry);
-                    data.remove(entry);
-                    return;
-                }
-            }
+            Entry entry = new Entry();
+            entry.packageName = Utils.getPackageFromDataString(intent.getDataString());
+            EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().delete(entry);
         }
     };
 
@@ -100,8 +89,6 @@ public class ApplicationsActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
-        Database.init(this);
         setTheme(SettingsActivity.getApplicationTheme(this));
         setContentView(R.layout.activity_main);
 
@@ -118,7 +105,9 @@ public class ApplicationsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        data = Utils.getEntriesList(this);
+
+        Intent intent = new Intent(getApplicationContext(), ApplicationsLoaderService.class);
+        startService(intent);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
         MainPagerAdapter mSectionsPagerAdapter = new MainPagerAdapter(fragmentManager);
@@ -132,7 +121,7 @@ public class ApplicationsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if (SettingsActivity.isApplicationThemeChanged()) {
+        if (SettingsActivity.isApplicationSettingsChanged()) {
             recreate();
         }
         Log.i("APPLICATIONS", "onStart");
@@ -147,9 +136,6 @@ public class ApplicationsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mMonitor);
-        for (Entry entry : data) {
-            Database.insertOrUpdate(entry);
-        }
     }
 
     public NavigationView getNavigationView() {

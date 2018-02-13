@@ -1,15 +1,17 @@
 package com.kondratyonok.kondratyonok;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
-import com.kondratyonok.kondratyonok.settings.SettingsActivity;
+import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.database.EntryDbHolder;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,48 +19,49 @@ import java.util.List;
  */
 
 public class Utils {
-    private static List<Entry> data;
-
     public static String getPackageFromDataString(String uri) {
         return uri.substring("package:".length());
     }
 
-    public static Entry getEntryFromPackageName(String packageName, Activity activity) throws PackageManager.NameNotFoundException {
-        PackageManager packageManager = activity.getPackageManager();
-        Drawable icon = activity.getPackageManager().getApplicationIcon(packageName);
+    public static Entry getEntryFromPackageName(String packageName, Application application) throws PackageManager.NameNotFoundException {
+        PackageManager packageManager = application.getPackageManager();
+        Drawable icon = application.getPackageManager().getApplicationIcon(packageName);
         String name = (String) packageManager.getApplicationLabel(
                 packageManager.getApplicationInfo(
                         packageName,
                         PackageManager.GET_META_DATA));
         long updateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime;
-        return new Entry(icon, name, packageName, updateTime);
+        Entry entry = new Entry();
+        entry.icon = icon;
+        entry.name = name;
+        entry.packageName = packageName;
+        entry.updateTime = updateTime;
+        entry.desktopPosition = -1;
+        entry.launched = 0;
+        return entry;
     }
 
-    public static List<Entry> getEntriesList(Activity activity) {
-        if (data == null) {
-            List<Entry> new_data = new ArrayList<>();
-            PackageManager packageManager = activity.getPackageManager();
-            Intent intent = new Intent(Intent.ACTION_MAIN, null);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+    public static void loadEntriesList(Application application) throws PackageManager.NameNotFoundException {
+        PackageManager packageManager = application.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            List<ApplicationInfo> app = packageManager.getInstalledApplications(0);
-            for (ApplicationInfo applicationInfo : app) {
-                try {
-                    if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
-                        if (!applicationInfo.packageName.equals(activity.getPackageName())) {
-                            Entry entry = Utils.getEntryFromPackageName(applicationInfo.packageName, activity);
-                            if (!new_data.contains(entry)) {
-                                new_data.add(entry);
-                            }
+        List<ApplicationInfo> app = packageManager.getInstalledApplications(0);
+        for (ApplicationInfo applicationInfo : app) {
+            try {
+                if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
+                    if (!applicationInfo.packageName.equals(application.getPackageName())) {
+                        Entry entry = Utils.getEntryFromPackageName(applicationInfo.packageName, application);
+                        try {
+                            EntryDbHolder.getInstance().getDb(application.getApplicationContext()).calculationResultDao().insert(entry);
+                        } catch (SQLiteConstraintException e) {
+                            Log.i("EXISTS", "package exists in database");
                         }
                     }
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
                 }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
-            Collections.sort(new_data, SettingsActivity.getSortingMethod(activity));
-            data = new_data;
         }
-        return data;
     }
 }

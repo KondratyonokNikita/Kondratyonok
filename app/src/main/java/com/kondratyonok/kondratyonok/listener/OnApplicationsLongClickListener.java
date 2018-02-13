@@ -3,12 +3,11 @@ package com.kondratyonok.kondratyonok.listener;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
-import android.support.design.widget.Snackbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
-import com.kondratyonok.kondratyonok.Entry;
+import com.kondratyonok.kondratyonok.database.Entry;
 import com.kondratyonok.kondratyonok.R;
 import com.yandex.metrica.YandexMetrica;
 
