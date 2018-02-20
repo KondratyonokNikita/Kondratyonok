@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import com.kondratyonok.kondratyonok.listener.OnApplicationClickListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Paul Burke (ipaulpro)
@@ -29,40 +32,47 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
         implements ItemTouchHelperAdapter {
 
     @NonNull
-    private List<Entry> data = new ArrayList<>();
-
+    private SparseArray<Entry> data = new SparseArray<>();
+    private final int size;
     private final OnStartDragListener mDragStartListener;
     private Activity activity;
 
-    public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener) {
+    public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener, int size) {
         mDragStartListener = dragStartListener;
         this.activity = activity;
+        this.size = size;
     }
 
     @Override
     public Holder.ApplicationsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_desktop, parent, false);
         return new Holder.ApplicationsHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, int position) {
-        try {
-            gridHolder.getIconView().setBackground(activity.getPackageManager().getApplicationIcon(data.get(position).packageName));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        gridHolder.getTitleView().setText(data.get(position).name);
-        gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
-        gridHolder.getHolder().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                mDragStartListener.onStartDrag(gridHolder);
-                Log.e("DRAAAAAAAG", "12");
-                return false;
+    public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, final int position) {
+        final int pos = gridHolder.getAdapterPosition();
+        if (data.get(pos, null) != null) {
+            Log.i("onBind", String.valueOf(pos));
+            try {
+                gridHolder.getIconView().setBackground(activity.getPackageManager().getApplicationIcon(data.get(pos).packageName));
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
-        });
+            gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
+            gridHolder.getHolder().setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mDragStartListener.onStartDrag(gridHolder);
+                    Log.e("DRAAAAAAAG", "12");
+                    return false;
+                }
+            });
+        } else {
+            gridHolder.getIconView().setBackground(null);
+            gridHolder.getHolder().setOnClickListener(null);
+            gridHolder.getHolder().setOnLongClickListener(null);
+        }
     }
 
     @Override
@@ -76,33 +86,50 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
         (new Thread(new Runnable() {
             @Override
             public void run() {
-                if (data.get(data.size() - 1).desktopPosition != -1) {
-                    data.get(data.size() - 1).desktopPosition = -1;
-                    EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(data.get(data.size() - 1));
+                if (data.get(0, null) != null) {
+                    data.get(0).desktopPosition = -1;
                 }
-                for (int i = 0; i < data.size() - 1; ++i) {
-                    if (data.get(i).desktopPosition != i) {
-                        data.get(i).desktopPosition = i;
-                        EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(data.get(i));
+                for (int i = 0; i < data.size(); ++i) {
+                    int key = data.keyAt(i);
+                    if (key == 0) {
+                        continue;
+                    }
+                    if (data.get(key, null) != null) {
+                        if (data.get(key).desktopPosition != key) {
+                            data.get(key).desktopPosition = key;
+                        }
                     }
                 }
+                Utils.saveSparseArray(data, activity.getApplication());
             }
         })).start();
     }
 
     @Override
     public boolean onItemMove(final int fromPosition, final int toPosition) {
-        Collections.swap(data, fromPosition, toPosition);
+        if ((toPosition >= size)||(fromPosition >= size)) {
+            return false;
+        }
+        Entry from = data.get(fromPosition, null);
+        Entry to = data.get(toPosition, null);
+        data.delete(fromPosition);
+        data.delete(toPosition);
+        if (to != null) {
+            data.append(fromPosition, to);
+        }
+        if (from != null) {
+            data.append(toPosition, from);
+        }
         notifyItemMoved(fromPosition, toPosition);
         return true;
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return size;
     }
 
-    public void setData(List<Entry> data) {
-        this.data = data.subList(0, 20);
+    public void setData(SparseArray<Entry> data) {
+        this.data = data;
     }
 }

@@ -52,8 +52,9 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
                             @Override
                             public void run() {
                                 List<Entry> entries = EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().loadAll();
-                                boolean free[] = new boolean[20];
-                                for (int i = 0; i < 20; ++i) {
+                                final int size = 1000;
+                                boolean free[] = new boolean[size];
+                                for (int i = 1; i < size; ++i) {
                                     free[i] = true;
                                 }
                                 for (Entry entry: entries) {
@@ -62,7 +63,7 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
                                     }
                                 }
                                 int place = -1;
-                                for (int i = 0; i < 20; ++i) {
+                                for (int i = 1; i < size; ++i) {
                                     if (free[i]) {
                                         place = i;
                                         break;
@@ -70,7 +71,8 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
                                 }
                                 Entry entry = EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().getEntry(data.packageName);
                                 entry.desktopPosition = place;
-                                EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(entry);                            }
+                                EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(entry);
+                            }
                         })).start();
                         break;
                     }

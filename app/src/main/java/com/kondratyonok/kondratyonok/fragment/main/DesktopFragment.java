@@ -2,16 +2,22 @@ package com.kondratyonok.kondratyonok.fragment.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.SparseArray;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.kondratyonok.kondratyonok.OffsetItemDecoration;
 import com.kondratyonok.kondratyonok.R;
@@ -39,34 +45,35 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return new RecyclerView(container.getContext());
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("ON_CREATE_VIEW_DESKTOP", "CREATE");
         YandexMetrica.reportEvent("Fragment", "{\"fragment\":\"main\":\"grid\"}");
         YandexMetrica.reportEvent("ViewEvent","{\"Layout\":\"grid\"}");
 
-        super.onViewCreated(view, savedInstanceState);
+        View mainView = inflater.inflate(R.layout.fr_desktop, container, false);
 
-        final DesktopGridAdapter adapter = new DesktopGridAdapter(getActivity(), this);
+        final int spanCount = getResources().getInteger(SettingsActivity.getLayoutColumnsId(getActivity()));
+        final RecyclerView recyclerView = mainView.findViewById(R.id.desktop);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        int itemWidth = width/spanCount;
+        int rawCount = height/itemWidth;
+
+        final DesktopGridAdapter adapter = new DesktopGridAdapter(getActivity(), this, spanCount * rawCount);
 
         EntryViewModel calculationViewModel = ViewModelProviders.of(this).get(EntryViewModel.class);
         calculationViewModel.getCalculatingLiveData().observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(@Nullable final List<Entry> calculationResults) {
-                List<Entry> desktopEntries = new ArrayList<>();
-                for (int i = 0; i < 20; ++i) {
-                    Entry entry = new Entry();
-                    entry.desktopPosition = -1;
-                    desktopEntries.add(entry);
-                }
+                SparseArray<Entry> desktopEntries = new SparseArray<>();
                 for (Entry entry: calculationResults) {
                     if (entry.desktopPosition != -1) {
-                        desktopEntries.remove(entry.desktopPosition.intValue());
-                        desktopEntries.add(entry.desktopPosition, entry);
+                        desktopEntries.append(entry.desktopPosition, entry);
                     }
                 }
                 adapter.setData(desktopEntries);
@@ -74,18 +81,19 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
         recyclerView.addItemDecoration(new OffsetItemDecoration(getActivity().getResources().getDimensionPixelSize(R.dimen.item_offset)));
-        final int spanCount = getResources().getInteger(SettingsActivity.getLayoutColumnsId(getActivity()));
+
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), spanCount);
         recyclerView.setLayoutManager(layoutManager);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter, getActivity());
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(recyclerView);
+
+        return mainView;
     }
 
     @Override
