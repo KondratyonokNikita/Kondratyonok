@@ -33,39 +33,33 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
 
     @NonNull
     private SparseArray<Entry> data = new SparseArray<>();
-
+    private final int size;
     private final OnStartDragListener mDragStartListener;
     private Activity activity;
 
-    public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener) {
+    public DesktopGridAdapter(Activity activity, OnStartDragListener dragStartListener, int size) {
         mDragStartListener = dragStartListener;
         this.activity = activity;
+        this.size = size;
     }
 
     @Override
     public Holder.ApplicationsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_desktop, parent, false);
         return new Holder.ApplicationsHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, final int position) {
-        if (data.get(position, null) != null) {
-            Log.i("onBind", String.valueOf(position));
+        final int pos = gridHolder.getAdapterPosition();
+        if (data.get(pos, null) != null) {
+            Log.i("onBind", String.valueOf(pos));
             try {
-                gridHolder.getIconView().setBackground(activity.getPackageManager().getApplicationIcon(data.get(position).packageName));
+                gridHolder.getIconView().setBackground(activity.getPackageManager().getApplicationIcon(data.get(pos).packageName));
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-
-            gridHolder.getTitleView().setText(data.get(position).name);
-            gridHolder.getHolder().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i("onClick", String.valueOf(position));
-                }
-            });
-//            gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
+            gridHolder.getHolder().setOnClickListener(new OnApplicationClickListener(data.get(position).packageName, activity.getApplication()));
             gridHolder.getHolder().setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -74,6 +68,10 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
                     return false;
                 }
             });
+        } else {
+            gridHolder.getIconView().setBackground(null);
+            gridHolder.getHolder().setOnClickListener(null);
+            gridHolder.getHolder().setOnLongClickListener(null);
         }
     }
 
@@ -111,7 +109,7 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     @Override
     public boolean onItemMove(final int fromPosition, final int toPosition) {
         Log.i("move", String.valueOf(fromPosition) + " + " + String.valueOf(toPosition));
-        if ((toPosition > 20)||(fromPosition > 20)) {
+        if ((toPosition >= size)||(fromPosition >= size)) {
             return false;
         }
         Entry from = data.get(fromPosition, null);
@@ -130,7 +128,7 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
 
     @Override
     public int getItemCount() {
-        return 20;
+        return size;
     }
 
     public void setData(SparseArray<Entry> data) {
