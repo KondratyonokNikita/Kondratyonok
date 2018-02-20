@@ -103,12 +103,10 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
                 Utils.saveSparseArray(data, activity.getApplication());
             }
         })).start();
-        Log.i("onMoveEnd", String.valueOf(data.size()));
     }
 
     @Override
     public boolean onItemMove(final int fromPosition, final int toPosition) {
-        Log.i("move", String.valueOf(fromPosition) + " + " + String.valueOf(toPosition));
         if ((toPosition >= size)||(fromPosition >= size)) {
             return false;
         }
@@ -132,7 +130,6 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     }
 
     public void setData(SparseArray<Entry> data) {
-        Log.i("setData", String.valueOf(data.size()));
         this.data = data;
     }
 }

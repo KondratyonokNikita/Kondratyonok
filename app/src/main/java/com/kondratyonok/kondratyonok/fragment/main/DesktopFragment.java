@@ -61,7 +61,6 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        Log.i("SIZE", String.valueOf(width) + " + " + String.valueOf(height));
         int itemWidth = width/spanCount;
         int rawCount = height/itemWidth;
 
