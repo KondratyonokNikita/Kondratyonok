@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,16 +58,10 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
         calculationViewModel.getCalculatingLiveData().observe(this, new Observer<List<Entry>>() {
             @Override
             public void onChanged(@Nullable final List<Entry> calculationResults) {
-                List<Entry> desktopEntries = new ArrayList<>();
-                for (int i = 0; i < 20; ++i) {
-                    Entry entry = new Entry();
-                    entry.desktopPosition = -1;
-                    desktopEntries.add(entry);
-                }
+                SparseArray<Entry> desktopEntries = new SparseArray<>();
                 for (Entry entry: calculationResults) {
                     if (entry.desktopPosition != -1) {
-                        desktopEntries.remove(entry.desktopPosition.intValue());
-                        desktopEntries.add(entry.desktopPosition, entry);
+                        desktopEntries.append(entry.desktopPosition, entry);
                     }
                 }
                 adapter.setData(desktopEntries);

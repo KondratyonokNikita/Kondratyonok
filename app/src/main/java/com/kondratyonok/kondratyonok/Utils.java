@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.kondratyonok.kondratyonok.database.Entry;
 import com.kondratyonok.kondratyonok.database.EntryDbHolder;
@@ -60,6 +61,16 @@ public class Utils {
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void saveSparseArray(SparseArray<Entry> data, Application application) {
+        for (int i = 0; i < data.size(); ++i) {
+            int key = data.keyAt(i);
+            Log.i("save", data.get(key).packageName + " " + data.get(key).desktopPosition.toString());
+            Entry entry = EntryDbHolder.getInstance().getDb(application.getApplicationContext()).calculationResultDao().getEntry(data.get(key).packageName);
+            entry.desktopPosition = data.get(key).desktopPosition;
+            EntryDbHolder.getInstance().getDb(application.getApplicationContext()).calculationResultDao().update(entry);
         }
     }
 }
