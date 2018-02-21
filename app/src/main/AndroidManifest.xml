@@ -43,6 +43,12 @@
             android:parentActivityName=".activity.ApplicationsActivity" />
 
         <service android:name=".service.ApplicationsLoaderService" />
+        <service
+            android:name=".service.BackgroundDownloadService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission=""
+            tools:ignore="ExportedService" />
     </application>
 
 </manifest>
