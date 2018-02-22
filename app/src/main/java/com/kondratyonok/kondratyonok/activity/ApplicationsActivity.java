@@ -15,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
+import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,6 +32,7 @@ import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
 import com.kondratyonok.kondratyonok.adapter.MainPagerAdapter;
 import com.kondratyonok.kondratyonok.database.EntryDbHolder;
+import com.kondratyonok.kondratyonok.helper.BackgroundReadyNotifiable;
 import com.kondratyonok.kondratyonok.listener.OnMenuItemSelectedListener;
 import com.kondratyonok.kondratyonok.listener.OnPageChangeListener;
 import com.kondratyonok.kondratyonok.service.Album;
@@ -43,7 +45,7 @@ import com.yandex.metrica.YandexMetrica;
 
 import io.fabric.sdk.android.Fabric;
 
-public class ApplicationsActivity extends AppCompatActivity {
+public class ApplicationsActivity extends AppCompatActivity implements BackgroundReadyNotifiable {
 
     public DrawerLayout mDrawerLayout;
     public Fragment fragment;
@@ -139,22 +141,10 @@ public class ApplicationsActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(new OnPageChangeListener(this));
 
-        Intent loader = new Intent(this, BackgroundDownloadService.class);
-        bindService(loader, mConnection, Context.BIND_AUTO_CREATE);
-
-        new CountDownTimer(300000000, 900000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                if (mBound) {
-                    findViewById(R.id.main).setBackground(mService.getDrawable());
-                }
-            }
-
-            @Override
-            public void onFinish() {
-            }
-        }.start();
+        if (!mBound) {
+            Intent loader = new Intent(this, BackgroundDownloadService.class);
+            bindService(loader, mConnection, Context.BIND_AUTO_CREATE);
+        }
     }
 
     BackgroundDownloadService mService;
@@ -165,10 +155,10 @@ public class ApplicationsActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
             BackgroundDownloadService.LocalBinder binder = (BackgroundDownloadService.LocalBinder) service;
             mService = binder.getService();
-            mService.updateBackground(800000);
+            mService.updateBackground(60000);
+            mService.setReadyNotifiable(ApplicationsActivity.this);
             mService.setActivity(ApplicationsActivity.this);
             mBound = true;
         }
@@ -178,6 +168,18 @@ public class ApplicationsActivity extends AppCompatActivity {
             mBound = false;
         }
     };
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putBoolean("mBound", this.mBound);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        this.mBound = savedInstanceState.getBoolean("mBound");
+    }
 
     @Override
     protected void onStart() {
@@ -198,10 +200,15 @@ public class ApplicationsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mMonitor);
-        unbindService(mConnection);
+        //unbindService(mConnection);
     }
 
     public NavigationView getNavigationView() {
         return navigationView;
+    }
+
+    @Override
+    public void notifyBackgroundReady(Bitmap background) {
+        findViewById(R.id.main).setBackground(new BitmapDrawable(getResources(), background));
     }
 }

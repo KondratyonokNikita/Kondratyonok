@@ -19,6 +19,7 @@ import android.view.View;
 
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.Utils;
+import com.kondratyonok.kondratyonok.helper.BackgroundReadyNotifiable;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -42,30 +43,18 @@ public class BackgroundDownloadService extends Service implements LoaderManager.
         return mBinder;
     }
 
-    private ExecutorService mExecutor;
     private Activity activity;
+    private BackgroundReadyNotifiable nofiable;
 
-    public BackgroundDownloadService() {
-        mExecutor = Executors.newSingleThreadExecutor();
+    @Override
+    public void onCreate() {
+        Log.i("Service", "create");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 photos = new YaDownloader().fetchAlbum();
             }
         }).start();
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("BackgroundService", "onStartCommand");
-        //mExecutor.execute(new BackgroundDownloadService.LoadBackground());
-        return START_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mExecutor.shutdownNow();
     }
 
     @Override
@@ -84,7 +73,7 @@ public class BackgroundDownloadService extends Service implements LoaderManager.
     @Override
     public void onLoadFinished(Loader<Bitmap> loader, Bitmap data) {
         if (data != null) {
-            this.background = new BitmapDrawable(getResources(), data);
+            this.nofiable.notifyBackgroundReady(data);
         }
     }
 
@@ -99,8 +88,8 @@ public class BackgroundDownloadService extends Service implements LoaderManager.
         this.activity = activity;
     }
 
-    public Drawable getDrawable() {
-        return background;
+    public void setReadyNotifiable(BackgroundReadyNotifiable notifiable) {
+        this.nofiable = notifiable;
     }
 
     public void updateBackground(final int timeout) {
