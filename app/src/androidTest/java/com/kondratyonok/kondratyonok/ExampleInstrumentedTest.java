@@ -2,6 +2,7 @@ package com.kondratyonok.kondratyonok;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
@@ -15,12 +16,11 @@ import static junit.framework.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+@SmallTest
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
+    public void test_UseAppContext() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.kondratyonok.kondratyonok", appContext.getPackageName());
+        assertEquals("com.kondratyonok.kondratyonokc", appContext.getPackageName());
     }
 }

@@ -3,6 +3,8 @@ package com.kondratyonok.kondratyonok;
 import com.kondratyonok.kondratyonok.utils.PackageUtils;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

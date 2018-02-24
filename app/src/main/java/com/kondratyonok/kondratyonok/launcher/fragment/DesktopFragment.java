@@ -37,8 +37,8 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
     private ItemTouchHelper mItemTouchHelper;
     private DesktopGridAdapter adapter;
     private RecyclerView recyclerView;
-    private final int rowCount = getRowCount();
-    private final int columnCount = getColumnCount();
+    private int rowCount;
+    private int columnCount;
 
     public DesktopFragment() {
     }
@@ -49,6 +49,8 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
 
         recyclerView = mainView.findViewById(R.id.desktop);
         adapter = new DesktopGridAdapter(getActivity(), this, rowCount * columnCount);
+        rowCount = getRowCount();
+        columnCount = getColumnCount();
         initEntryViewModel();
         initRecyclerView();
         initItemTouchHelper();
