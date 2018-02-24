@@ -3,8 +3,8 @@ package com.kondratyonok.kondratyonok.settings;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.kondratyonok.kondratyonok.fragment.main.GridFragment;
-import com.kondratyonok.kondratyonok.fragment.main.LinearFragment;
+import com.kondratyonok.kondratyonok.launcher.fragment.GridFragment;
+import com.kondratyonok.kondratyonok.launcher.fragment.LinearFragment;
 
 /**
  * Created by NKondratyonok on 04.02.18.

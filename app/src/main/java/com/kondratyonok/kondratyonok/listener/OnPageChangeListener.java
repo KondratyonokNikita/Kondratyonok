@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.support.v4.view.ViewPager;
 
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
+import com.kondratyonok.kondratyonok.launcher.ApplicationsActivity;
 
 /**
  * Created by NKondratyonok on 12.02.18.

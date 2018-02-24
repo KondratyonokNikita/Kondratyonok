@@ -4,9 +4,6 @@ import android.app.Application;
 import android.util.Log;
 
 import com.yandex.metrica.YandexMetrica;
-import com.yandex.metrica.YandexMetricaConfig;
-
-import java.time.Year;
 
 /**
  * Created by NKondratyonok on 10.02.18.

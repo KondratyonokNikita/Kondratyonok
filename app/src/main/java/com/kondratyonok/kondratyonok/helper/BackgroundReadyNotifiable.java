@@ -7,5 +7,5 @@ import android.graphics.Bitmap;
  */
 
 public interface BackgroundReadyNotifiable {
-    void notifyBackgroundReady(Bitmap background);
+    void notifyBackgroundReady();
 }

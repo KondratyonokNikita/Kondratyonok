@@ -5,6 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.kondratyonok.kondratyonok.model.Entry;
+
 import java.util.List;
 
 /**

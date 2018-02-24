@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.view.View;
 
-import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.model.Entry;
 import com.kondratyonok.kondratyonok.database.EntryDbHolder;
 import com.yandex.metrica.YandexMetrica;
 
