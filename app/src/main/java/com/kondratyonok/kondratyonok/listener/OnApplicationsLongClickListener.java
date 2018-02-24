@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
-import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.model.Entry;
 import com.kondratyonok.kondratyonok.R;
 import com.kondratyonok.kondratyonok.database.EntryDbHolder;
 import com.yandex.metrica.YandexMetrica;

@@ -1,17 +1,20 @@
 package com.kondratyonok.kondratyonok.service;
 
-import android.app.Activity;
+import android.app.Application;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.kondratyonok.kondratyonok.Utils;
+import com.kondratyonok.kondratyonok.database.EntryDbHolder;
+import com.kondratyonok.kondratyonok.model.Entry;
+import com.kondratyonok.kondratyonok.utils.PackageUtils;
 
-import java.math.BigInteger;
-import java.util.Random;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,10 +27,25 @@ public class ApplicationsLoaderService extends Service {
 
         @Override
         public void run() {
-            try {
-                Utils.loadEntriesList(getApplication());
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+            PackageManager packageManager = getPackageManager();
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            List<ApplicationInfo> app = packageManager.getInstalledApplications(0);
+            for (ApplicationInfo applicationInfo : app) {
+                try {
+                    if (packageManager.getLaunchIntentForPackage(applicationInfo.packageName) != null) {
+                        if (!applicationInfo.packageName.equals(getPackageName())) {
+                            Entry entry = PackageUtils.getEntryFromPackageName(applicationInfo.packageName, getApplication());
+                            try {
+                                EntryDbHolder.getInstance().getDb(getApplicationContext()).calculationResultDao().insert(entry);
+                            } catch (SQLiteConstraintException e) {
+                                Log.i("EXISTS", "package exists in database");
+                            }
+                        }
+                    }
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

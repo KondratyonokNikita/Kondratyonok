@@ -24,9 +24,9 @@
             android:name="net.hockeyapp.android.appSecret"
             android:value="${HOCKEYAPP_APP_SECRET}" />
 
-        <activity android:name=".activity.GreetingActivity" />
+        <activity android:name=".greeting.GreetingActivity" />
         <activity
-            android:name=".activity.ApplicationsActivity"
+            android:name=".launcher.ApplicationsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="fullUser">
             <intent-filter>
@@ -39,16 +39,13 @@
         </activity>
         <activity android:name=".settings.SettingsActivity" />
         <activity
-            android:name=".activity.ProfileActivity"
-            android:parentActivityName=".activity.ApplicationsActivity" />
+            android:name=".profile.ProfileActivity"
+            android:parentActivityName=".launcher.ApplicationsActivity" />
 
         <service android:name=".service.ApplicationsLoaderService" />
         <service
-            android:name=".service.BackgroundDownloadService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission=""
-            tools:ignore="ExportedService" />
+            android:name=".service.downloader.BackgroundDownloadService"
+            android:enabled="true" />
     </application>
 
 </manifest>

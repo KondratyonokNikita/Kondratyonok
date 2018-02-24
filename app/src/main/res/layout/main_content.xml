@@ -7,13 +7,13 @@
     android:id="@+id/main"
     android:background="@mipmap/launcher_collapsing_toolbar">
 
-    <com.kondratyonok.kondratyonok.custom.VerticalViewPager
+    <com.kondratyonok.kondratyonok.view.VerticalViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#00FFFFFF"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </com.kondratyonok.kondratyonok.custom.VerticalViewPager>
+    </com.kondratyonok.kondratyonok.view.VerticalViewPager>
 
 </android.support.design.widget.CoordinatorLayout>

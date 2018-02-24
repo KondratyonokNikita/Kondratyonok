@@ -1,6 +1,6 @@
 package com.kondratyonok.kondratyonok.settings;
 
-import com.kondratyonok.kondratyonok.database.Entry;
+import com.kondratyonok.kondratyonok.model.Entry;
 
 import java.util.Comparator;
 

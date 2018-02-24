@@ -8,9 +8,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.kondratyonok.kondratyonok.R;
-import com.kondratyonok.kondratyonok.activity.ApplicationsActivity;
-import com.kondratyonok.kondratyonok.fragment.main.GridFragment;
-import com.kondratyonok.kondratyonok.fragment.main.LinearFragment;
+import com.kondratyonok.kondratyonok.launcher.ApplicationsActivity;
+import com.kondratyonok.kondratyonok.launcher.fragment.GridFragment;
+import com.kondratyonok.kondratyonok.launcher.fragment.LinearFragment;
 import com.kondratyonok.kondratyonok.settings.LayoutManagerType;
 import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.yandex.metrica.YandexMetrica;
