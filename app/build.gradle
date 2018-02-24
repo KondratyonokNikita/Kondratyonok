@@ -57,7 +57,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 41
-        versionName "4.0.1 More_bugs"
+        versionName "4.0.2 Seems_to_be_done"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [HOCKEYAPP_APP_ID    : hockeyapp_app_id,
                                 HOCKEYAPP_APP_SECRET: hockeyapp_app_secret,
