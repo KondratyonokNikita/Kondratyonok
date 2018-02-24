@@ -164,7 +164,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Backgroun
         calendar.set(Calendar.MINUTE, 45);
 
         alarmMgr.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
-                1000 * 60 * 1, alarmIntent);
+                1000 * 60 * 15, alarmIntent);
         this.notifyBackgroundReady();
     }
 
