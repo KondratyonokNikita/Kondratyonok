@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     @Test
     public void test_UseAppContext() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("com.kondratyonok.kondratyonokc", appContext.getPackageName());
+        assertEquals("com.kondratyonok.kondratyonok", appContext.getPackageName());
     }
 }

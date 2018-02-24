@@ -1,6 +1,7 @@
 package com.kondratyonok.kondratyonok.settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -40,34 +41,34 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         Log.i("SETTINGS", "onDestroy");
     }
 
-    public static boolean hasAllSettings(Activity activity) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+    public static boolean hasAllSettings(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean good;
         good = preferences.contains(SettingsActivity.KEY_LAYOUT);
         good &= preferences.contains(SettingsActivity.KEY_THEME);
         return good;
     }
 
-    public static Comparator<Object> getSortingMethod(Activity activity) {
+    public static Comparator<Object> getSortingMethod(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_SORTING_METHOD, SortingMethod.DEFAULT);
         return SortingMethod.getMethod(code);
     }
 
-    public static int getApplicationTheme(Activity activity) {
+    public static int getApplicationTheme(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_THEME, Theme.DEFAULT);
         return Theme.getTheme(code);
     }
 
-    public static void setApplicationTheme(String theme, Activity activity) {
+    public static void setApplicationTheme(String theme, Context activity) {
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString(SettingsActivity.KEY_THEME, theme);
         ed.apply();
     }
 
-    public static boolean hasApplicationTheme(Activity activity) {
+    public static boolean hasApplicationTheme(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         return preferences.contains(SettingsActivity.KEY_THEME);
     }
@@ -80,33 +81,33 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         return false;
     }
 
-    public static int getLayoutColumnsId(Activity activity) {
+    public static int getLayoutColumnsId(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String code = preferences.getString(SettingsActivity.KEY_LAYOUT, Layout.DEFAULT);
         return Layout.getColumnsId(code);
     }
 
-    public static void setLayout(String layout, Activity activity) {
+    public static void setLayout(String layout, Context activity) {
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString(SettingsActivity.KEY_LAYOUT, layout);
         ed.apply();
     }
 
-    public static boolean hasLayout(Activity activity) {
+    public static boolean hasLayout(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         return preferences.contains(SettingsActivity.KEY_LAYOUT);
     }
 
 
 
-    public static boolean isNeedWelcomePage(Activity activity) {
+    public static boolean isNeedWelcomePage(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         boolean need = preferences.getBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, true);
         return need || !SettingsActivity.hasAllSettings(activity);
     }
 
-    public static void setNeedWelcomePage(Activity activity, boolean need) {
+    public static void setNeedWelcomePage(Context activity, boolean need) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor ed = preferences.edit();
         ed.putBoolean(SettingsActivity.KEY_NEED_WELCOME_PAGE, need);
@@ -118,7 +119,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
 
-    public static boolean isNeedFavorites(Activity activity) {
+    public static boolean isNeedFavorites(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         return preferences.getBoolean(SettingsActivity.KEY_NEED_FAVORITES, true);
     }

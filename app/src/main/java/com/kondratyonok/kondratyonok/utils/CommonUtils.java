@@ -12,7 +12,10 @@ public class CommonUtils {
     public static final String ARG_SECTION_NUMBER = "section_number";
 
     public static void log(String title, String subtitle) {
-        YandexMetrica.reportEvent(title, subtitle);
-        Log.i(title, subtitle);
+        try {
+            YandexMetrica.reportEvent(title, subtitle);
+            Log.i(title, subtitle);
+        } catch (Exception e) {
+        }
     }
 }
