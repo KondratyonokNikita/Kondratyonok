@@ -48,11 +48,11 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
         View mainView = inflater.inflate(R.layout.fr_desktop, container, false);
 
         recyclerView = mainView.findViewById(R.id.desktop);
-        adapter = new DesktopGridAdapter(getActivity(), this, rowCount * columnCount);
         rowCount = getRowCount();
         columnCount = getColumnCount();
-        initEntryViewModel();
+        adapter = new DesktopGridAdapter(getActivity(), this, rowCount * columnCount);
         initRecyclerView();
+        initEntryViewModel();
         initItemTouchHelper();
         return mainView;
     }
@@ -81,6 +81,7 @@ public class DesktopFragment extends Fragment implements OnStartDragListener {
                 SparseArray<Entry> desktopEntries = new SparseArray<>();
                 for (Entry entry: calculationResults) {
                     if (entry.desktopPosition != -1) {
+                        Log.i("database", "new desktop" + String.valueOf(entry.desktopPosition));
                         desktopEntries.append(entry.desktopPosition, entry);
                     }
                 }

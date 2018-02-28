@@ -40,6 +40,8 @@ import com.kondratyonok.kondratyonok.utils.FileUtils;
 import com.kondratyonok.kondratyonok.utils.PackageUtils;
 import com.yandex.metrica.YandexMetrica;
 
+import net.hockeyapp.android.UpdateManager;
+
 import java.util.Calendar;
 
 import io.fabric.sdk.android.Fabric;
@@ -166,12 +168,15 @@ public class ApplicationsActivity extends AppCompatActivity implements Backgroun
         alarmMgr.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                 1000 * 60 * 15, alarmIntent);
         this.notifyBackgroundReady();
+
+        UpdateManager.register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         unbindService(mConnection);
+
     }
 
     BackgroundDownloadService mService;
@@ -231,6 +236,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Backgroun
     protected void onStop() {
         super.onStop();
         unregisterReceiver(mMonitor);
+        UpdateManager.unregister();
     }
 
     public NavigationView getNavigationView() {

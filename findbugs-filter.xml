@@ -10,4 +10,8 @@
     <Match>
         <Bug pattern="DM_DEFAULT_ENCODING"/>
     </Match>
+
+    <Match>
+        <Bug pattern="NM_CLASS_NAMING_CONVENTION"/>
+    </Match>
 </FindBugsFilter>

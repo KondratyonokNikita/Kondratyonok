@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -72,6 +73,7 @@ public class OnApplicationsLongClickListener implements View.OnLongClickListener
                                 Entry entry = EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().getEntry(data.packageName);
                                 entry.desktopPosition = place;
                                 EntryDbHolder.getInstance().getDb(activity.getApplicationContext()).calculationResultDao().update(entry);
+                                Log.i("database", "to desktop");
                             }
                         })).start();
                         break;

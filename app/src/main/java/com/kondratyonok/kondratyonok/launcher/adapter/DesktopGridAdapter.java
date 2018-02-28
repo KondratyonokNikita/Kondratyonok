@@ -45,11 +45,19 @@ public class DesktopGridAdapter extends RecyclerView.Adapter<Holder.Applications
     @Override
     public void onBindViewHolder(final Holder.ApplicationsHolder gridHolder, final int position) {
         final int pos = gridHolder.getAdapterPosition();
-        if (data.get(pos, null) != null) {
+        if (pos == 0) {
+            setTrashHolder(gridHolder);
+        } else if (data.get(pos, null) != null) {
             setApplicationHolder(gridHolder, pos);
         } else {
             setEmptyHolder(gridHolder);
         }
+    }
+
+    private void setTrashHolder(final Holder.ApplicationsHolder gridHolder) {
+        gridHolder.getIconView().setBackground(activity.getResources().getDrawable(R.mipmap.trash));
+        gridHolder.getHolder().setOnClickListener(null);
+        gridHolder.getHolder().setOnLongClickListener(null);
     }
 
     private void setApplicationHolder(final Holder.ApplicationsHolder gridHolder, final int pos) {

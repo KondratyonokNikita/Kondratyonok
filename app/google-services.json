@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "982681273893",
+    "firebase_url": "https://kondratyonok-1840f.firebaseio.com",
+    "project_id": "kondratyonok-1840f",
+    "storage_bucket": "kondratyonok-1840f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982681273893:android:b601b9f610f28f89",
+        "android_client_info": {
+          "package_name": "com.kondratyonok.kondratyonok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982681273893-qgr2fkhld0fpskgpam2r041jpld7n9n1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kondratyonok.kondratyonok",
+            "certificate_hash": "57eecfbedc8a1c194f2b41efba662dd6973ad328"
+          }
+        },
+        {
+          "client_id": "982681273893-l1fj878eb16o4pp5lse8jd5q6p45pf3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtnndRlsOOxcux1-zf_Z36InqIW-5KYO0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982681273893-l1fj878eb16o4pp5lse8jd5q6p45pf3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
