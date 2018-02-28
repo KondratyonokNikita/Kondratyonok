@@ -191,7 +191,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Backgroun
             mService = binder.getService();
             mService.setReadyNotifiable(ApplicationsActivity.this);
             mService.setActivity(ApplicationsActivity.this);
-            mService.setTimeout(15000);
+            mService.setTimeout(900000);
             mBound = true;
         }
 
