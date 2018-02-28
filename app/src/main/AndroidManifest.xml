@@ -60,9 +60,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
-                    android:host="kondratyonok"
-                    android:pathPattern="/profile" />
+                    android:scheme="kondratyonok"
+                    android:host="profile" />
             </intent-filter>
         </activity>
 
