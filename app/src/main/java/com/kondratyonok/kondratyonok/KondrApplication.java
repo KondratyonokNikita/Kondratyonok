@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.yandex.metrica.YandexMetrica;
+import com.yandex.metrica.push.YandexMetricaPush;
 
 /**
  * Created by NKondratyonok on 10.02.18.
@@ -19,6 +20,7 @@ public class KondrApplication extends Application {
         YandexMetrica.setLogEnabled();
         YandexMetrica.setCollectInstalledApps(true);
         YandexMetrica.setSessionTimeout(5);
+        YandexMetricaPush.init(this);
 
         final Thread.UncaughtExceptionHandler mAndroidCrashHandler = Thread.getDefaultUncaughtExceptionHandler();
 

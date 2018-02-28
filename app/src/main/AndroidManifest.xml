@@ -23,6 +23,18 @@
         <meta-data
             android:name="net.hockeyapp.android.appSecret"
             android:value="${HOCKEYAPP_APP_SECRET}" />
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="27.0.2" />
+
+        <receiver
+            android:name=".service.SilentPushReceiver"
+            android:exported="false">
+            <intent-filter>
+                <!--Получение silent push-уведомлений-->
+                <action android:name="com.kondratyonok.kondratyonok.action.ymp.SILENT_PUSH_RECEIVE" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".greeting.GreetingActivity" />
         <activity
@@ -40,7 +52,19 @@
         <activity android:name=".settings.SettingsActivity" />
         <activity
             android:name=".profile.ProfileActivity"
-            android:parentActivityName=".launcher.ApplicationsActivity" />
+            android:parentActivityName=".launcher.ApplicationsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="kondratyonok"
+                    android:pathPattern="/profile" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".service.ApplicationsLoaderService" />
         <service

@@ -25,6 +25,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public static final String KEY_LAYOUT_MANAGER_TYPE = "layout_manager_type";
     public static final String KEY_NEED_WELCOME_PAGE = "need_welcome_page";
     public static final String KEY_NEED_FAVORITES = "need_favorites";
+    public static final String KEY_SILENT_PUSH_INFO = "silent_push_info";
 
     static boolean settingsChanged = false;
 
@@ -100,6 +101,17 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
 
+    public static String getSilentPushInfo(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(SettingsActivity.KEY_SILENT_PUSH_INFO, null);
+    }
+
+    public static void setSilentPushInfo(Context context, String info) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor ed = preferences.edit();
+        ed.putString(SettingsActivity.KEY_SILENT_PUSH_INFO, info);
+        ed.apply();
+    }
 
     public static boolean isNeedWelcomePage(Context activity) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kondratyonok.kondratyonok.settings.SettingsActivity;
 import com.kondratyonok.kondratyonok.utils.Holder;
 import com.kondratyonok.kondratyonok.R;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Activity activity;
+    private String info;
 
     private List<InfoEntry> data = new ArrayList<InfoEntry>() {{
         add(new InfoEntry(R.string.mobile_phone, R.string.mobile, R.drawable.ic_phone));
@@ -33,6 +35,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public ProfileAdapter(Activity activity) {
         this.activity = activity;
+        String info = SettingsActivity.getSilentPushInfo(activity.getApplicationContext());
+        if (info != null) {
+            data.add(0, new InfoEntry(R.string.info, 0,null));
+            this.info = info;
+        }
     }
 
     @Override
@@ -52,7 +59,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         gridHolder.getTitleView().setText(data.get(position).title);
 
-        gridHolder.getSubtitleView().setText(data.get(position).subtitle);
+        if (data.get(position).subtitle != 0) {
+            gridHolder.getSubtitleView().setText(data.get(position).subtitle);
+        } else {
+            gridHolder.getSubtitleView().setText(info);
+        }
     }
 
     @Override
