@@ -56,8 +56,8 @@ android {
         applicationId "com.kondratyonok.kondratyonok"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 43
-        versionName "4.0.3 Testing_push"
+        versionCode 50
+        versionName "5.0 I_hope_it_is_OK"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [HOCKEYAPP_APP_ID    : hockeyapp_app_id,
                                 HOCKEYAPP_APP_SECRET: hockeyapp_app_secret,
